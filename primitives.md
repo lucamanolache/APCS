@@ -5,6 +5,10 @@ There are 8 primitives in Java.
 They are: *int*, *byte*, *short*, *long*, *float*, *double*, *boolean*, and *char*.
 Strings, while not being a primitive data type is still similar in some ways.
 
+### Bits
+Bits are stored in a computer as electrical signals.
+Most of the time a high voltage means 1 or true and a low voltage means 0 or false.
+
 ### Integers
 Integers are one of the most basic and most commonly used types of primitive objects.
 They are defined by using the ``int`` keyword. An integer is stored in 32 bits (4B) and is signed.
