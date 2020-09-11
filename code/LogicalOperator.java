@@ -24,15 +24,17 @@ public class LogicalOperator {
      * @return If the sentence is a legal logical sentence
      */
     public static boolean legal(String sentence) {
-        if (sentence.length() == 0) {
-            return false;
-        }
-
-        // Check if it is a simple sentence or a negation. If so return true.
         if (negation(sentence) || legalSimple(sentence)) {
             return true;
+        } else if (complex(sentence)) {
+            return true;
+        } else {
+            // The sentence is not complex nor simple nor a negation
+            return false;
         }
+    }
 
+    private static boolean complex(String sentence) {
         // Find out if the first split is an conjunctions/disjunction or a implication
         var splitConjunctionMatcher = splitConjunctionsRegex.matcher(sentence);
         var splitImplicationMatcher = splitImplicationsRegex.matcher(sentence);
@@ -65,13 +67,9 @@ public class LogicalOperator {
             return false;
         }
 
-        // Check if both sides of the biconditional, ..., are true
+        // Check if both sides of the biconditional/implication or conjunction/disjunction are true
         assert splitComplex != null;
         return legal(splitComplex[0]) && legal(splitComplex[1]);
-    }
-
-    private static boolean complex() {
-        return false;
     }
 
     /**
