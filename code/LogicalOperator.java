@@ -1,17 +1,22 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LogicalOperator {
 
     // A regular expression to find if a string is a legal logical expression
-    private static final String legalSentenceRegex = "([~]*[a-z]{1}){1}((\\s)*(=>|<=|<=*>|[|,&]){1}(\\s)*([~]*[a-z]{1}){1})*";
-    private static final String legalSimpleRegex = "[a-z]{1}";
-    private static final String negationRegex = "[~]+[a-z]{1}";
-    private static final String splitRegex = "[=*>|<=*|<=*>|[|,&]]";
+    private static final Pattern legalSentenceRegex = Pattern.compile("([~]*[a-z]{1}){1}((\\s)*(=>|<=|<=*>|[|,&]){1}(\\s)*([~]*[a-z]{1}){1})*");
+    private static final Pattern legalSimpleRegex = Pattern.compile("\\s*[a-z]{1}\\s*");
+    private static final Pattern negationRegex = Pattern.compile("\\s*[~]+[a-z]{1}\\s*");
+    private static final Pattern splitImplicationsRegex = Pattern.compile("[=+>|<=+|<=+>]");
+    private static final Pattern splitConjunctionsRegex = Pattern.compile("[|,&]]");
+    private static final Pattern removeImplicationsRegex = Pattern.compile("[=*>|<=*|<=*>]");
 
     public static void main(String[] args) {
-
+        System.out.println(removeImplicationsRegex.matcher("asd =====> adlk ==> a").start());
     }
 
     /**
@@ -26,12 +31,45 @@ public class LogicalOperator {
             return true;
         }
 
-        // We know the sentence is not a negation, therefore it must have a biconditional, implication,
-        // conjunction, or a disjunction
-        String[] splitComplex = sentence.split(splitRegex, 1); // We split the string into 2 parts
+        // Find out if the first split is an conjunctions/disjunction or a implication
+        int fistConjunction = sentence.indexOf(splitConjunctionsRegex);
+        int firstImplication = sentence.indexOf(splitImplicationsRegex);
+
+        // split complex will always be defined to before its first use
+        String[] splitComplex = null;
+        if (fistConjunction > 0) {
+            // We know we have at least one conjunction/disjunction
+            if (firstImplication > 0 && firstImplication > fistConjunction) {
+                // The first place to split is a conjunction/disjunction.
+
+                splitComplex = sentence.split(splitConjunctionsRegex, 2);
+                // Conjunctions and disjunctions are 1 char long so there is no mess to remove
+            } else if (firstImplication > 0) {
+                splitComplex = sentence.split(splitImplicationsRegex, 2);
+
+                // Because implications and biconditionals are longer than 1 char, we have to clean up behind them
+                splitComplex[1] = splitComplex[1].replaceFirst(removeImplicationsRegex, "");
+            }
+        } else if (firstImplication > 0) {
+            // We know we have at least one implication and that we dont have any conjunctions
+
+            splitComplex = sentence.split(splitImplicationsRegex, 2);
+
+            // Because implications and biconditionals are longer than 1 char, we have to clean up behind them
+            splitComplex[1] = splitComplex[1].replaceFirst(removeImplicationsRegex, "");
+        } else {
+            // We no longer have any implications/conditionals or conjunctions/disjunctions and we know it is not a
+            // simple sentence or negation
+            return false;
+        }
 
         // Check if both sides of the biconditional, ..., are true
+        assert splitComplex != null;
         return legal(splitComplex[0]) || legal(splitComplex[1]);
+    }
+
+    private static boolean complex() {
+
     }
 
     /**
@@ -56,32 +94,40 @@ public class LogicalOperator {
     @Test
     public void testNegation() {
         assertTrue(negation("~~~~m"));
-        assertTrue(negation("~~a"));
+        assertTrue(negation("~~a   "));
         assertTrue(negation("~z"));
+        assertTrue(negation("  ~m"));
+        assertTrue(negation("~~m  "));
         assertFalse(negation("b"));
         assertFalse(negation("~A"));
         assertFalse(negation("~A => ~~b"));
         assertFalse(negation("~~"));
+        assertFalse(negation(""));
+        assertFalse(negation(" "));
     }
 
     @Test
     public void testSimple() {
         assertTrue(legalSimple("a"));
-        assertTrue(legalSimple("z"));
+        assertTrue(legalSimple("z "));
+        assertTrue(legalSimple("  z"));
+        assertTrue(legalSimple(" q  "));
         assertFalse(legalSimple("A"));
         assertFalse(legalSimple("~A"));
-        assertFalse(legalSimple("ab"));
+        assertFalse(legalSimple(" ab"));
         assertFalse(legalSimple("a z"));
+        assertFalse(legalSimple(""));
+        assertFalse(legalSimple(" "));
     }
 
     @Test
     public void testLegal() {
-        assertTrue(legal("a"));
-        assertTrue(legal("~~z"));
-        assertTrue(legal("~a ==> ~~z"));
-        assertTrue(legal("a <====> b"));
-        assertTrue(legal("~~a <= b"));
-        assertFalse(legal("a > b"));
+        assertTrue(legal("  a "));
+        assertTrue(legal("~~z  "));
+        assertTrue(legal("~a   ==> ~~z"));
+        assertTrue(legal("a  <====> b"));
+        assertTrue(legal("~~a <=   b"));
+        assertFalse(legal("  a >   b  "));
         assertFalse(legal("a < ~~b"));
         assertFalse(legal("<==="));
         assertFalse(legal("a ==>"));
