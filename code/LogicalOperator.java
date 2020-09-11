@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +10,7 @@ public class LogicalOperator {
     private static final Pattern legalSentenceRegex = Pattern.compile("([~]*[a-z]{1}){1}((\\s)*(=>|<=|<=*>|[|,&]){1}(\\s)*([~]*[a-z]{1}){1})*");
     private static final Pattern legalSimpleRegex = Pattern.compile("\\s*[a-z]{1}\\s*");
     private static final Pattern negationRegex = Pattern.compile("\\s*[~]+[a-z]{1}\\s*");
-    private static final Pattern splitImplicationsRegex = Pattern.compile("[[=]+>|<[=]+|<[=]+>]");
+    private static final Pattern splitImplicationsRegex = Pattern.compile("=+>|<=+|<=+>");
     private static final Pattern splitConjunctionsRegex = Pattern.compile("[|,&]]");
     private static final Pattern removeImplicationsRegex = Pattern.compile("[=*>|<=*|<=*>]");
 
@@ -25,6 +24,10 @@ public class LogicalOperator {
      * @return If the sentence is a legal logical sentence
      */
     public static boolean legal(String sentence) {
+        if (sentence.length() == 0) {
+            return false;
+        }
+
         // Check if it is a simple sentence or a negation. If so return true.
         if (negation(sentence) || legalSimple(sentence)) {
             return true;
@@ -64,7 +67,7 @@ public class LogicalOperator {
 
         // Check if both sides of the biconditional, ..., are true
         assert splitComplex != null;
-        return legal(splitComplex[0]) || legal(splitComplex[1]);
+        return legal(splitComplex[0]) && legal(splitComplex[1]);
     }
 
     private static boolean complex() {
@@ -125,7 +128,8 @@ public class LogicalOperator {
         assertTrue(legal("~~z  "));
         assertTrue(legal("~a   ==> ~~z"));
         assertTrue(legal("a  <====> b"));
-        assertTrue(legal("~~a <=   b"));
+        assertTrue(legal("~~a <=   b  ==> c <====>a"));
+        assertFalse(legal("~~a <=   b  ==> c <====>a ==>  "));
         assertFalse(legal("  a >   b  "));
         assertFalse(legal("a < ~~b"));
         assertFalse(legal("<==="));
