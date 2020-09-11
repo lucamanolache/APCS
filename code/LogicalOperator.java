@@ -11,12 +11,11 @@ public class LogicalOperator {
     private static final Pattern legalSentenceRegex = Pattern.compile("([~]*[a-z]{1}){1}((\\s)*(=>|<=|<=*>|[|,&]){1}(\\s)*([~]*[a-z]{1}){1})*");
     private static final Pattern legalSimpleRegex = Pattern.compile("\\s*[a-z]{1}\\s*");
     private static final Pattern negationRegex = Pattern.compile("\\s*[~]+[a-z]{1}\\s*");
-    private static final Pattern splitImplicationsRegex = Pattern.compile("[=+>|<=+|<=+>]");
+    private static final Pattern splitImplicationsRegex = Pattern.compile("[[=]+>|<[=]+|<[=]+>]");
     private static final Pattern splitConjunctionsRegex = Pattern.compile("[|,&]]");
     private static final Pattern removeImplicationsRegex = Pattern.compile("[=*>|<=*|<=*>]");
 
     public static void main(String[] args) {
-        System.out.println(removeImplicationsRegex.matcher("asd =====> adlk ==> a").start());
     }
 
     /**
@@ -32,31 +31,31 @@ public class LogicalOperator {
         }
 
         // Find out if the first split is an conjunctions/disjunction or a implication
-        int fistConjunction = sentence.indexOf(splitConjunctionsRegex);
-        int firstImplication = sentence.indexOf(splitImplicationsRegex);
+        var splitConjunctionMatcher = splitConjunctionsRegex.matcher(sentence);
+        var splitImplicationMatcher = splitImplicationsRegex.matcher(sentence);
 
         // split complex will always be defined to before its first use
         String[] splitComplex = null;
-        if (fistConjunction > 0) {
+        if (splitConjunctionMatcher.find()) {
             // We know we have at least one conjunction/disjunction
-            if (firstImplication > 0 && firstImplication > fistConjunction) {
+            if (splitImplicationMatcher.find() && splitImplicationMatcher.start() > splitImplicationMatcher.start()) {
                 // The first place to split is a conjunction/disjunction.
 
-                splitComplex = sentence.split(splitConjunctionsRegex, 2);
+                splitComplex = splitConjunctionsRegex.split(sentence, 2);
                 // Conjunctions and disjunctions are 1 char long so there is no mess to remove
-            } else if (firstImplication > 0) {
-                splitComplex = sentence.split(splitImplicationsRegex, 2);
+            } else if (splitImplicationMatcher.find()) {
+                splitComplex = splitImplicationsRegex.split(sentence, 2);
 
                 // Because implications and biconditionals are longer than 1 char, we have to clean up behind them
-                splitComplex[1] = splitComplex[1].replaceFirst(removeImplicationsRegex, "");
+                splitComplex[1] = removeImplicationsRegex.matcher(splitComplex[1]).replaceFirst("");
             }
-        } else if (firstImplication > 0) {
+        } else if (splitImplicationMatcher.find()) {
             // We know we have at least one implication and that we dont have any conjunctions
 
-            splitComplex = sentence.split(splitImplicationsRegex, 2);
+            splitComplex = splitImplicationsRegex.split(sentence, 2);;
 
             // Because implications and biconditionals are longer than 1 char, we have to clean up behind them
-            splitComplex[1] = splitComplex[1].replaceFirst(removeImplicationsRegex, "");
+            splitComplex[1] = removeImplicationsRegex.matcher(splitComplex[1]).replaceFirst("");
         } else {
             // We no longer have any implications/conditionals or conjunctions/disjunctions and we know it is not a
             // simple sentence or negation
@@ -69,7 +68,7 @@ public class LogicalOperator {
     }
 
     private static boolean complex() {
-
+        return false;
     }
 
     /**
@@ -79,7 +78,7 @@ public class LogicalOperator {
      * @return If the string is a negation
      */
     private static boolean negation(String negation) {
-        return negation.matches(negationRegex);
+        return negationRegex.matcher(negation).matches();
     }
 
     /**
@@ -88,7 +87,7 @@ public class LogicalOperator {
      * @return If it is a simple sentence
      */
     private static boolean legalSimple(String simple) {
-        return simple.matches(legalSimpleRegex);
+        return legalSimpleRegex.matcher(simple).matches();
     }
 
     @Test
