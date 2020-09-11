@@ -17,19 +17,21 @@ public class LogicalOperator {
     /**
      * Returns true if the sentence is a legal complex sentence. It will return true if it is a simple
      * sentence. Some examples of legal complex sentences are ~~a or a => ~~b.
-     * @param complex The sentence to check
+     * @param sentence The sentence to check
      * @return If the sentence is a legal logical sentence
      */
-    private static boolean legalComplex(String complex) {
-        if (negation(complex) || legalSimple(complex)) {
+    public static boolean legal(String sentence) {
+        // Check if it is a simple sentence or a negation. If so return true.
+        if (negation(sentence) || legalSimple(sentence)) {
             return true;
         }
 
         // We know the sentence is not a negation, therefore it must have a biconditional, implication,
         // conjunction, or a disjunction
-        String[] splitComplex = complex.split(splitRegex, 1); // We split the string into 2 parts
+        String[] splitComplex = sentence.split(splitRegex, 1); // We split the string into 2 parts
 
-        return legalComplex(splitComplex[0]) || legalComplex(splitComplex[1]);
+        // Check if both sides of the biconditional, ..., are true
+        return legal(splitComplex[0]) || legal(splitComplex[1]);
     }
 
     /**
