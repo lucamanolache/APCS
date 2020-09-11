@@ -1,17 +1,17 @@
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 public class LogicalOperator {
 
     // A regular expression to find if a string is a legal logical expression
     private static final String legalSentenceRegex = "([~]*[a-z]{1}){1}((\\s)*(=>|<=|<=*>|[|,&]){1}(\\s)*([~]*[a-z]{1}){1})*";
     private static final String legalSimpleRegex = "[a-z]{1}";
-    private static final String negationRegex = "[~]*[a-z]{1}";
+    private static final String negationRegex = "[~]+[a-z]{1}";
     private static final String splitRegex = "[=*>|<=*|<=*>|[|,&]]";
 
     public static void main(String[] args) {
 
-    }
-
-    private static boolean legalSimple(String simple) {
-        return simple.matches(legalSimpleRegex);
     }
 
     /**
@@ -40,7 +40,50 @@ public class LogicalOperator {
      * @param negation The string to check
      * @return If the string is a negation
      */
-    public static boolean negation(String negation) {
+    private static boolean negation(String negation) {
         return negation.matches(negationRegex);
+    }
+
+    /**
+     * Finds if a string is a legal simple sentence. This means it is just a single letter such as a or b.
+     * @param simple The simple legal sentence to check
+     * @return If it is a simple sentence
+     */
+    private static boolean legalSimple(String simple) {
+        return simple.matches(legalSimpleRegex);
+    }
+
+    @Test
+    public void testNegation() {
+        assertTrue(negation("~~~~m"));
+        assertTrue(negation("~~a"));
+        assertTrue(negation("~z"));
+        assertFalse(negation("b"));
+        assertFalse(negation("~A"));
+        assertFalse(negation("~A => ~~b"));
+        assertFalse(negation("~~"));
+    }
+
+    @Test
+    public void testSimple() {
+        assertTrue(legalSimple("a"));
+        assertTrue(legalSimple("z"));
+        assertFalse(legalSimple("A"));
+        assertFalse(legalSimple("~A"));
+        assertFalse(legalSimple("ab"));
+        assertFalse(legalSimple("a z"));
+    }
+
+    @Test
+    public void testLegal() {
+        assertTrue(legal("a"));
+        assertTrue(legal("~~z"));
+        assertTrue(legal("~a ==> ~~z"));
+        assertTrue(legal("a <====> b"));
+        assertTrue(legal("~~a <= b"));
+        assertFalse(legal("a > b"));
+        assertFalse(legal("a < ~~b"));
+        assertFalse(legal("<==="));
+        assertFalse(legal("a ==>"));
     }
 }
