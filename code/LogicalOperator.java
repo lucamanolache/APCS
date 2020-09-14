@@ -9,7 +9,7 @@ public class LogicalOperator {
     // A regular expression to find if a string is a legal logical expression
     private static final Pattern legalSentenceRegex = Pattern.compile("([~]*[a-z]{1}){1}((\\s)*(=>|<=|<=*>|[|,&]){1}(\\s)*([~]*[a-z]{1}){1})*");
     private static final Pattern legalSimpleRegex = Pattern.compile("\\s*[a-z]{1}\\s*");
-    private static final Pattern negationRegex = Pattern.compile("\\s*[~]+[a-z]{1}\\s*");
+    private static final Pattern negationRegex = Pattern.compile("\\s*[~]+\\s*[a-z]{1}\\s*");
     private static final Pattern splitImplicationsRegex = Pattern.compile("=+>|<=+|<=+>");
     private static final Pattern splitConjunctionsRegex = Pattern.compile("[|,&]]");
     private static final Pattern removeImplicationsRegex = Pattern.compile("[=*>|<=*|<=*>]");
@@ -123,6 +123,7 @@ public class LogicalOperator {
     @Test
     public void testLegal() {
         assertTrue(legal("  a "));
+        assertTrue(legal(" ~ a "));
         assertTrue(legal("~~z  "));
         assertTrue(legal("~a   ==> ~~z"));
         assertTrue(legal("a  <====> b"));
