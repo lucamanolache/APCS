@@ -8,15 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WriteSplit {
 
-    private static final BiFunction<String, String, String[]> defaultBackend = WriteSplit.bruteForceSubstring;
+    private final BiFunction<String, String, String[]> defaultBackend = this::bruteForceSubstringSearchSplit;
 
-    private static final BiFunction<String, String, String[]> bruteForceSubstring = WriteSplit::bruteForceSubstringSearchSplit;
+    private final BiFunction<String, String, String[]> bruteForceSubstring = this::bruteForceSubstringSearchSplit;
 
     /**
      * To keep to the spirit of coding the split method from scratch, I am also coding the substring search from scratch.
      * Should do the same thing as {@link String#indexOf(String, int)}.
      */
-    private static int bruteForceSubstringSearch(String str, String regex, int start) {
+    private int bruteForceSubstringSearch(String str, String regex, int start) {
         for (int i = start; i <= str.length() - regex.length(); i++) {
             for (int j = 0; j <= regex.length(); j++) {
                 if (regex.charAt(j) != str.charAt(i + j)) {
@@ -37,7 +37,7 @@ public class WriteSplit {
      * the location of the substring into an {@link ArrayList<String>}. At the end the {@link ArrayList<String>} is
      * turned into a String[] and trimmed to return the same value as the split method in Strings.
      */
-    private static String[] bruteForceSubstringSearchSplit(String str, String regex) {
+    private String[] bruteForceSubstringSearchSplit(String str, String regex) {
         ArrayList<String> split = new ArrayList<>();
 
         int i = 0;
@@ -74,7 +74,7 @@ public class WriteSplit {
     /**
      * Same algorithm as {@link #bruteForceSubstringSearchSplit(String, String)} except uses
      */
-    private static String[] knuthMorisPrattSubstringSearchSplit(String str, String regex) {
+    private String[] knuthMorisPrattSubstringSearchSplit(String str, String regex) {
         ArrayList<String> split = new ArrayList<>();
 
         int i = 0;
