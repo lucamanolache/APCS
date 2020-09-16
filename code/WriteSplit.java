@@ -1,16 +1,84 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+class KMP {
+    private static final int R = 128; // size of our alphabet.
+
+    private String pattern;
+    private int[][] dfa;
+
+    public KMP(String pattern) {
+        // Building the DFA from our pattern
+        this.pattern = pattern;
+        int patternSize = pattern.length();
+        this.dfa = new int[R][patternSize];
+
+       dfa[pattern.charAt(0)][0] = 1;
+       int i = 0;
+        for (int j = 1; j < patternSize; j++) {
+            // fill in at dfa[][j]
+            for (int k = 0; k < R; k++) {
+                dfa[k][j] = dfa[k][i];
+            }
+
+            dfa[pattern.charAt(j)][i] = j + 1;
+            i = dfa[pattern.charAt(j)][i];
+        }
+    }
+
+    /**
+     * Use the pattern to search through String str
+     * @param str The string to be searched
+     * @return The first location of the pattern or -1, if not found
+     */
+    public int search(String str, int i) {
+        int j = 0;
+        int stringLength = str.length();
+        int patternLength = pattern.length();
+
+        while (i < stringLength && j < patternLength) {
+            j = dfa[str.charAt(i)][j];
+            i++;
+        }
+        if (j == patternLength) {
+            // Found
+            return i - patternLength;
+        } else {
+            // not found
+            return -1;
+        }
+    }
+
+    public int search(String str) {
+        return search(str, 0);
+    }
+
+    @Test
+    public void testSearch() {
+        String pattern = "cat";
+        KMP kmp = new KMP(pattern);
+
+        String[] testStrings = {"The short brown cat jumps over the fence",
+                                "The two cats like to be cats because they are cats",
+                                "A cat is a cat I guess"};
+        for (String i : testStrings) {
+            assertEquals(i.indexOf(pattern), kmp.search(i));
+        }
+    }
+}
+
 public class WriteSplit {
 
-    private final BiFunction<String, String, String[]> defaultBackend = this::bruteForceSubstringSearchSplit;
-
     private final BiFunction<String, String, String[]> bruteForceSubstring = this::bruteForceSubstringSearchSplit;
+    private final BiFunction<String, String, String[]> KMPSubstring = this::knuthMorisPrattSubstringSearchSplit;
+
+    private final BiFunction<String, String, String[]> defaultBackend = KMPSubstring;
 
     /**
      * To keep to the spirit of coding the split method from scratch, I am also coding the substring search from scratch.
@@ -76,11 +144,12 @@ public class WriteSplit {
      */
     private String[] knuthMorisPrattSubstringSearchSplit(String str, String regex) {
         ArrayList<String> split = new ArrayList<>();
+        KMP pattern = new KMP(regex);
 
         int i = 0;
         int regexFound;
         while (true) {
-            regexFound = bruteForceSubstringSearch(str, regex, i);
+            regexFound = pattern.search(str, i);
             // Break out of the loop if there are no more cases of the regex
             if (regexFound == -1) {
                 break;
@@ -139,7 +208,16 @@ public class WriteSplit {
             String regex1 = generateRandomString(1);
             assertArrayEquals(randomString.split(regex1), split(randomString, regex1));
 
+
             String regex2 = generateRandomString(2);
+            if (!Arrays.equals(randomString.split(regex2), split(randomString, regex2))) {
+                System.out.println(randomString);
+                System.out.println(regex2);
+
+                System.out.println(Arrays.toString(randomString.split(regex2)));
+                System.out.println(Arrays.toString(split(randomString, regex2)));
+            }
+
             assertArrayEquals(randomString.split(regex2), split(randomString, regex2));
         }
     }
