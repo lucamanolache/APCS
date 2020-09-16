@@ -27,7 +27,7 @@ class KMP {
                 dfa[k][j] = dfa[k][i];
             }
 
-            dfa[pattern.charAt(j)][i] = j + 1;
+            dfa[pattern.charAt(j)][j] = j + 1;
             i = dfa[pattern.charAt(j)][i];
         }
     }
@@ -57,19 +57,6 @@ class KMP {
 
     public int search(String str) {
         return search(str, 0);
-    }
-
-    @Test
-    public void testSearch() {
-        String pattern = "cat";
-        KMP kmp = new KMP(pattern);
-
-        String[] testStrings = {"The short brown cat jumps over the fence",
-                                "The two cats like to be cats because they are cats",
-                                "A cat is a cat I guess"};
-        for (String i : testStrings) {
-            assertEquals(i.indexOf(pattern), kmp.search(i));
-        }
     }
 }
 
@@ -247,5 +234,88 @@ public class WriteSplit {
      */
     private String generateRandomString(int length) {
         return generateRandomString(length, "qwertyuiopasdfghjklzxcvbnm");
+    }
+
+    @Test
+    public void testSearch() {
+        String pattern = "cat";
+        KMP kmp = new KMP(pattern);
+
+        String[] testStrings = {"The short brown cat jumps over the fence",
+                "The two cats like to be cats because they are cats",
+                "A cat is a cat I guess"};
+        for (String i : testStrings) {
+            assertEquals(i.indexOf(pattern), kmp.search(i));
+        }
+    }
+
+    @Test
+    public void testSpeed() {
+        final int tests = 1000;
+        final int functions = 3;
+
+        long[][] timesSplit = new long[tests][functions];
+        long[][] timesSearch = new long[tests][functions];
+        for (int i = 0; i < tests; i++) {
+            String string = generateRandomString(100000);
+            String regex = generateRandomString(1000);
+
+            long startTime;
+            long endTime;
+
+            startTime = System.nanoTime();
+            knuthMorisPrattSubstringSearchSplit(string, regex);
+            endTime = System.nanoTime();
+            timesSplit[i][0] = endTime - startTime;
+
+            startTime = System.nanoTime();
+            KMP test = new KMP(regex);
+            test.search(string, 0);
+            endTime = System.nanoTime();
+            timesSearch[i][0] = endTime - startTime;
+
+            startTime = System.nanoTime();
+            bruteForceSubstringSearchSplit(string, regex);
+            endTime = System.nanoTime();
+            timesSplit[i][1] = endTime - startTime;
+
+            startTime = System.nanoTime();
+            bruteForceSubstringSearch(string, regex, 0);
+            endTime = System.nanoTime();
+            timesSearch[i][0] = endTime - startTime;
+
+            startTime = System.nanoTime();
+            string.split(regex);
+            endTime = System.nanoTime();
+            timesSplit[i][2] = endTime - startTime;
+
+            startTime = System.nanoTime();
+            string.indexOf(regex, 0);
+            endTime = System.nanoTime();
+            timesSearch[i][0] = endTime - startTime;
+        }
+
+        double[] average = new double[functions];
+        for (int i = 0; i < functions; i++) {
+            long sum = 0;
+            for (int j = 0; j < tests; j++) {
+                sum += timesSplit[j][i];
+            }
+            average[i] = (double) sum / tests;
+        }
+        System.out.println(Arrays.toString(average));
+
+        // Tests that our algorithm is faster than String.split
+//        assertTrue(average[functions - 1] - average[0] > 0);
+
+        average = new double[functions];
+        for (int i = 0; i < functions; i++) {
+            long sum = 0;
+            for (int j = 0; j < tests; j++) {
+                sum += timesSearch[j][i];
+            }
+            average[i] = (double) sum / tests;
+        }
+        System.out.println(Arrays.toString(average));
     }
 }
