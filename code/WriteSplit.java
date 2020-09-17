@@ -7,6 +7,58 @@ import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+class BoyerMoore {
+    private final int alphabetSize = 256;
+
+    private int[] right;
+    private String pattern;
+    private int patternSize;
+
+    BoyerMoore(String pattern) {
+        this.pattern = pattern;
+        this.patternSize = pattern.length();
+
+        right = new int[alphabetSize];
+        Arrays.fill(right, -1);
+
+        for (int i = 0; i < patternSize; i++) {
+            right[pattern.charAt(i)] = i;
+        }
+    }
+
+    public int search(String str) {
+        return search(str, 0);
+    }
+
+    public int search(String str, int i) {
+        int stringLength = str.length();
+        int skip;
+
+        for (; i <= stringLength - patternSize; i += skip) {
+            skip = 0;
+
+            for (int j = patternSize - 1; j >= 0; j--) {
+                if (pattern.charAt(j) != str.charAt(i + j)) {
+                    skip = j - right[str.charAt(i + j)];
+                    if (skip < 1) {
+                        skip = 1;
+                    }
+                    break;
+                }
+            }
+            if (skip == 0) {
+                return i;
+            }
+        }
+
+        return stringLength;
+    }
+
+    public String getPattern() {
+        return pattern;
+    }
+}
+
 class KMP {
     private static final int R = 128; // size of our alphabet.
 
@@ -57,6 +109,10 @@ class KMP {
 
     public int search(String str) {
         return search(str, 0);
+    }
+
+    public String getPattern() {
+        return pattern;
     }
 }
 
@@ -126,17 +182,20 @@ public class WriteSplit {
         return split.toArray(String[]::new);
     }
 
+    private String[] knuthMorisPrattSubstringSearchSplit(String str, String regex) {
+        return  knuthMorisPrattSubstringSearchSplit(str, new KMP(regex));
+    }
+
     /**
      * Same algorithm as {@link #bruteForceSubstringSearchSplit(String, String)} except uses
      */
-    private String[] knuthMorisPrattSubstringSearchSplit(String str, String regex) {
+    private String[] knuthMorisPrattSubstringSearchSplit(String str, KMP regex) {
         ArrayList<String> split = new ArrayList<>();
-        KMP pattern = new KMP(regex);
 
         int i = 0;
         int regexFound;
         while (true) {
-            regexFound = pattern.search(str, i);
+            regexFound = regex.search(str, i);
             // Break out of the loop if there are no more cases of the regex
             if (regexFound == -1) {
                 break;
@@ -144,7 +203,41 @@ public class WriteSplit {
             // Split the string at the first occurrence of the regex
             split.add(str.substring(i, regexFound));
             // Increase the current letter we are at at to after where the previous regex occurrence was
-            i = regexFound + regex.length();
+            i = regexFound + regex.getPattern().length();
+        }
+
+        // If we have not gotten to the end of the string, add it as well
+        if (i < str.length()) {
+            split.add(str.substring(i));
+        } else {
+            // Remove strings of size 0 at the to match the output of str.split
+            for (int j = split.size() - 1; j >= 0; j--) {
+                if (split.get(j).length() == 0) {
+                    split.remove(j);
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return split.toArray(String[]::new);
+    }
+
+    private String[] boyerMooreSubstringSearchSplit(String str, BoyerMoore regex) {
+        ArrayList<String> split = new ArrayList<>();
+
+        int i = 0;
+        int regexFound;
+        while (true) {
+            regexFound = regex.search(str, i);
+            // Break out of the loop if there are no more cases of the regex
+            if (regexFound == -1) {
+                break;
+            }
+            // Split the string at the first occurrence of the regex
+            split.add(str.substring(i, regexFound));
+            // Increase the current letter we are at at to after where the previous regex occurrence was
+            i = regexFound + regex.getPattern().length();
         }
 
         // If we have not gotten to the end of the string, add it as well
@@ -240,12 +333,14 @@ public class WriteSplit {
     public void testSearch() {
         String pattern = "cat";
         KMP kmp = new KMP(pattern);
+        BoyerMoore boyer = new BoyerMoore(pattern);
 
         String[] testStrings = {"The short brown cat jumps over the fence",
                 "The two cats like to be cats because they are cats",
                 "A cat is a cat I guess"};
         for (String i : testStrings) {
             assertEquals(i.indexOf(pattern), kmp.search(i));
+            assertEquals(i.indexOf(pattern), boyer.search(i));
         }
     }
 
@@ -264,35 +359,26 @@ public class WriteSplit {
             long endTime;
 
             startTime = System.nanoTime();
-            knuthMorisPrattSubstringSearchSplit(string, regex);
+            KMP test = new KMP(regex);
+            knuthMorisPrattSubstringSearchSplit(string, test);
             endTime = System.nanoTime();
             timesSplit[i][0] = endTime - startTime;
 
             startTime = System.nanoTime();
-            KMP test = new KMP(regex);
-            test.search(string, 0);
-            endTime = System.nanoTime();
-            timesSearch[i][0] = endTime - startTime;
-
-            startTime = System.nanoTime();
-            bruteForceSubstringSearchSplit(string, regex);
+            BoyerMoore boyerTest = new BoyerMoore(regex);
+            boyerMooreSubstringSearchSplit(string, boyerTest);
             endTime = System.nanoTime();
             timesSplit[i][1] = endTime - startTime;
 
             startTime = System.nanoTime();
-            bruteForceSubstringSearch(string, regex, 0);
-            endTime = System.nanoTime();
-            timesSearch[i][0] = endTime - startTime;
-
-            startTime = System.nanoTime();
-            string.split(regex);
+            bruteForceSubstringSearchSplit(string, regex);
             endTime = System.nanoTime();
             timesSplit[i][2] = endTime - startTime;
 
             startTime = System.nanoTime();
-            string.indexOf(regex, 0);
+            string.split(regex);
             endTime = System.nanoTime();
-            timesSearch[i][0] = endTime - startTime;
+            timesSplit[i][3] = endTime - startTime;
         }
 
         double[] average = new double[functions];
@@ -306,7 +392,7 @@ public class WriteSplit {
         System.out.println(Arrays.toString(average));
 
         // Tests that our algorithm is faster than String.split
-//        assertTrue(average[functions - 1] - average[0] > 0);
+        assertTrue(average[functions - 1] - average[0] > 0);
 
         average = new double[functions];
         for (int i = 0; i < functions; i++) {
