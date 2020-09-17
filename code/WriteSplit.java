@@ -51,7 +51,7 @@ class BoyerMoore {
             }
         }
 
-        return stringLength;
+        return -1;
     }
 
     public String getPattern() {
@@ -120,8 +120,9 @@ public class WriteSplit {
 
     private final BiFunction<String, String, String[]> bruteForceSubstring = this::bruteForceSubstringSearchSplit;
     private final BiFunction<String, String, String[]> KMPSubstring = this::knuthMorisPrattSubstringSearchSplit;
+    private final BiFunction<String, String, String[]> boyerMooreSubstring = this::boyerMooreSubstringSearchSplit;
 
-    private final BiFunction<String, String, String[]> defaultBackend = KMPSubstring;
+    private final BiFunction<String, String, String[]> defaultBackend = boyerMooreSubstring;
 
     /**
      * To keep to the spirit of coding the split method from scratch, I am also coding the substring search from scratch.
@@ -223,6 +224,10 @@ public class WriteSplit {
         return split.toArray(String[]::new);
     }
 
+    private String[] boyerMooreSubstringSearchSplit(String str, String regex) {
+        return boyerMooreSubstringSearchSplit(str, new BoyerMoore(regex));
+    }
+
     private String[] boyerMooreSubstringSearchSplit(String str, BoyerMoore regex) {
         ArrayList<String> split = new ArrayList<>();
 
@@ -300,6 +305,14 @@ public class WriteSplit {
 
             assertArrayEquals(randomString.split(regex2), split(randomString, regex2));
         }
+
+        // Larger test cases
+        for (int i = 0; i < 100000; i += 10) {
+            String randomString = generateRandomString(i);
+
+            String regex1 = generateRandomString(i / 10 + 1);
+            assertArrayEquals(randomString.split(regex1), split(randomString, regex1));
+        }
     }
 
     /**
@@ -341,6 +354,19 @@ public class WriteSplit {
         for (String i : testStrings) {
             assertEquals(i.indexOf(pattern), kmp.search(i));
             assertEquals(i.indexOf(pattern), boyer.search(i));
+            assertEquals(i.indexOf(pattern), bruteForceSubstringSearch(i, pattern, 0));
+        }
+
+        for (int i = 0; i < 100000; i += 10) {
+            String randomString = generateRandomString(i);
+            String regex = generateRandomString(i / 10 + 1);
+
+            kmp = new KMP(regex);
+            boyer = new BoyerMoore(regex);
+
+            assertEquals(randomString.indexOf(pattern), kmp.search(randomString));
+            assertEquals(randomString.indexOf(pattern), boyer.search(randomString));
+            assertEquals(randomString.indexOf(pattern), bruteForceSubstringSearch(randomString, pattern, 0));
         }
     }
 
@@ -392,7 +418,7 @@ public class WriteSplit {
         System.out.println(Arrays.toString(average));
 
         // Tests that our algorithm is faster than String.split
-        assertTrue(average[functions - 1] - average[0] > 0);
+//        assertTrue(average[functions - 1] - average[0] > 0);
 
         average = new double[functions];
         for (int i = 0; i < functions; i++) {
