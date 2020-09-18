@@ -11,11 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WriteSplit {
 
-    private final BiFunction<String, String, String[]> bruteForceSubstring = this::bruteForceSubstringSearchSplit;
-    private final BiFunction<String, String, String[]> KMPSubstring = this::knuthMorisPrattSubstringSearchSplit;
-    private final BiFunction<String, String, String[]> boyerMooreSubstring = this::boyerMooreSubstringSearchSplit;
+    public final BiFunction<String, String, String[]> bruteForceSubstring = this::bruteForceSubstringSearchSplit;
+    public final BiFunction<String, String, String[]> KMPSubstring = this::knuthMorisPrattSubstringSearchSplit;
+    public final BiFunction<String, String, String[]> boyerMooreSubstring = this::boyerMooreSubstringSearchSplit;
 
-    private final BiFunction<String, String, String[]> defaultBackend = boyerMooreSubstring; // This seems to be 3 times faster than str.split
+    // This seems to be 3 times faster than str.split
+    private final BiFunction<String, String, String[]> defaultBackend = boyerMooreSubstring;
 
     /**
      * To keep to the spirit of coding the split method from scratch, I am also coding the substring search from scratch.
@@ -76,12 +77,21 @@ public class WriteSplit {
         return split.toArray(String[]::new);
     }
 
+    /**
+     * A easy to use function that takes the same input as all the other split functions. All it does is call the
+     * {@link #knuthMorisPrattSubstringSearchSplit(String, KMP)} which takes a already defined {@link KMP}. The only
+     * reason you would call the other function is if you have already done the preprocessing necessary for KMP.
+     * @param str String to split
+     * @param regex String to split it at, does not support full regex
+     * @return An array split at each location of regex
+     */
     private String[] knuthMorisPrattSubstringSearchSplit(String str, String regex) {
         return  knuthMorisPrattSubstringSearchSplit(str, new KMP(regex));
     }
 
     /**
-     * Same algorithm as {@link #bruteForceSubstringSearchSplit(String, String)} except uses
+     * Same algorithm as {@link #bruteForceSubstringSearchSplit(String, String)} except uses {@link KMP#search(String)}
+     * instead of {@link #bruteForceSubstringSearch(String, String, int)}.
      */
     private String[] knuthMorisPrattSubstringSearchSplit(String str, KMP regex) {
         ArrayList<String> split = new ArrayList<>();
@@ -117,6 +127,15 @@ public class WriteSplit {
         return split.toArray(String[]::new);
     }
 
+    /**
+     * A easy to use function that takes the same input as all the other split functions. All it does is call the actual
+     * {@link #boyerMooreSubstringSearchSplit(String, BoyerMoore)} instead which takes a already defined
+     * {@link BoyerMoore}. The only reason you would call the other function is if you have already done the
+     * preprocessing necessary for Boyer-Moore.
+     * @param str String to split
+     * @param regex String to split it at, does not support full regex
+     * @return An array split at each location of regex
+     */
     private String[] boyerMooreSubstringSearchSplit(String str, String regex) {
         return boyerMooreSubstringSearchSplit(str, new BoyerMoore(regex));
     }
