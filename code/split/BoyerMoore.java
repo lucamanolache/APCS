@@ -15,7 +15,6 @@ public class BoyerMoore {
 
         right = new int[alphabetSize];
         Arrays.fill(right, -1);
-
         for (int i = 0; i < patternSize; i++) {
             right[pattern.charAt(i)] = i;
         }

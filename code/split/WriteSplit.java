@@ -257,9 +257,9 @@ public class WriteSplit {
             kmp = new KMP(regex);
             boyer = new BoyerMoore(regex);
 
-            assertEquals(randomString.indexOf(pattern), kmp.search(randomString));
-            assertEquals(randomString.indexOf(pattern), boyer.search(randomString));
-            assertEquals(randomString.indexOf(pattern), bruteForceSubstringSearch(randomString, pattern, 0));
+            assertEquals(randomString.indexOf(regex), kmp.search(randomString));
+            assertEquals(randomString.indexOf(regex), boyer.search(randomString));
+            assertEquals(randomString.indexOf(regex), bruteForceSubstringSearch(randomString, regex, 0));
         }
     }
 
