@@ -275,62 +275,54 @@ public class WriteSplit {
 
     @Test
     public void testSpeed() {
-        final int tests = 1000;
-        final int functions = 4;
+        final int tests = 1000000;
 
-        long[][] timesSplit = new long[tests][functions];
-        long[][] timesSearch = new long[tests][functions];
+        BiFunction<String, String, String[]>[] splitFunctions = new BiFunction[2];
+        splitFunctions[0] = defaultBackend;
+        splitFunctions[1] = KMPSubstring;
+//        splitFunctions[2] = bruteForceSubstring; // Taken out because it is obviously not going to be that fast
+
+        long[][] timesSplit = new long[tests][splitFunctions.length + 1]; // + 1 to allow space for str.split()
         for (int i = 0; i < tests; i++) {
-            String string = generateRandomString(100000);
-            String regex = generateRandomString(1000);
+            String string = generateRandomString(Math.min(((i + 1) * 100), 10000000));
+            String regex = generateRandomString(Math.min(((i + 1) * 5), 10000));
 
             long startTime;
             long endTime;
 
-            startTime = System.nanoTime();
-            KMP test = new KMP(regex);
-            knuthMorisPrattSubstringSearchSplit(string, test);
-            endTime = System.nanoTime();
-            timesSplit[i][0] = endTime - startTime;
+            int j = 0;
+            for (BiFunction<String, String, String[]> fun : splitFunctions) {
+                startTime = System.nanoTime();
+                split(string, regex, fun);
+                endTime = System.nanoTime();
+                timesSplit[i][j] = endTime - startTime;
 
-            startTime = System.nanoTime();
-            BoyerMoore boyerTest = new BoyerMoore(regex);
-            boyerMooreSubstringSearchSplit(string, boyerTest);
-            endTime = System.nanoTime();
-            timesSplit[i][1] = endTime - startTime;
-
-            startTime = System.nanoTime();
-            bruteForceSubstringSearchSplit(string, regex);
-            endTime = System.nanoTime();
-            timesSplit[i][2] = endTime - startTime;
+                j++;
+            }
 
             startTime = System.nanoTime();
             string.split(regex);
             endTime = System.nanoTime();
-            timesSplit[i][3] = endTime - startTime;
+            timesSplit[i][timesSplit[0].length - 1] = endTime - startTime;
         }
 
-        double[] average = new double[functions];
-        for (int i = 0; i < functions; i++) {
+        double[] average = new double[timesSplit[0].length + 1];
+        double min = Double.MAX_VALUE;
+        for (int i = 0; i < timesSplit[0].length; i++) {
             long sum = 0;
             for (int j = 0; j < tests; j++) {
                 sum += timesSplit[j][i];
             }
             average[i] = (double) sum / tests;
+
+            // Make sure that the minimum is not the str.split()
+            if (i != timesSplit.length - 1 && average[i] < min) {
+                min = average[i];
+            }
         }
         System.out.println(Arrays.toString(average));
 
         // Tests that our algorithm is faster than String.split
-//        assertTrue(average[functions - 1] - average[0] > 0);
-
-        average = new double[functions];
-        for (int i = 0; i < functions; i++) {
-            long sum = 0;
-            for (int j = 0; j < tests; j++) {
-                sum += timesSearch[j][i];
-            }
-            average[i] = (double) sum / tests;
-        }
-        System.out.println(Arrays.toString(average));
+        assertTrue(average[average.length - 1] - average[1] > 0);
     }
 }
