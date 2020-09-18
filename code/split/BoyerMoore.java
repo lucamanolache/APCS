@@ -2,6 +2,11 @@ package split;
 
 import java.util.Arrays;
 
+/**
+ * An implementation of Boyer-Moore substring search which I coded some time ago.
+ *
+ * @author luca
+ */
 public class BoyerMoore {
     private final int alphabetSize = 256;
 
