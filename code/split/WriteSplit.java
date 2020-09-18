@@ -9,6 +9,20 @@ import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The main class for the Write Split assignment. This assignment is just to implement the {@link String#split(String)}
+ * method for 1 character. My code does this and more. It supports a full string of any length as a regex, however it
+ * does not support a real regex (ex. "abC" works as the regex while "a+" does not ("a+" will work, however not as a
+ * regex would, it will only split at the first occurrence of "a+", not at any amount of a's more than 1)). The
+ * {@link #split(String, String)} is the function main function we were tasked with implementing, however as I found
+ * myself needing multiple implementations I created the {@link #split(String, String, BiFunction)} which takes a full
+ * implementation of the split function as input. These are built into the class (ex.
+ * {@link #boyerMooreSubstringSearchSplit(String, BoyerMoore)}). These are also public fields (ex {@link #KMPSubstring}).
+ * Through testing, I believe I found that for some strings and regex the {@link #boyerMooreSubstringSearchSplit(String,
+ * String)} is faster than the {@link String#split(String)}. However, I do not know if this is just for certain cases.
+ *
+ * @author luca
+ */
 public class WriteSplit {
 
     public final BiFunction<String, String, String[]> bruteForceSubstring = this::bruteForceSubstringSearchSplit;
@@ -281,6 +295,10 @@ public class WriteSplit {
         splitFunctions[1] = KMPSubstring;
         splitFunctions[2] = bruteForceSubstring;
 
+        // The tests might take a while (such as 3+ minutes), so if it does not run quickly, it is not because of an
+        // infinite loop. To make them run faster reduce the generated string length and the regex length, you can also
+        // change the number of tests done. To lower the length of the strings generated, change the parameter of
+        // generateRandomString.
         long[][] timesSplit = new long[tests][splitFunctions.length + 1]; // + 1 to allow space for str.split()
         for (int i = 0; i < tests; i++) {
             String string = generateRandomString(10000000);
