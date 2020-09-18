@@ -15,7 +15,7 @@ public class WriteSplit {
     private final BiFunction<String, String, String[]> KMPSubstring = this::knuthMorisPrattSubstringSearchSplit;
     private final BiFunction<String, String, String[]> boyerMooreSubstring = this::boyerMooreSubstringSearchSplit;
 
-    private final BiFunction<String, String, String[]> defaultBackend = boyerMooreSubstring;
+    private final BiFunction<String, String, String[]> defaultBackend = boyerMooreSubstring; // This seems to be 3 times faster than str.split
 
     /**
      * To keep to the spirit of coding the split method from scratch, I am also coding the substring search from scratch.
@@ -186,25 +186,16 @@ public class WriteSplit {
             String regex1 = generateRandomString(1);
             assertArrayEquals(randomString.split(regex1), split(randomString, regex1));
 
-
             String regex2 = generateRandomString(2);
-            if (!Arrays.equals(randomString.split(regex2), split(randomString, regex2))) {
-                System.out.println(randomString);
-                System.out.println(regex2);
-
-                System.out.println(Arrays.toString(randomString.split(regex2)));
-                System.out.println(Arrays.toString(split(randomString, regex2)));
-            }
-
             assertArrayEquals(randomString.split(regex2), split(randomString, regex2));
         }
 
         // Larger test cases
-        for (int i = 0; i < 100000; i += 10) {
+        for (int i = 1; i < 100000; i += 10) {
             String randomString = generateRandomString(i);
+            String regex = generateRandomString(i / 10 + 1);
 
-            String regex1 = generateRandomString(i / 10 + 1);
-            assertArrayEquals(randomString.split(regex1), split(randomString, regex1));
+            assertArrayEquals(randomString.split(regex), split(randomString, regex));
         }
     }
 
@@ -266,7 +257,7 @@ public class WriteSplit {
     @Test
     public void testSpeed() {
         final int tests = 1000;
-        final int functions = 3;
+        final int functions = 4;
 
         long[][] timesSplit = new long[tests][functions];
         long[][] timesSearch = new long[tests][functions];
