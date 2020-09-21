@@ -1,6 +1,5 @@
 package split;
 
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ import static org.junit.Assert.*;
  *
  * @author luca
  */
-@Ignore ("Tests are too slow")
 public class WriteSplit {
 
     public final BiFunction<String, String, String[]> bruteForceSubstring = this::bruteForceSubstringSearchSplit;
