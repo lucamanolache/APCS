@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.function.BiFunction;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * The main class for the Write Split assignment. This assignment is just to implement the {@link String#split(String)}
@@ -30,6 +30,68 @@ public class WriteSplit {
     public final BiFunction<String, String, String[]> boyerMooreSubstring = this::boyerMooreSubstringSearchSplit;
 
     private final BiFunction<String, String, String[]> defaultBackend = boyerMooreSubstring;
+
+    /**
+     * The main function has some examples of my code and its use cases
+     */
+    public static void main(String[] args) {
+        final WriteSplit split = new WriteSplit();
+        final int tests = 10000;
+        final int patternSize = 1000;
+        final int stringSize = 1000000;
+
+        // Generating a very large regex for this example, all 1000 test cases will be done using this regex.
+        String regex = split.generateRandomString(patternSize);
+        BoyerMoore boyerMoore = new BoyerMoore(regex);
+
+        // For this example we will be testing 3 functions, str.split, boyerMooreSplit, and boyerMooreSplit with a
+        // predefined regex.
+        long[][] times = new long[tests][3];
+        for (int i = 0; i < tests; i++) {
+            String string = split.generateRandomString(stringSize);
+
+            long startTime;
+            long endTime;
+
+            // Testing out str.split
+            startTime = System.nanoTime();
+            string.split(regex);
+            endTime = System.nanoTime();
+            times[i][0] = endTime - startTime;
+
+            // Testing out default implementation of split (which is boyer-moore split)
+            startTime = System.nanoTime();
+            split.split(string, regex);
+            endTime = System.nanoTime();
+            times[i][1] = endTime - startTime;
+
+            // Testing out boyer-moore split with a predefined BoyerMoore class
+            startTime = System.nanoTime();
+            split.boyerMooreSubstringSearchSplit(string, boyerMoore);
+            endTime = System.nanoTime();
+            times[i][2] = endTime - startTime;
+        }
+
+        double[] averages = new double[3];
+        for (int i = 0; i < 3; i++) {
+            long sum = 0;
+            for (int j = 0; j < tests; j++) {
+                sum += times[j][i];
+            }
+            averages[i] = (double) sum / tests;
+        }
+        System.out.printf("The average time for the three methods after %d test cases with a string of size %d and a" +
+                " pattern of size %d \n", tests, stringSize, patternSize);
+        System.out.printf("str.split: %.3fns\nmy implementation using Boyer-Moore substring search: %.3fns\n" +
+                        "Boyer-Moore with predefined regex: %.3fns\n",
+                averages[0], averages[1], averages[2]);
+
+        System.out.printf("My implementation of split using Boyer-Moore algorithm for substring search is %.2f%% faster than str.split\n", (averages[0] - averages[1]) / averages[0] * 100);
+        System.out.printf("Same algorithm expect using a predefined Boyer-Moore class is %.2f%% faster than str.split\n", (averages[0] - averages[2]) / averages[0] * 100);
+
+        // The "optimized" code is not that useful as it is not common to have to split different strings with the same
+        // patter, but if you need too, it is a lot quicker.
+    }
 
     /**
      * To keep to the spirit of coding the split method from scratch, I am also coding the substring search from scratch.
