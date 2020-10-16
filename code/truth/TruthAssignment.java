@@ -38,7 +38,7 @@ public class TruthAssignment {
     }
 
     /**
-     * Returns the value of name. If name does not exist, a {@link IllegalArgumentException} will be thrown.
+     * Returns the value of name. If name does not exist, an {@link IllegalArgumentException} will be thrown.
      * @param name The name that should be searched for
      * @return The value given for name
      */
@@ -50,8 +50,8 @@ public class TruthAssignment {
     }
 
     /**
-     * Sets the value of the previously exiting name. If name does not exist, a {@link IllegalArgumentException} will be
-     * thrown. If you get this error, consider using {@link #addValue(String, boolean)}.
+     * Sets the value of the previously exiting name. If name does not exist, an {@link IllegalArgumentException} will
+     * be thrown. If you get this error, consider using {@link #addValue(String, boolean)}.
      * @param name The name that will get a new name
      * @param value The new value that name should have
      */
@@ -63,7 +63,7 @@ public class TruthAssignment {
     }
 
     /**
-     * Adds a new name and value to the class. If the name already exists, a {@link IllegalArgumentException} will be
+     * Adds a new name and value to the class. If the name already exists, an {@link IllegalArgumentException} will be
      * thrown. If you get this error, consider using {@link #setValue(String, boolean)}.
      * @param name The new name to add to the array
      * @param value The value to give to name
