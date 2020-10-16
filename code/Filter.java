@@ -17,7 +17,7 @@ public class Filter {
         StringBuilder out = new StringBuilder();
 
         for (int i = 0; i < str.length(); i += check.length()) {
-            String substr = str.substring(i, i + check.length());
+            String substr = str.substring(i, Math.min((i + check.length()), str.length()));
             if (substr.compareTo(check) < 0) {
                 out.append(substr);
             }
