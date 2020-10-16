@@ -1,7 +1,6 @@
 package truth;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.HashMap;
 
@@ -106,6 +105,9 @@ public class TruthAssignment {
         assertFalse(ta.getValue("a"));
         assertThrows(IllegalArgumentException.class, () -> ta.setValue("d", true));
 
-        assertDoesNotThrow();
+        assertDoesNotThrow(() -> ta.addValue("f", true));
+        assertTrue(ta.getValue("f"));
+        assertThrows(IllegalArgumentException.class, () -> ta.setValue("a", true));
+        assertFalse(ta.getValue("a"));
     }
 }
