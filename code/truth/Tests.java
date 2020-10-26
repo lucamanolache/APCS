@@ -37,4 +37,40 @@ public class Tests {
         assertThrows(IllegalArgumentException.class, () -> ta.addValue("a", true));
         assertFalse(ta.getValue("a"));
     }
+
+    @Test
+    public void testLogicalSentence() {
+        LogicalSentence ls;
+        TruthAssignment assignment = new TruthAssignment(new String[]{"a", "b", "ab"}, new boolean[]{true, false, false});
+
+        ls = new LogicalSentence("a");
+        assertEquals("a", ls.toString());
+        assertTrue(ls.getValue(assignment));
+        ls = new LogicalSentence("ab");
+        assertEquals("ab", ls.toString());
+        assertFalse(ls.getValue(assignment));
+        ls = new LogicalSentence(new LogicalSentence("a"));
+        assertEquals("~a", ls.toString());
+        assertFalse(ls.getValue(assignment));
+        ls = new LogicalSentence(new LogicalSentence(new LogicalSentence("b")));
+        assertEquals("~~b", ls.toString());
+        assertFalse(ls.getValue(assignment));
+        ls = new LogicalSentence("&", new LogicalSentence("a"), new LogicalSentence("b"));
+        assertEquals("(a & b)", ls.toString());
+        assertFalse(ls.getValue(assignment));
+        ls = new LogicalSentence("|", new LogicalSentence("a"), new LogicalSentence("b"));
+        assertEquals("(a | b)", ls.toString());
+        assertTrue(ls.getValue(assignment));
+        ls = new LogicalSentence("=>", new LogicalSentence("a"), new LogicalSentence("b"));
+        assertEquals("(a => b)", ls.toString());
+        assertFalse(ls.getValue(assignment));
+        ls = new LogicalSentence("<=>", new LogicalSentence("a"), new LogicalSentence("b"));
+        assertEquals("(a <=> b)", ls.toString());
+        assertFalse(ls.getValue(assignment));
+        ls = new LogicalSentence("<=>", new LogicalSentence(new LogicalSentence("a")), new LogicalSentence("b"));
+        assertEquals("(~a <=> b)", ls.toString());
+        assertTrue(ls.getValue(assignment));
+        assertThrows(IllegalArgumentException.class,
+                     () -> new LogicalSentence("<=?>", new LogicalSentence("b"), new LogicalSentence("b")));
+    }
 }

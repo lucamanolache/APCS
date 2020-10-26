@@ -58,6 +58,12 @@ public class LogicalSentence {
         }
     }
 
+    /**
+     * Returns the value of this logical sentence with each of the values given in a truth assignment. It is assumed
+     * that the truth assigment contains all of the data needed for this LogicalSentence.
+     * @param assignment The truth assignment
+     * @return The value of this logical sentence
+     */
     public boolean getValue(TruthAssignment assignment) {
         switch (this.type) {
             case SIMPLE:
@@ -69,9 +75,29 @@ public class LogicalSentence {
             case CONJUNCTION:
                 return this.subSentences[0].getValue(assignment) && this.subSentences[1].getValue(assignment);
             case IMPLICATION:
-                return this.subSentences[0].getValue(assignment) && !this.subSentences[1].getValue(assignment);
+                return !this.subSentences[0].getValue(assignment) || this.subSentences[1].getValue(assignment);
             case BICONDITIONAL:
                 return this.subSentences[0].getValue(assignment) == this.subSentences[1].getValue(assignment);
+            default:
+                throw new RuntimeException("Type is not recognized");
+        }
+    }
+
+    @Override
+    public String toString() {
+        switch (this.type) {
+            case SIMPLE:
+                return this.value;
+            case NEGATION:
+                return String.format("~%s", this.subSentences[0].toString());
+            case DISJUNCTION:
+                return String.format("(%s | %s)", this.subSentences[0].toString(), this.subSentences[1].toString());
+            case CONJUNCTION:
+                return String.format("(%s & %s)", this.subSentences[0].toString(), this.subSentences[1].toString());
+            case IMPLICATION:
+                return String.format("(%s => %s)", this.subSentences[0].toString(), this.subSentences[1].toString());
+            case BICONDITIONAL:
+                return String.format("(%s <=> %s)", this.subSentences[0].toString(), this.subSentences[1].toString());
             default:
                 throw new RuntimeException("Type is not recognized");
         }
