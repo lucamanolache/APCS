@@ -12,6 +12,8 @@ public class Polynomial extends Function {
     public double getSolutions(double a, double b, double t, double accuracy) {
         double fa = calculate(a);
         double fb = calculate(b);
+        double fc;
+        double fs;
 
         if (fa * fb >= 0) {
             return Double.NaN;
@@ -28,16 +30,19 @@ public class Polynomial extends Function {
         double d = 0;
         boolean flag = true;
         while (!(calculate(a) == 0 || calculate(b) == 0 || Math.abs(b - a) <= accuracy)) {
-            if (calculate(a) != calculate(c) && calculate(b) != calculate(c)) {
-                double sa = (a * calculate(b) * calculate(c)) /
-                            ((calculate(a) - calculate(b)) * (calculate(a) - calculate(c)));
-                double sb = (b * calculate(a) * calculate(c)) /
-                            ((calculate(b) - calculate(a)) * (calculate(b) - calculate(c)));
-                double sc = (c * calculate(a) * calculate(b)) /
-                            ((calculate(c) - calculate(a)) * (calculate(c) - calculate(c)));
+            fa = calculate(a);
+            fb = calculate(b);
+            fc = calculate(c);
+            if (fa != fc && fb != fc) {
+                double sa = (a * fb * fc) /
+                            ((fa - fb) * (fa - fc));
+                double sb = (b * fa * fc) /
+                            ((fb - fa) * (fb - fc));
+                double sc = (c * fa * fb) /
+                            ((fc - fa) * (fc - fc));
                 s = sa + sb + sc;
             } else {
-                s = b - calculate(b) * (b - a) / (calculate(b) - calculate(a));
+                s = b - fb * (b - a) / (fb - fa);
             }
             if (!(s > (3 * a + b) && s < (b)) ||
                 (flag && Math.abs(s - b) >= Math.abs(b - c) / 2) ||
@@ -64,10 +69,8 @@ public class Polynomial extends Function {
         }
         if (Math.abs(calculate(b)) < accuracy) {
             return b;
-        } if (Math.abs(calculate(s)) < accuracy) {
-            return s;
         } else {
-            return Double.NaN;
+            return s;
         }
     }
 
@@ -172,6 +175,7 @@ public class Polynomial extends Function {
         poly = new Polynomial(new double[]{1, 2, -4});
         System.out.println(poly.calculate(1)); // Should be 1
         System.out.println(poly.getSolution(0, 10, 100000));
+        System.out.println(poly.getSolutions(0, 10, 0.00000001, 0.00000000001));
 //        System.out.println(poly.getSolutions(-10, 10, 0.0001));
 //        System.out.println(poly.localExtrema(-10, 10, 100000));
     }
