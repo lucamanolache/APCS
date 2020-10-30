@@ -8,7 +8,16 @@ public class Polynomial extends Function {
         this.coefficients = coefficients;
     }
 
-    public double getSolutions(double a, double b, double t, double accuracy) {
+    /**
+     * My implementation of Brent's method of finding roots. A description of the algorithm can be found here:
+     * https://en.wikipedia.org/wiki/Brent%27s_method.
+     * @param a Can not have the same sign as b
+     * @param b Can not have the same sign as a
+     * @param t Tolerance
+     * @param accuracy How accurate should it be
+     * @return the first solution found
+     */
+    public double getSolution(double a, double b, double t, double accuracy) {
         double fa = calculate(a);
         double fb = calculate(b);
         double fc;
@@ -73,7 +82,11 @@ public class Polynomial extends Function {
         }
     }
 
-    public double getSolution(double lowerBound, double higherBound, int steps) {
+    /**
+     * My implementation of a getSolution method. Does not work in all cases as it might get "stuck" in an area.
+     * @deprecated does not work
+     */
+    public double getSolutionBSearch(double lowerBound, double higherBound, int steps) {
         double guess = lowerBound;
         for (int i = 0; i < steps; i++) {
             guess = (lowerBound + higherBound) / 2;
@@ -141,7 +154,7 @@ public class Polynomial extends Function {
         long time;
         long endTime;
         time = System.nanoTime();
-        System.out.println(poly.getSolutions(-10, 10, 0.00000001, 0.00000000001));
+        System.out.println(poly.getSolution(-10, 10, 0.00000001, 0.00000000001));
         endTime = System.nanoTime();
         System.out.println(endTime - time);
         time = System.nanoTime();
@@ -149,13 +162,13 @@ public class Polynomial extends Function {
         endTime = System.nanoTime();
         System.out.println(endTime - time);
 //        System.out.println(poly.evaluate(0)); // Should be 1
-        System.out.println(poly.getSolution(-10, 10, 100000));
+        System.out.println(poly.getSolutionBSearch(-10, 10, 100000));
 
         System.out.println("=======");
         poly = new Polynomial(new double[]{1, 2, -4});
         System.out.println(poly.calculate(1)); // Should be 1
-        System.out.println(poly.getSolution(0, 10, 100000));
-        System.out.println(poly.getSolutions(0, 10, 0.00000001, 0.00000000001));
+        System.out.println(poly.getSolutionBSearch(0, 10, 100000));
+        System.out.println(poly.getSolution(0, 10, 0.00000001, 0.00000000001));
 //        System.out.println(poly.getSolutions(-10, 10, 0.0001));
 //        System.out.println(poly.localExtrema(-10, 10, 100000));
     }
