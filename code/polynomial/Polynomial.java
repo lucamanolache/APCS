@@ -3,7 +3,6 @@ package polynomial;
 public class Polynomial extends Function {
 
     private final double[] coefficients;
-    private Polynomial derivative;
 
     public Polynomial(double[] coefficients) {
         this.coefficients = coefficients;
@@ -108,25 +107,6 @@ public class Polynomial extends Function {
             y += coefficients[i] * Math.pow(x, i);
         }
         return y;
-    }
-
-    public double localExtrema(double lowerBound, double higherBound, int steps) {
-        if (derivative == null) {
-            derivative = getDerivative();
-        }
-        return derivative.getSolution(lowerBound, higherBound, steps);
-    }
-
-    public Polynomial getDerivative() {
-        return this.derivative == null ? derivative() : this.derivative;
-    }
-
-    private Polynomial derivative() {
-        double[] newCoefficients = new double[coefficients.length - 1];
-        for (int i = 1; i < newCoefficients.length; i++) {
-            newCoefficients[i] = coefficients[i] * i;
-        }
-        return new Polynomial(newCoefficients);
     }
 
     @Override
