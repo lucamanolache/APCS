@@ -121,7 +121,7 @@ public abstract class Function {
         }
 
         double guess = (lowerBound + higherBound) / 2;
-        if (java.lang.Thread.activeCount() < 10) {
+//        if (java.lang.Thread.activeCount() < 10) {
             if (lowerBound * guess <= 0 && guess * higherBound <= 0) {
                 // We know that the lower bound and the guess are on opposite sides of the x axis and that guess and the
                 // higher bound are on opposite sides of the x axis, therefore there must be a on both sides of guess
@@ -136,7 +136,7 @@ public abstract class Function {
                 }
                 return;
             }
-        }
+//        }
 
         // There is no longer any need to use threads
         if (lowerBound * guess <= 0) {

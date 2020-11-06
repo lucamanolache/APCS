@@ -11,10 +11,6 @@ public class Polynomial extends Function {
         this.coefficients = coefficients;
     }
 
-
-
-
-
     public double calculate(double x) {
         double y = 0;
         for (int i = 0; i < coefficients.length; i++) {
@@ -51,7 +47,7 @@ public class Polynomial extends Function {
 //        System.out.println(poly.getSolution(-10, 10, 1000));
 
         // 1 + 2x - 3x^2 + 5x^3
-        poly = new Polynomial(new double[]{1, 2, -3, 5});
+//        poly = new Polynomial(new double[]{1, 2, -3, 5});
 //        long time;
 //        long endTime;
 //        time = System.nanoTime();

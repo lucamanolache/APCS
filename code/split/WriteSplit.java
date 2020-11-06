@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.function.BiFunction;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The main class for the Write Split assignment. This assignment is just to implement the {@link String#split(String)}
