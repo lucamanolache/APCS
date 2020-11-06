@@ -1,5 +1,8 @@
 package polynomial;
 
+import java.util.Arrays;
+import java.util.Vector;
+
 public class Polynomial extends Function {
 
     private final double[] coefficients;
@@ -8,33 +11,7 @@ public class Polynomial extends Function {
         this.coefficients = coefficients;
     }
 
-    /**
-     * My implementation of a getSolution method. Does not work in all cases as it might get "stuck" in an area.
-     * @deprecated does not work
-     */
-    public double getSolutionBSearch(double lowerBound, double higherBound, int steps) {
-        double guess = lowerBound;
-        for (int i = 0; i < steps; i++) {
-            guess = (lowerBound + higherBound) / 2;
-            if (calculate(guess) == 0) {
-                return guess;
-            }
-            if (slope(guess, 0.00001) <= 0) {
-                if (calculate(guess) <= 0) {
-                    higherBound = guess;
-                } else {
-                    lowerBound = guess;
-                }
-            } else {
-                if (calculate(guess) <= 0) {
-                    lowerBound = guess;
-                } else {
-                    higherBound = guess;
-                }
-            }
-        }
-        return guess;
-    }
+
 
 
 
@@ -75,30 +52,35 @@ public class Polynomial extends Function {
 
         // 1 + 2x - 3x^2 + 5x^3
         poly = new Polynomial(new double[]{1, 2, -3, 5});
-        long time;
-        long endTime;
-        time = System.nanoTime();
-        System.out.println(poly.getSolution(-10, 10, 0.00000001, 0.00000000001));
-        endTime = System.nanoTime();
-        System.out.println(endTime - time);
-        time = System.nanoTime();
-        System.out.println(-0.2990277505003914228721705);
-        endTime = System.nanoTime();
-        System.out.println(endTime - time);
+//        long time;
+//        long endTime;
+//        time = System.nanoTime();
+//        System.out.println(poly.getSolution(-10, 10, 0.00000001, 0.00000000001));
+//        endTime = System.nanoTime();
+//        System.out.println(endTime - time);
+//        time = System.nanoTime();
+//        System.out.println(-0.2990277505003914228721705);
+//        endTime = System.nanoTime();
+//        System.out.println(endTime - time);
 //        System.out.println(poly.evaluate(0)); // Should be 1
-        System.out.println(poly.getSolutionBSearch(-10, 10, 100000));
-
-        System.out.println("=======");
-        poly = new Polynomial(new double[]{1, 2, -4});
-        System.out.println(poly.calculate(1)); // Should be 1
-        System.out.println(poly.getSolutionBSearch(0, 10, 100000));
-        System.out.println(poly.getSolution(0, 10, 0.00000001, 0.00000000001));
+//        System.out.println(poly.getSolutionBSearch(-10, 10, 100000));
+//
+//        System.out.println("=======");
+//        poly = new Polynomial(new double[]{1, 2, -4});
+//        System.out.println(poly.calculate(1)); // Should be 1
+//        System.out.println(poly.getSolutionBSearch(0, 10, 100000));
+//        System.out.println(poly.getSolution(0, 10, 0.00000001, 0.00000000001));
 //        System.out.println(poly.getSolutions(-10, 10, 0.0001));
 //        System.out.println(poly.localExtrema(-10, 10, 100000));
+//
+//        System.out.println("=======");
+//        Sin sin = new Sin(1, 1, Math.PI / 2, 0);
+//        System.out.println(sin.calculate(1.57079));
+//        System.out.println(sin.getSolution(-1, 4, 0.0000001, 0.00000001));
 
-        System.out.println("=======");
-        Sin sin = new Sin(1, 1, Math.PI / 2, 0);
-        System.out.println(sin.calculate(1.57079));
-        System.out.println(sin.getSolution(-1, 4, 0.0000001, 0.00000001));
+        poly = new Polynomial(new double[]{1, 4, -3, 2, -4, 5, 8});
+        Vector<Double> v = new Vector<>();
+        poly.getSolutions(v, -1000, 1000, 100000);
+        System.out.println(Arrays.toString(v.toArray()));
     }
 }
