@@ -1,9 +1,10 @@
 package polynomial;
 
-import java.util.Arrays;
-import java.util.Vector;
+import org.junit.jupiter.api.Test;
 
-public class Polynomial extends Function {
+import static org.junit.jupiter.api.Assertions.*;
+
+public class Polynomial {
 
     private final double[] coefficients;
 
@@ -17,6 +18,121 @@ public class Polynomial extends Function {
             y += coefficients[i] * Math.pow(x, i);
         }
         return y;
+    }
+
+    /**
+     * My implementation of Brent's method of finding roots. A description of the algorithm can be found here:
+     * https://en.wikipedia.org/wiki/Brent%27s_method. The method assumes you have found the solution to a reasonable
+     * degree. For example if I have 1 + 5x + 3x^2 as my function, I should know that the answer should be somewhere
+     * in the range of -2 to -1. In this example, with a being -2, b being -1, t and accuracy being 0.0001 the method
+     * would return the solution of -1.4343
+     * @param a lower limit
+     * @param b upper limit
+     * @param t Tolerance
+     * @param accuracy How accurate should it be
+     * @return the first solution found
+     */
+    public double getSolution(double a, double b, double t, double accuracy) {
+        double fa = calculate(a);
+        double fb = calculate(b);
+        double fc;
+        double fs;
+
+        if (fa * fb >= 0) {
+            return Double.NaN;
+        }
+        if (Math.abs(fa) < Math.abs(fb)) {
+            // Swap a and b
+            double swap = a;
+            a = b;
+            b = swap;
+        }
+
+        double c = a;
+        double s = b;
+        double d = 0;
+        boolean flag = true;
+        while (!(calculate(a) == 0 || calculate(b) == 0 || Math.abs(b - a) <= accuracy)) {
+            fa = calculate(a);
+            fb = calculate(b);
+            fc = calculate(c);
+            if (fa != fc && fb != fc) {
+                double sa = (a * fb * fc) /
+                        ((fa - fb) * (fa - fc));
+                double sb = (b * fa * fc) /
+                        ((fb - fa) * (fb - fc));
+                double sc = (c * fa * fb) /
+                        ((fc - fa) * (fc - fc));
+                s = sa + sb + sc;
+            } else {
+                s = b - fb * (b - a) / (fb - fa);
+            }
+            if (!(s > (3 * a + b) && s < (b)) ||
+                    (flag && Math.abs(s - b) >= Math.abs(b - c) / 2) ||
+                    (!flag && Math.abs(s - b) >= Math.abs(c - d) / 2) ||
+                    (flag && Math.abs(b - c) < t) ||
+                    (!flag && Math.abs(c - d) < t)) {
+                s = (a + b) / 2;
+                flag = true;
+            } else {
+                flag = false;
+            }
+            d = c;
+            c = b;
+            if (calculate(a) * calculate(s) < 0) {
+                b = s;
+            } else {
+                a = s;
+            }
+            if (Math.abs(calculate(a)) < Math.abs(calculate(b))) {
+                double swap = a;
+                a = b;
+                b = swap;
+            }
+        }
+        if (Math.abs(calculate(b)) < accuracy) {
+            return b;
+        } else {
+            return s;
+        }
+    }
+
+    /**
+     * My implementation of a getSolution method. Does not work in all cases as it might get "stuck" in an area. This
+     * solutions could be fixed by instead of taking the slope, seeing if the middle and the end point are on opposite
+     * sides of the x axis. This could then also be used in order to find multiple solutions.
+     * @deprecated does not work
+     */
+    public double getSolutionBSearch(double lowerBound, double higherBound, int steps) {
+        double guess = lowerBound;
+        for (int i = 0; i < steps; i++) {
+            guess = (lowerBound + higherBound) / 2;
+            if (calculate(guess) == 0) {
+                return guess;
+            }
+            if (slope(guess, 0.00001) <= 0) {
+                if (calculate(guess) <= 0) {
+                    higherBound = guess;
+                } else {
+                    lowerBound = guess;
+                }
+            } else {
+                if (calculate(guess) <= 0) {
+                    lowerBound = guess;
+                } else {
+                    higherBound = guess;
+                }
+            }
+        }
+        return guess;
+    }
+
+    public double slope(double x, double percision) {
+        return (calculate(x) - calculate(x - percision)) / (percision);
+    }
+
+    public int getOrder() {
+        return coefficients.length;
     }
 
     @Override
@@ -37,46 +153,33 @@ public class Polynomial extends Function {
         return builder.toString();
     }
 
-    public static void main(String[] args) {
+    /**
+     * Adds two polynomials and returns a third. The polynomials given will not be changed
+     * @return sum of the two polynomials
+     */
+    public static Polynomial add(Polynomial p1, Polynomial p2) {
+        double[] newPoly = new double[Math.max(p1.getOrder(), p2.getOrder())];
+        for (int i = 0; i < Math.min(p1.getOrder(), p2.getOrder()); i++) {
+            newPoly[i] = p1.coefficients[i] + p2.coefficients[i];
+        }
+        for (int i = Math.min(p1.getOrder(), p2.getOrder()); i < Math.max(p1.getOrder(), p2.getOrder()); i++) {
+            newPoly[i] = p1.getOrder() < p2.getOrder() ? p2.coefficients[i] : p1.coefficients[i];
+        }
+        return new Polynomial(newPoly);
+    }
+
+    @Test
+    public void testPolynomial() {
+        final double delta = 0.0001; // how tight you want the tests to be
         Polynomial poly;
 
-        // 1 + 2x
-//        poly = new Polynomial(new double[]{1, 2});
-//        System.out.println(poly.evaluate(0)); // Should be 1
-//        System.out.println(poly.slope(1, 0.00001));
-//        System.out.println(poly.getSolution(-10, 10, 1000));
+        // because of how doubles work, we only need to check if they are close to the expect answer
+        // answers to all of the polynomials were calculated using wolframalpha.com
+        poly = new Polynomial(new double[]{1, 5, 3});
+        assertEquals(-1.4343, poly.getSolution(-2, -1, 10000, 10000), delta);
+        assertEquals(-0.23241, poly.getSolution(-0.5, 0, 10000, 10000), delta);
 
-        // 1 + 2x - 3x^2 + 5x^3
-//        poly = new Polynomial(new double[]{1, 2, -3, 5});
-//        long time;
-//        long endTime;
-//        time = System.nanoTime();
-//        System.out.println(poly.getSolution(-10, 10, 0.00000001, 0.00000000001));
-//        endTime = System.nanoTime();
-//        System.out.println(endTime - time);
-//        time = System.nanoTime();
-//        System.out.println(-0.2990277505003914228721705);
-//        endTime = System.nanoTime();
-//        System.out.println(endTime - time);
-//        System.out.println(poly.evaluate(0)); // Should be 1
-//        System.out.println(poly.getSolutionBSearch(-10, 10, 100000));
-//
-//        System.out.println("=======");
-//        poly = new Polynomial(new double[]{1, 2, -4});
-//        System.out.println(poly.calculate(1)); // Should be 1
-//        System.out.println(poly.getSolutionBSearch(0, 10, 100000));
-//        System.out.println(poly.getSolution(0, 10, 0.00000001, 0.00000000001));
-//        System.out.println(poly.getSolutions(-10, 10, 0.0001));
-//        System.out.println(poly.localExtrema(-10, 10, 100000));
-//
-//        System.out.println("=======");
-//        Sin sin = new Sin(1, 1, Math.PI / 2, 0);
-//        System.out.println(sin.calculate(1.57079));
-//        System.out.println(sin.getSolution(-1, 4, 0.0000001, 0.00000001));
-
-        poly = new Polynomial(new double[]{1, 4, -3, 2, -4, 5, 8});
-        Vector<Double> v = new Vector<>();
-        poly.getSolutions(v, -1000, 1000, 100000);
-        System.out.println(Arrays.toString(v.toArray()));
+        assertEquals(-1.4343, poly.getSolution(-2, -1, 10000, 10000), delta);
+        assertEquals(-1.4343, poly.getSolution(-2, -1, 10000, 10000), delta);
     }
 }
