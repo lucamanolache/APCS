@@ -1,9 +1,5 @@
 package polynomial;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class Polynomial {
 
     private final double[] coefficients;
@@ -138,8 +134,12 @@ public class Polynomial {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < coefficients.length; i++) {
-            if (i != 0) {
+        builder.append(String.format("%f", coefficients[0]));
+        if (coefficients.length >= 2) {
+            builder.append(String.format(" + %fx", coefficients[1]));
+        }
+        for (int i = 1; i < coefficients.length; i++) {
+            if (i != 1) {
                 builder.append(" + ");
             }
             double coefficient = coefficients[i];
@@ -166,20 +166,5 @@ public class Polynomial {
             newPoly[i] = p1.getOrder() < p2.getOrder() ? p2.coefficients[i] : p1.coefficients[i];
         }
         return new Polynomial(newPoly);
-    }
-
-    @Test
-    public void testPolynomial() {
-        final double delta = 0.0001; // how tight you want the tests to be
-        Polynomial poly;
-
-        // because of how doubles work, we only need to check if they are close to the expect answer
-        // answers to all of the polynomials were calculated using wolframalpha.com
-        poly = new Polynomial(new double[]{1, 5, 3});
-        assertEquals(-1.4343, poly.getSolution(-2, -1, 10000, 10000), delta);
-        assertEquals(-0.23241, poly.getSolution(-0.5, 0, 10000, 10000), delta);
-
-        assertEquals(-1.4343, poly.getSolution(-2, -1, 10000, 10000), delta);
-        assertEquals(-1.4343, poly.getSolution(-2, -1, 10000, 10000), delta);
     }
 }
