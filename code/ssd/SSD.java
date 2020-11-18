@@ -12,17 +12,28 @@ public abstract class SSD {
      * @param value A value that is known to be displayed.
      * @return true if the value is possible and false if not possible. If true the SSD will be set to that.
      */
-    public abstract boolean set(int value);
+    public boolean set(int value) {
+        switch (value) {
+            case 1:
+                this.segments = new boolean[]{false, true, true, false, false, false, false};
+                return true;
+            case 2:
+                this.segments = new boolean[]{true, true, false, true, true, false, true};
+                return true;
+            default:
+                return false;
+        }
+    }
 
     /**
      * Set segments to high/low voltage given an array of booleans.
      * @param segments The segment values.
      */
-    public abstract void setSegments(int[] segments);
+    public abstract void setSegments(float[] segments);
 
     /**
      * Get an array that states which segments are on/off.
-     * @return
+     * @return which segments are on/off.
      */
     public boolean[] getSegments() {
         return segments;
