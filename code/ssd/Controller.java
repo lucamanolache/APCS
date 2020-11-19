@@ -14,8 +14,8 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Controller {
 
-    private static final int WINDOW_WIDTH = 500;
-    private static final int WINDOW_LENGTH = 500;
+    public static final int WINDOW_WIDTH = 500;
+    public static final int WINDOW_LENGTH = 500;
 
     Drawer drawer = new Drawer();
     private long window;

@@ -20,6 +20,9 @@ public abstract class SSD {
             case 2:
                 this.segments = new boolean[]{true, true, false, true, true, false, true};
                 return true;
+            case 3:
+                this.segments = new boolean[]{true, true, true, true, false, false, true};
+                return true;
             default:
                 return false;
         }
