@@ -20,7 +20,12 @@ public class Drawer {
     static float ysize = (2 - inset - 2 * yborder - 3 * gap - thickness) / 2;
     static float cornerRadius = 0.03f;
 
-    private SSD ssd = new CathodeSSD();
+    private SSD ssd;
+
+    public Drawer() {
+        this.ssd = new CathodeSSD();
+        this.ssd.set(0);
+    }
 
     public void draw(long window) {
         // This line is critical for LWJGL's interoperation with GLFW's
@@ -35,8 +40,7 @@ public class Drawer {
         while (!glfwWindowShouldClose(window)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
 
-            ssd.set(3);
-
+            updateKeys(window);
             drawBackground();
             drawSSD(ssd);
 
@@ -54,6 +58,7 @@ public class Drawer {
     }
 
     private void drawSSD(SSD ssd) {
+        // TODO: try to make it so that you can render multiple SSDs
         boolean[] segments = ssd.getSegments();
         for (int i = 0; i < segments.length; i++) {
             if (segments[i]) {
@@ -67,7 +72,7 @@ public class Drawer {
                     drawQuad(-1 + xborder + gap, 1 - yborder - thickness, xsize, thickness, cornerRadius);
                     break;
                 case 1:
-                    drawQuad(1 - xborder - thickness, 1 - yborder - gap, thickness, -ysize, cornerRadius);
+                    drawQuad(1 - xborder - thickness, inset + yborder + 2 * gap + ysize - 1 + thickness, thickness, ysize, cornerRadius);
                     break;
                 case 2:
                     drawQuad(1 - xborder - thickness, inset + yborder + gap - 1, thickness, ysize, cornerRadius);
@@ -79,12 +84,27 @@ public class Drawer {
                     drawQuad(-1 + xborder, inset + yborder + gap - 1, thickness, ysize, cornerRadius);
                     break;
                 case 5:
-                    drawQuad(-1 + xborder, 1 - yborder - gap, thickness, -ysize, cornerRadius);
+                    drawQuad(-1 + xborder, inset + yborder + 2 * gap + ysize - 1 + thickness, thickness, ysize, cornerRadius);
                     break;
                 case 6:
                     drawQuad(-1 + xborder + gap, 0.5f * inset - 0.5f * thickness, xsize, thickness, cornerRadius);
                     break;
             }
         }
+    }
+
+    private void updateKeys(long window) {
+        // TODO: find a nicer way to do this!
+        if (glfwGetKey(window, GLFW_KEY_0) == 1) ssd.set(0);
+        if (glfwGetKey(window, GLFW_KEY_1) == 1) ssd.set(1);
+        if (glfwGetKey(window, GLFW_KEY_2) == 1) ssd.set(2);
+        if (glfwGetKey(window, GLFW_KEY_3) == 1) ssd.set(3);
+        if (glfwGetKey(window, GLFW_KEY_4) == 1) ssd.set(4);
+        if (glfwGetKey(window, GLFW_KEY_5) == 1) ssd.set(5);
+        if (glfwGetKey(window, GLFW_KEY_6) == 1) ssd.set(6);
+        if (glfwGetKey(window, GLFW_KEY_7) == 1) ssd.set(7);
+        if (glfwGetKey(window, GLFW_KEY_8) == 1) ssd.set(8);
+        if (glfwGetKey(window, GLFW_KEY_9) == 1) ssd.set(9);
+        if (glfwGetKey(window, GLFW_KEY_0) == 1) ssd.set(0);
     }
 }

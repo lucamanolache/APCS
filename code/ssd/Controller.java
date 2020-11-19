@@ -55,7 +55,7 @@ public class Controller {
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
 
         // Create the window
-        window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_WIDTH, "Hello World!", NULL, NULL);
+        window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_WIDTH, "SSD", NULL, NULL);
         if (window == NULL) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
