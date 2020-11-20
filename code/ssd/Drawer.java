@@ -20,6 +20,8 @@ public class Drawer {
     static float ysize = (2 - inset - 2 * yborder - 3 * gap - thickness) / 2;
     static float cornerRadius = 0.03f;
 
+    private Texture backgroundTexture;
+
     private SSD ssd;
 
     public Drawer() {
@@ -34,6 +36,10 @@ public class Drawer {
         // creates the GLCapabilities instance and makes the OpenGL
         // bindings available for use.
         GL.createCapabilities();
+
+        glEnable(GL_TEXTURE_2D);
+
+        backgroundTexture = new Texture("./code/ssd/brick.jpg");
 
         // Run the rendering loop until the user has attempted to close
         // the window or has pressed the ESCAPE key.
@@ -53,8 +59,25 @@ public class Drawer {
     }
 
     private void drawBackground() {
+        backgroundTexture.bind();
+
+        glColor3b((byte) 101, (byte) 56, (byte) 24);
+        glBegin(GL_QUADS);
+            glTexCoord2f(0, 0);
+            glVertex2f(-1, 1);
+
+            glTexCoord2f(1, 0);
+            glVertex2f(1, 1);
+
+            glTexCoord2f(1, 1);
+            glVertex2f(1, -1);
+
+            glTexCoord2f(0, 1);
+            glVertex2f(-1, -1);
+        glEnd();
+
         // Set the clear color
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+//        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
     private void drawSSD(SSD ssd) {

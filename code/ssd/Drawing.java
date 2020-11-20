@@ -1,9 +1,5 @@
 package ssd;
 
-import org.lwjgl.opengl.GL11;
-
-import java.util.ArrayList;
-
 import static org.lwjgl.opengl.GL11.*;
 
 public class Drawing {
