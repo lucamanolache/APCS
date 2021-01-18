@@ -1,7 +1,10 @@
 package ssd;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
+
+import java.nio.FloatBuffer;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -49,6 +52,7 @@ public class Drawer {
             updateKeys(window);
             drawBackground();
             drawSSD(ssd);
+            drawLighting();
 
             glfwSwapBuffers(window); // swap the color buffers
 
@@ -59,25 +63,40 @@ public class Drawer {
     }
 
     private void drawBackground() {
-        backgroundTexture.bind();
+//        backgroundTexture.bind();
 
-        glColor3b((byte) 101, (byte) 56, (byte) 24);
-        glBegin(GL_QUADS);
-            glTexCoord2f(0, 0);
-            glVertex2f(-1, 1);
-
-            glTexCoord2f(1, 0);
-            glVertex2f(1, 1);
-
-            glTexCoord2f(1, 1);
-            glVertex2f(1, -1);
-
-            glTexCoord2f(0, 1);
-            glVertex2f(-1, -1);
-        glEnd();
+//        glColor3b((byte) 101, (byte) 56, (byte) 24);
+//        glBegin(GL_QUADS);
+//            glTexCoord2f(0, 0);
+//            glVertex2f(-1, 1);
+//
+//            glTexCoord2f(1, 0);
+//            glVertex2f(1, 1);
+//
+//            glTexCoord2f(1, 1);
+//            glVertex2f(1, -1);
+//
+//            glTexCoord2f(0, 1);
+//            glVertex2f(-1, -1);
+//        glEnd();
 
         // Set the clear color
-//        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    }
+    
+    private void drawLighting() {
+        FloatBuffer ambient = BufferUtils.createFloatBuffer(4);
+        ambient.put(new float[] { 0f, 0f, 0f, 0f, });
+        ambient.flip();
+
+        FloatBuffer position = BufferUtils.createFloatBuffer(4);
+        position.put(new float[] { 0f, 0f, 0.025f, 0.05f, });
+        position.flip();
+
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
+//        glLightfv(GL_LIGHT0, GL_POSITION, position);
     }
 
     private void drawSSD(SSD ssd) {
