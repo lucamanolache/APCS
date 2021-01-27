@@ -11,7 +11,6 @@ import static org.lwjgl.opengl.GL11.*;
 
 import static ssd.Drawing.*;
 
-
 public class Drawer {
 
     static float xborder = 0.55f;
@@ -28,8 +27,8 @@ public class Drawer {
     private SSD ssd;
 
     public Drawer() {
-        this.ssd = new CathodeSSD();
-        this.ssd.set(0);
+//        this.ssd = new CathodeSSD();
+//        this.ssd.set(0);
     }
 
     public void draw(long window) {
