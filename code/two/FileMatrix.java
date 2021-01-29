@@ -5,12 +5,15 @@ import java.io.*;
 public class FileMatrix<T extends Serializable> {
 
     private final String filename;
+    private int rows, cols;
 
     private Serializable[][] holding;
 
     public FileMatrix(int rows, int cols, String filename) {
         this.filename = filename;
         this.holding = new Serializable[rows][cols];
+        this.rows = rows;
+        this.cols = cols;
 
         if (new File(filename).exists()) {
             FileInputStream file;
@@ -51,7 +54,7 @@ public class FileMatrix<T extends Serializable> {
             }
         }
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> write(rows, cols)));
+        Runtime.getRuntime().addShutdownHook(new Thread(this::write));
     }
 
     public void set(int row, int col, T object) {
@@ -62,7 +65,7 @@ public class FileMatrix<T extends Serializable> {
         return (T) holding[row][col];
     }
 
-    private void write(int rows, int cols) {
+    private void write() {
         FileOutputStream file;
         ObjectOutputStream out;
         try {
@@ -85,5 +88,13 @@ public class FileMatrix<T extends Serializable> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
     }
 }
