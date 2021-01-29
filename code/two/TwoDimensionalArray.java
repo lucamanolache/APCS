@@ -31,28 +31,33 @@ public class TwoDimensionalArray {
         if (filePath.toString().equals("")) {
             throw new IllegalArgumentException("Needs a valid file name, got \"\"");
         }
-        BufferedReader in = new BufferedReader(new FileReader(filePath.toAbsolutePath().toString()));
-        StringTokenizer str = new StringTokenizer(in.readLine(), ",");
 
-        if (str.countTokens() != 2) {
-            throw new RuntimeException("File needs to have the size on the first line");
-        }
-        int rows = Integer.parseInt(str.nextToken()), cols = Integer.parseInt(str.nextToken());
-        double[][] arr = new double[rows][cols];
+        FileArray<Double> array = new FileArray<>(1, 1, filePath.toAbsolutePath().toString());
+        array.set(0, 0, 1.0);
+        System.out.println(array.get(0, 0));
 
-        for (int i = 0; i < rows; i++) {
-            str = new StringTokenizer(in.readLine(), ",");
-            for (int j = 0; j < cols; j++) {
-                arr[i][j] = Double.parseDouble(str.nextToken());
-            }
-        }
-
-        double sum = 0;
-        for (double[] d : arr) {
-            for (double dd : d) {
-                sum += dd;
-            }
-        }
-        System.out.println(sum);
+//        BufferedReader in = new BufferedReader(new FileReader(filePath.toAbsolutePath().toString()));
+//        StringTokenizer str = new StringTokenizer(in.readLine(), ",");
+//
+//        if (str.countTokens() != 2) {
+//            throw new RuntimeException("File needs to have the size on the first line");
+//        }
+//        int rows = Integer.parseInt(str.nextToken()), cols = Integer.parseInt(str.nextToken());
+//        double[][] arr = new double[rows][cols];
+//
+//        for (int i = 0; i < rows; i++) {
+//            str = new StringTokenizer(in.readLine(), ",");
+//            for (int j = 0; j < cols; j++) {
+//                arr[i][j] = Double.parseDouble(str.nextToken());
+//            }
+//        }
+//
+//        double sum = 0;
+//        for (double[] d : arr) {
+//            for (double dd : d) {
+//                sum += dd;
+//            }
+//        }
+//        System.out.println(sum);
     }
 }
