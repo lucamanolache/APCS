@@ -1,10 +1,7 @@
 package two;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.StringTokenizer;
 
 import net.sourceforge.argparse4j.ArgumentParsers;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
@@ -32,9 +29,11 @@ public class TwoDimensionalArray {
             throw new IllegalArgumentException("Needs a valid file name, got \"\"");
         }
 
-        FileArray<Double> array = new FileArray<>(1, 1, filePath.toAbsolutePath().toString());
-        array.set(0, 0, 1.0);
-        System.out.println(array.get(0, 0));
+        FileMatrix<Double> array = new FileMatrix<>(3, 3, filePath.toAbsolutePath().toString());
+//        array.set(0, 0, 1.0);
+//        array.set(0, 1, 2.0);
+//        array.set(0, 2, 3.0);
+        System.out.println(array.get(0, 2));
 
 //        BufferedReader in = new BufferedReader(new FileReader(filePath.toAbsolutePath().toString()));
 //        StringTokenizer str = new StringTokenizer(in.readLine(), ",");

@@ -24,7 +24,7 @@ public class Drawer {
 
     private Texture backgroundTexture;
 
-    private SSD ssd;
+//    private SSD ssd;
 
     public Drawer() {
 //        this.ssd = new CathodeSSD();
@@ -50,7 +50,7 @@ public class Drawer {
 
             updateKeys(window);
             drawBackground();
-            drawSSD(ssd);
+//            drawSSD(ssd);
             drawLighting();
 
             glfwSwapBuffers(window); // swap the color buffers
@@ -136,16 +136,16 @@ public class Drawer {
 
     private void updateKeys(long window) {
         // TODO: find a nicer way to do this!
-        if (glfwGetKey(window, GLFW_KEY_0) == 1) ssd.set(0);
-        if (glfwGetKey(window, GLFW_KEY_1) == 1) ssd.set(1);
-        if (glfwGetKey(window, GLFW_KEY_2) == 1) ssd.set(2);
-        if (glfwGetKey(window, GLFW_KEY_3) == 1) ssd.set(3);
-        if (glfwGetKey(window, GLFW_KEY_4) == 1) ssd.set(4);
-        if (glfwGetKey(window, GLFW_KEY_5) == 1) ssd.set(5);
-        if (glfwGetKey(window, GLFW_KEY_6) == 1) ssd.set(6);
-        if (glfwGetKey(window, GLFW_KEY_7) == 1) ssd.set(7);
-        if (glfwGetKey(window, GLFW_KEY_8) == 1) ssd.set(8);
-        if (glfwGetKey(window, GLFW_KEY_9) == 1) ssd.set(9);
-        if (glfwGetKey(window, GLFW_KEY_0) == 1) ssd.set(0);
+//        if (glfwGetKey(window, GLFW_KEY_0) == 1) ssd.set(0);
+//        if (glfwGetKey(window, GLFW_KEY_1) == 1) ssd.set(1);
+//        if (glfwGetKey(window, GLFW_KEY_2) == 1) ssd.set(2);
+//        if (glfwGetKey(window, GLFW_KEY_3) == 1) ssd.set(3);
+//        if (glfwGetKey(window, GLFW_KEY_4) == 1) ssd.set(4);
+//        if (glfwGetKey(window, GLFW_KEY_5) == 1) ssd.set(5);
+//        if (glfwGetKey(window, GLFW_KEY_6) == 1) ssd.set(6);
+//        if (glfwGetKey(window, GLFW_KEY_7) == 1) ssd.set(7);
+//        if (glfwGetKey(window, GLFW_KEY_8) == 1) ssd.set(8);
+//        if (glfwGetKey(window, GLFW_KEY_9) == 1) ssd.set(9);
+//        if (glfwGetKey(window, GLFW_KEY_0) == 1) ssd.set(0);
     }
 }
