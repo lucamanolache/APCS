@@ -9,6 +9,44 @@ public class FileMatrix<T extends Serializable> {
 
     private Serializable[][] holding;
 
+    public FileMatrix(String filename) throws FileNotFoundException {
+        this.filename = filename;
+
+        if (new File(filename).exists()) {
+            FileInputStream file;
+            ObjectInputStream in;
+
+            try {
+                file = new FileInputStream(filename);
+                in = new ObjectInputStream(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                rows = in.readInt();
+                cols = in.readInt();
+            } catch (IOException e) {
+                return;
+            }
+
+            // load it into an array
+            this.holding = new Serializable[rows][cols];
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    try {
+                        holding[i][j] = (Serializable) in.readObject();
+                    } catch (IOException | ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+            throw new FileNotFoundException();
+        }
+    }
+
     public FileMatrix(int rows, int cols, String filename) {
         this.filename = filename;
         this.holding = new Serializable[rows][cols];

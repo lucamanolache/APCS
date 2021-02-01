@@ -1,5 +1,6 @@
 package two;
 
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -14,15 +15,15 @@ public class TwoDimensionalArray {
         ArgumentParser parser = ArgumentParsers.newFor("TwoDimensionalArray").build()
                 .defaultHelp(true)
                 .description("Read a two dimensional array from a file");
-        parser.addArgument("file").nargs(1)
-                .help("File to read the 2d array from")
-                .required(true);
         parser.addArgument("task")
                 .dest("task")
                 .help("What task should this program complete")
                 .choices("read", "write", "randomize", "sum")
                 .setDefault("read")
                 .nargs(1);
+        parser.addArgument("file").nargs(1)
+                .help("File to read the 2d array from")
+                .required(true);
         Namespace ns = null;
         try {
             ns = parser.parseArgs(args);
@@ -36,15 +37,20 @@ public class TwoDimensionalArray {
         String task = ns.getString("task");
 
         switch (task) {
-            case "read": read(filePath);
-            case "write": write(filePath);
-            case "randomize": randomize(filePath);
-            case "sum": sum(filePath);
+            case "[read]": read(filePath); break;
+            case "[write]": write(filePath); break;
+            case "[randomize]": randomize(filePath); break;
+            case "[sum]": sum(filePath); break;
         }
     }
 
     private static void read(String file) {
-        FileMatrix<Double> array = new FileMatrix<>(3, 3, file);
+        FileMatrix<Double> array = null;
+        try {
+            array = new FileMatrix<>(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         for (int i = 0; i < array.getRows(); i++) {
             for (int j = 0; j < array.getCols(); j++) {
@@ -59,7 +65,7 @@ public class TwoDimensionalArray {
 
         System.out.print("How many rows: ");
         int rows = in.nextInt();
-        System.out.print("\nHow many cols: ");
+        System.out.print("How many cols: ");
         int cols = in.nextInt();
         System.out.print("\n");
 
@@ -76,13 +82,13 @@ public class TwoDimensionalArray {
 
         System.out.print("How many rows: ");
         int rows = in.nextInt();
-        System.out.print("\nHow many cols: ");
+        System.out.print("How many cols: ");
         int cols = in.nextInt();
         System.out.print("\n");
 
         System.out.print("What is the min number: ");
         int min = in.nextInt();
-        System.out.print("\nWhat is the max number: ");
+        System.out.print("What is the max number: ");
         int max = in.nextInt();
         System.out.print("\n");
 
@@ -102,7 +108,12 @@ public class TwoDimensionalArray {
     }
 
     private static void sum(String file) {
-        FileMatrix<Double> array = new FileMatrix<>(3, 3, file);
+        FileMatrix<Double> array = null;
+        try {
+            array = new FileMatrix<>(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         double sum = 0;
         for (int i = 0; i < array.getRows(); i++) {
