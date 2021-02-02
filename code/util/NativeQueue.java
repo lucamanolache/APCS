@@ -10,6 +10,7 @@ public class NativeQueue implements AutoCloseable {
     private static native double peek(long pointer);
     private static native void free(long pointer);
     private static native boolean isEmpty(long pointer);
+    private static native int size(long pointer);
 
     private final long pointer;
 
@@ -35,6 +36,10 @@ public class NativeQueue implements AutoCloseable {
 
     public boolean isEmpty() {
         return isEmpty(pointer);
+    }
+
+    public int size() {
+        return size(pointer);
     }
 
     @Override

@@ -52,21 +52,29 @@ public class PriorityQueue<T extends Comparable<T>> extends AbstractQueue<T> {
             // Null will mess this implementation up because it does not implement comparable
             throw new NullPointerException("Null values can not be added to queue");
         }
-        if (list.length < size) {
+        if (list.length <= size) {
             // Double the size of the array.
             list = Arrays.copyOf(list, Math.min(list.length * 2, MAX_SIZE));
         }
         // Check if greater than the max size and if the max size is Integer.MAX_VALUE check if its less than 0
         // and therefore overflowed.
-        if (size > MAX_SIZE || size < 0) {
+        if (size >= MAX_SIZE || size < 0) {
             return false;
         }
-        size++;
         list[size] = t;
         if (size != 0) {
             heapify(0);
         }
 
+        int i = size;
+        while (i != 0 && ((T) list[i]).compareTo((T) list[parent(i)]) < 0) {
+            Object s = list[i];
+            list[i] = list[parent(i)];
+            list[parent(i)] = s;
+            i = parent(i);
+        }
+
+        size++;
         return true;
     }
 
@@ -76,9 +84,10 @@ public class PriorityQueue<T extends Comparable<T>> extends AbstractQueue<T> {
     private void heapify(int i) {
         int l = left(i), r = right(i);
         int smallest = i;
-        if (l < size && ((T) list[l]).compareTo((T) list[i]) < 0) {
+        if (l < size && ((T) list[l]).compareTo((T) list[smallest]) < 0) {
             smallest = l;
-        } else if (r < size && ((T) list[r]).compareTo((T) list[i]) < 0) {
+        }
+        if (r < size && ((T) list[r]).compareTo((T) list[smallest]) < 0) {
             smallest = r;
         }
 
