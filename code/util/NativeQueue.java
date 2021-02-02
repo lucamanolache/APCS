@@ -2,12 +2,13 @@ package util;
 
 import java.io.File;
 
-public class NativeQueue {
+public class NativeQueue implements AutoCloseable {
 
     private static native long newQueue();
     private static native void add(long pointer, double input);
-    private static native double pop(long pointer);
     private static native double poll(long pointer);
+    private static native double peek(long pointer);
+    private static native void free(long pointer);
 
     private final long pointer;
 
@@ -23,12 +24,12 @@ public class NativeQueue {
         add(pointer, input);
     }
 
-    public double pop() {
-        return pop(pointer);
-    }
-
     public double poll() {
         return poll(pointer);
+    }
+
+    public double peek() {
+        return peek(pointer);
     }
 
     public static void main(String[] args) {
@@ -37,8 +38,13 @@ public class NativeQueue {
         queue.add(1);
         queue.add(4);
         queue.add(1);
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
-        System.out.println(queue.pop());
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+    }
+
+    @Override
+    public void close() throws Exception {
+        free(pointer);
     }
 }

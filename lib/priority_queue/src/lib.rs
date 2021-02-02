@@ -25,11 +25,11 @@ impl PriorityQueue {
         }
     }
 
-    fn poll(&mut self) -> f64 {
+    fn peek(&mut self) -> f64 {
         self.array[0]
     }
 
-    fn pop(&mut self) -> f64 {
+    fn poll(&mut self) -> f64 {
         let ret = self.array[0];
 
         self.array[0] = self.array[self.array.len() - 1];
@@ -90,17 +90,23 @@ pub unsafe extern "system" fn Java_util_NativeQueue_add(_env: JNIEnv, _class: JC
 }
 
 #[no_mangle]
-pub unsafe extern "system" fn Java_util_NativeQueue_pop(_env: JNIEnv, _class: JClass, pointer: jlong) -> jdouble {
-    let priority_queue = &mut *(pointer as *mut PriorityQueue);
-
-    priority_queue.pop()
-}
-
-#[no_mangle]
 pub unsafe extern "system" fn Java_util_NativeQueue_poll(_env: JNIEnv, _class: JClass, pointer: jlong) -> jdouble {
     let priority_queue = &mut *(pointer as *mut PriorityQueue);
 
     priority_queue.poll()
+}
+
+#[no_mangle]
+pub unsafe extern "system" fn Java_util_NativeQueue_peek(_env: JNIEnv, _class: JClass, pointer: jlong) -> jdouble {
+    let priority_queue = &mut *(pointer as *mut PriorityQueue);
+
+    priority_queue.peek()
+}
+
+#[no_mangle]
+pub unsafe extern "system" fn Java_util_NativeQueue_free(_env: JNIEnv, _class: JClass, pointer: jlong) {
+    let priority_queue = &mut *(pointer as *mut PriorityQueue);
+    // I think rust will automatically free the priority queue at this address
 }
 
 #[cfg(test)]
