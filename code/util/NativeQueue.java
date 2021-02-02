@@ -9,6 +9,7 @@ public class NativeQueue implements AutoCloseable {
     private static native double poll(long pointer);
     private static native double peek(long pointer);
     private static native void free(long pointer);
+    private static native boolean isEmpty(long pointer);
 
     private final long pointer;
 
@@ -32,15 +33,8 @@ public class NativeQueue implements AutoCloseable {
         return peek(pointer);
     }
 
-    public static void main(String[] args) {
-        NativeQueue queue = new NativeQueue();
-
-        queue.add(1);
-        queue.add(4);
-        queue.add(1);
-        System.out.println(queue.poll());
-        System.out.println(queue.poll());
-        System.out.println(queue.poll());
+    public boolean isEmpty() {
+        return isEmpty(pointer);
     }
 
     @Override

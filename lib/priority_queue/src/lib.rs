@@ -1,6 +1,6 @@
 use jni::JNIEnv;
 use jni::objects::JClass;
-use jni::sys::{jdouble, jlong};
+use jni::sys::{jdouble, jlong, jboolean, JNI_TRUE, JNI_FALSE};
 
 struct PriorityQueue {
     array: Vec<f64>
@@ -44,9 +44,10 @@ impl PriorityQueue {
         let r = self.right(i);
 
         let mut smallest = i;
-        if l < self.array.len() && self.array[l] < self.array[i] {
+        if l < self.array.len() && self.array[l] < self.array[smallest] {
             smallest = l;
-        } else if r < self.array.len() && self.array[r] < self.array[i] {
+        }
+        if r < self.array.len() && self.array[r] < self.array[smallest] {
             smallest = r;
         }
 
@@ -105,14 +106,37 @@ pub unsafe extern "system" fn Java_util_NativeQueue_peek(_env: JNIEnv, _class: J
 
 #[no_mangle]
 pub unsafe extern "system" fn Java_util_NativeQueue_free(_env: JNIEnv, _class: JClass, pointer: jlong) {
+    // probably should implement this...
+    // I don't know how rust's memory management works in combination with Java.
+}
+
+#[no_mangle]
+pub unsafe extern "system" fn Java_util_NativeQueue_isEmpty(_env: JNIEnv, _class: JClass, pointer: jlong) -> jboolean {
     let priority_queue = &mut *(pointer as *mut PriorityQueue);
-    // I think rust will automatically free the priority queue at this address
+    if priority_queue.array.is_empty() {JNI_TRUE} else {JNI_FALSE}
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::PriorityQueue;
+
     #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
+    fn test_priority_queue() {
+        let mut queue = PriorityQueue::new();
+
+        // should be -10, 1, 1, 10, 13 after being sorted
+        queue.add(10.0);
+        queue.add(1.0);
+        queue.add(-10.0);
+        queue.add(13.0);
+        queue.add(1.0);
+
+        assert_eq!(queue.peek(), -10.0);
+        assert_eq!(queue.poll(), -10.0);
+        assert_eq!(queue.poll(), 1.0);
+        assert_eq!(queue.poll(), 1.0);
+        assert_eq!(queue.peek(), 10.0);
+        assert_eq!(queue.poll(), 10.0);
+        assert_eq!(queue.poll(), 13.0);
     }
 }

@@ -64,7 +64,7 @@ public class PriorityQueue<T extends Comparable<T>> extends AbstractQueue<T> {
         size++;
         list[size] = t;
         if (size != 0) {
-            heapify();
+            heapify(0);
         }
 
         return true;
