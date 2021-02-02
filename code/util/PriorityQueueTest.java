@@ -3,11 +3,11 @@ package util;
 import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PriorityQueueTest {
+
+    private static final int benchmarkIterations = 50000;
 
     @Test
     public void testNative() {
@@ -54,17 +54,17 @@ public class PriorityQueueTest {
     public void benchmarkQueue() {
         PriorityQueue<Double> queue = new PriorityQueue<>();
 
-        for (double i = 0; i < 1000; i++) {
+        for (double i = 0; i < benchmarkIterations; i++) {
             queue.add(i);
             queue.add(-i);
             queue.add(10.0);
         }
 
-        for (int i = 0; i < 3 * 1000; i++) {
+        for (int i = 0; i < 3 * benchmarkIterations; i++) {
             queue.peek();
         }
 
-        for (int i = 0; i < 3 * 1000; i++) {
+        for (int i = 0; i < 3 * benchmarkIterations; i++) {
             queue.poll();
         }
     }
@@ -73,17 +73,17 @@ public class PriorityQueueTest {
     public void benchmarkNative() {
         NativeQueue queue = new NativeQueue();
 
-        for (double i = 0; i < 1000; i++) {
+        for (double i = 0; i < benchmarkIterations; i++) {
             queue.add(i);
             queue.add(-i);
             queue.add(10.0);
         }
 
-        for (int i = 0; i < 3 * 1000; i++) {
+        for (int i = 0; i < 3 * benchmarkIterations; i++) {
             queue.peek();
         }
 
-        for (int i = 0; i < 3 * 1000; i++) {
+        for (int i = 0; i < 3 * benchmarkIterations; i++) {
             queue.poll();
         }
     }
@@ -92,22 +92,23 @@ public class PriorityQueueTest {
     public void benchmarkJava() {
         java.util.PriorityQueue<Double> queue = new java.util.PriorityQueue<>();
 
-        for (double i = 0; i < 1000; i++) {
+        for (double i = 0; i < benchmarkIterations; i++) {
             queue.add(i);
             queue.add(-i);
             queue.add(10.0);
         }
 
-        for (int i = 0; i < 3 * 1000; i++) {
+        for (int i = 0; i < 3 * benchmarkIterations; i++) {
             queue.peek();
         }
 
-        for (int i = 0; i < 3 * 1000; i++) {
+        for (int i = 0; i < 3 * benchmarkIterations; i++) {
             queue.poll();
         }
     }
 
     /*
+    (benchmarkIterations = 1000)
     Benchmark (higher is better)        Mode  Cnt     Score     Error  Units
     PriorityQueueTest.benchmarkJava    thrpt   25  1988.952 ± 212.518  ops/s
     PriorityQueueTest.benchmarkNative  thrpt   25    73.338 ±   6.897  ops/s
