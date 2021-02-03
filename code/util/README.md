@@ -30,4 +30,10 @@ Using the Native version
 
 Because the backend for one of the priority queues is written
 in Rust, it will need to be compiled. The binary should be
-there for Linux and Mac OS 
+there for Linux and Mac OS, if it does not work (maybe because
+it was compiled for a specific CPU because I have messed with
+my compiler flags) you will need to compile it yourself. To do
+this make sure to go into lib/priority_queue (with 
+``cd lib/priority_queue`` on linux) and run ``cargo build``.
+If cargo does not run, it can probably be built using gcc, however
+there probably will be issues with libraries. 
