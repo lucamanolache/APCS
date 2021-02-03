@@ -15,7 +15,18 @@ public class NativeQueue implements AutoCloseable {
     private final long pointer;
 
     static {
-        System.load(new File("lib/priority_queue/target/debug/libpriority_queue.so").getAbsolutePath());
+        // The lib must be compiled for this to run. target is in my .gitignore because Maven also uses that directory
+        // and I do not want Java byte code to be on github. I do not remember how to allow these files to be ignored
+        // by the gitignore so they will have to be compiled on every computer at least once. To do this
+        // `cd` into ./lib/priority_queue and run `cargo build`
+        if (System.getProperty("os.name").contains("Windows")) {
+            System.load(new File("lib/priority_queue/target/debug/libpriority_queue.dll").getAbsolutePath());
+        } else if (System.getProperty("os.name").contains("Linux")) {
+            System.load(new File("lib/priority_queue/target/debug/libpriority_queue.so").getAbsolutePath());
+        } else {
+            // This is for Mac OS, however BSD and other OS's probably don't use dylib so they won't work
+            System.load(new File("lib/priority_queue/target/debug/libpriority_queue.dylib").getAbsolutePath());
+        }
     }
 
     public NativeQueue() {
@@ -43,7 +54,7 @@ public class NativeQueue implements AutoCloseable {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         free(pointer);
     }
 }

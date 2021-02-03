@@ -129,6 +129,12 @@ public class PriorityQueue<T extends Comparable<T>> extends AbstractQueue<T> {
         return (i - 1) / 2;
     }
 
+    /**
+     * Takes our the smallest element (which should always be the first) and then moves the last element to the start
+     * and then heapifies the resulting array (or binary tree)
+     * @return The smallest value in the array, that element is deleted from the priority queue. Returns null if
+     * the queue is empty
+     */
     @Override
     public T poll() {
         if (size == 0) {
@@ -142,6 +148,11 @@ public class PriorityQueue<T extends Comparable<T>> extends AbstractQueue<T> {
         return peek;
     }
 
+    /**
+     * @return The smallest value in the array, that element is not deleted from the priority queue. Returns null if
+     * the queue is empty. (does not do this explicitly but the array should be full of null's so list[0] should be
+     * null)
+     */
     @Override
     public T peek() {
         return (T) list[0];

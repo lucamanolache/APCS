@@ -121,7 +121,7 @@ public class PriorityQueueTest {
     PriorityQueueTest.benchmarkQueue   thrpt   25   7.800 ± 0.193  ops/s
 
     This shows that Java's implementation of an PriorityQueue is the fastest. I expected the native code to do
-    extremely poorly because I heard that JNI is rather slow. What I believe would be interesting to see, is how
+    poorly because I heard that JNI is slow but not this poorly. What I believe would be interesting to see, is how
     do PriorityQueue's implemented in other languages perform (not using the JNI). I do not know how to
     benchmark code in different languages though. I am also interested in what algorithm Java's implementation uses.
     I recall reading that it was also a heap but I am not sure if that is true, however I am fairly confident that
