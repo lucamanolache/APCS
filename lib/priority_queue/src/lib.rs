@@ -105,7 +105,7 @@ pub unsafe extern "system" fn Java_util_NativeQueue_peek(_env: JNIEnv, _class: J
 }
 
 #[no_mangle]
-pub unsafe extern "system" fn Java_util_NativeQueue_free(_env: JNIEnv, _class: JClass, pointer: jlong) {
+pub unsafe extern "system" fn Java_util_NativeQueue_free(_env: JNIEnv, _class: JClass, _pointer: jlong) {
     // probably should implement this...
     // I don't know how rust's memory management works in combination with Java.
 }
