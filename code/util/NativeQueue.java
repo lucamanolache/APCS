@@ -15,7 +15,7 @@ public class NativeQueue implements AutoCloseable {
     private final long pointer;
 
     static {
-        System.load(new File("lib/priority_queue/target/debug/libpriority_queue.dylib").getAbsolutePath());
+        System.load(new File("lib/priority_queue/target/debug/libpriority_queue.so").getAbsolutePath());
     }
 
     public NativeQueue() {
