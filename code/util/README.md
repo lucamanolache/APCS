@@ -54,10 +54,10 @@ if each repl will be on the same git branch. If it is not
 on updated-structure, use ``git checkout updated-structure``
 to get the code needed. Ideally all that would need to be run
 the code would be is 
-``mvn -Plwjgl-natives-macos-amd64 exec:java -Dexec.args="use"``
-This most likely will work. To change the args, change 
-``-Dexec.args="use"`` to anything else. The only args that
-will work are ``"use"`` and ``"benchmark"``. Benchmarking the
-code uses the 
+``mvn -Plwjgl-natives-linux-amd64 exec:java -Dexec.args="use"``
+(on Mac, change linux-amd64 to macos-amd64). This most likely
+will work. To change the args, change ``-Dexec.args="use"``
+to anything else. The only args that will work are ``"use"`` and 
+``"benchmark"``. Benchmarking the code uses the 
 [jmh library](https://openjdk.java.net/projects/code-tools/jmh/)
 and will take around 25 minutes.
