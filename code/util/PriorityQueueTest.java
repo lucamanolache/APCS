@@ -1,7 +1,14 @@
 package util;
 
+import net.sourceforge.argparse4j.ArgumentParsers;
+import net.sourceforge.argparse4j.inf.ArgumentParser;
+import net.sourceforge.argparse4j.inf.ArgumentParserException;
+import net.sourceforge.argparse4j.inf.Namespace;
 import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Benchmark;
+
+import java.io.IOException;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -136,6 +143,71 @@ public class PriorityQueueTest {
     improvement in its performance because the languages might work better together however I doubt that will happen.
      */
     public static void main(String[] args) throws Exception {
+        ArgumentParser parser = ArgumentParsers.newFor("PriorityQueue").build()
+                .defaultHelp(true)
+                .description("Use or benchmark my implementation of a priority queue.\n" +
+                        "Warning: benchmark takes over 20 minutes.");
+        parser.addArgument("task")
+                .dest("task")
+                .help("What task should this program complete")
+                .choices("benchmark", "use")
+                .nargs(1);
+
+        Namespace ns = null;
+        try {
+            ns = parser.parseArgs(args);
+        } catch (ArgumentParserException e) {
+            parser.handleError(e);
+            System.exit(1);
+        }
+        assert(ns != null);
+
+        String task = ns.getString("task");
+        switch (task) {
+            case "[benchmark]": benchmark(); break;
+            case "[use]": use(); break;
+        }
+    }
+
+    private static void use() {
+        Scanner in = new Scanner(System.in);
+
+        // This is my priority queue not java's. They both have the same name.
+        // Java's would be java.util.PriorityQueue<Double>
+        PriorityQueue<Double> queue = new PriorityQueue<>();
+
+        System.out.println("How to use");
+        System.out.println("==========");
+        System.out.println("Type a or add along with a value to add it to the priority queue.");
+        System.out.println("Type r or poll in order to remove and view the top value from the priority queue");
+        System.out.println("Type p or peek in order view the top value from the priority queue");
+        System.out.println("Type q or quit or ^c in order to stop the program");
+        String next;
+        while (true) {
+            next = in.next();
+
+            switch (next) {
+                case "a":
+                case "add":
+                    queue.add(in.nextDouble());
+                    break;
+                case "r":
+                case "poll":
+                    System.out.println(queue.poll());
+                    break;
+                case "p":
+                case "peek":
+                    System.out.println(queue.peek());
+                    break;
+                case "q":
+                case "quit":
+                    System.exit(0);
+            }
+        }
+    }
+
+    private static void benchmark() throws IOException {
+        String[] args = new String[0];
         org.openjdk.jmh.Main.main(args);
     }
 }
