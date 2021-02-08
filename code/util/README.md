@@ -60,4 +60,7 @@ will work. To change the args, change ``-Dexec.args="use"``
 to anything else. The only args that will work are ``"use"`` and 
 ``"benchmark"``. Benchmarking the code uses the 
 [jmh library](https://openjdk.java.net/projects/code-tools/jmh/)
-and will take around 25 minutes.
+and will take around 25 minutes. After playing around with maven,
+I manged to create a jar file. Now the way to run the code is by
+doing ``java -cp apcs-0.1-jar-with-dependencies.jar util.PriorityQueueTest``
+followed by the args. The code should work on this [repl](https://repl.it/@lmanolache/APCS-1#README.md).
