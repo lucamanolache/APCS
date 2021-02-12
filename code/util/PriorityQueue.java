@@ -2,6 +2,17 @@ package util;
 
 import java.util.*;
 
+/**
+ * A priority queue that has a recursive heapify method. The heapify method only works if the heap has 1 error in it.
+ * This is because it is used only when removing an element. Removing an element swaps the first and the last element
+ * and deletes the first element (or the one that used to be first). This should have time complexity O (log n),
+ * however it is still a lot slower than {@link java.util.PriorityQueue}. Creating a priority queue from a
+ * collection is very slow (O (n log n)) because it just adds elements using offer (offer has complexity log n).
+ * TODO: implement a better way to do this.
+ * @param <T> What value to be stored in the Array, needs to implement Comparable. Might have
+ *           been a better choice to take a comparator or something and use that instead of Comparable
+ *           because then you could sort both min and max heaps.
+ */
 public class PriorityQueue<T extends Comparable<T>> extends AbstractQueue<T> {
 
     private static final int MAX_SIZE = Integer.MAX_VALUE;
@@ -21,12 +32,19 @@ public class PriorityQueue<T extends Comparable<T>> extends AbstractQueue<T> {
     }
 
     public PriorityQueue(Collection<T> objects) {
-        this.list = new Object[Math.max(objects.size() + 1, 10)];
+        this.list = objects.toArray();
         this.size = objects.size();
-        // There might be a quicker way to do this. Maybe turning the collection into an array and then heapifying
-        // that array rather than adding objects 1 by 1. However this is probably the easiest way to implement this.
-        for (T o : objects) {
-            offer(o);
+
+        buildHeap();
+    }
+
+    /**
+     * The Wikipedia page on Binary Heaps says this way should be n because of some complex math involving infinite
+     * series. This should work. TODO: test this
+     */
+    private void buildHeap() {
+        for (int i = size / 2; i >= 1; i--) {
+            heapify(i);
         }
     }
 
