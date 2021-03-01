@@ -25,16 +25,15 @@ public class City {
         adj = new ArrayList<>();
     }
 
-    private String name;
-    private int number;
-
+    private final String name;
+    private final int number;
 
     /**
      * A class in order to link two cities with a distance.
      */
     static class Road implements Comparable<Road> {
-        private double distance;
-        private City destination;
+        private final double distance;
+        private final City destination;
 
         public Road(City destination, double distance) {
             this.distance = distance;
@@ -82,7 +81,9 @@ public class City {
     }
 
     /**
-     * Add {@link Road} to an already existing city.
+     * Add {@link Road} to an already existing city. Might be faster to do preprocessing each time a city is added
+     * in order to make {@link #distanceTo(City)} faster. I don't know any algorithms to do this but I remember hearing
+     * about one.
      * @param roads the roads to be added
      * @see #addRoads(ArrayList)
      */
@@ -94,11 +95,11 @@ public class City {
      * This function uses Dijkstra’s shortest path algorithm. This algorithm is a greedy algorithm that always takes
      * shortest path it can currently take. This algorithm starts off with only one path it can take, which is to the
      * starting city, and then looks in a static adjacency matrix for all connections this city has and adds them to a
-     * priority queue to find the shortest distance in O(log n). The shortest distances found are marked off in a
+     * priority queue to find the shortest road from there in O(log n). The shortest distances found are marked off in a
      * boolean array that tracks which cities have had the shortest path already found. This process repeats until all
-     * of the cities have a shortest path found to them. This is not the most optimized as it can stop earlier and
-     * creates many classes for the GC to deal with. It could probably be a lot more optimized in a different language
-     * with manual memory allocation like c.
+     * of the cities have a shortest path found to them. This should take O(n log n) to do each time.
+     * This is not the most optimized as it can stop earlier and creates many classes for the GC to deal with. It could
+     * probably be a lot more optimized in a different language with manual memory allocation like C.
      * @param city A city to go to. Would be a String, however that would cause issues if two cities have the same name.
      * @return A double which represents the shortest path from this to the city parameter.
      *         Will return {@link Double#POSITIVE_INFINITY} if no path is found.
@@ -115,18 +116,19 @@ public class City {
         distancesTo[number] = 0;
         distances.add(new Road(this, 0));
 
-        for (int i = 0; i < cities - 1; i++) {
+        // calculations assuming V vertices (cities) and E edges (roads)
+        for (int i = 0; i < cities - 1; i++) { // O ( V )
             // if we no longer have any cities to look for, break
             if (distances.isEmpty()) break;
             // remove the city with the shortest distance to, this will be the final distance to that city
-            Road r = distances.remove();
+            Road r = distances.remove(); // O ( log E )
             // if we have already visited that city we cross it out because we have already found the shortest
             // distance there
             if (visited[r.destination.number]) continue;
 
             visited[r.destination.number] = true; // mark it as visited to not set it to a different value
 
-            for (Road d : adj.get(r.destination.number)) {
+            for (Road d : adj.get(r.destination.number)) { // O ( E )
                 // no need to look at stuff we have already determined the shortest distance to, we still need to
                 // have a continue above because we may have a road to that city in the priority queue before they are
                 // all removed.
@@ -138,9 +140,11 @@ public class City {
                     // we have found a shorter distance to that city, now we add it to the priority queue and set it in
                     // our distanceTo array
                     distancesTo[d.destination.number] = distanceTo;
-                    distances.add(new Road(d.destination, distanceTo));
+                    distances.add(new Road(d.destination, distanceTo)); // O ( log E )
                 }
             }
+            // final time complexity: O ( V + E log E )? I remember reading that it is O (V + E log V) with priority queue.
+            // I might have coded this wrong or got the wrong complexities.
         }
 
         // return a specific distance in our distanceTo array. somewhat unoptimized since the distanceTo array will

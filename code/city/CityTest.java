@@ -21,5 +21,7 @@ class CityTest {
 
         assertEquals(11, la.distanceTo(sf));
         assertEquals(21, la.distanceTo(t));
+
+        City a = new City("LA");
     }
 }

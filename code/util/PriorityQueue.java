@@ -6,9 +6,8 @@ import java.util.*;
  * A priority queue that has a recursive heapify method. The heapify method only works if the heap has 1 error in it.
  * This is because it is used only when removing an element. Removing an element swaps the first and the last element
  * and deletes the first element (or the one that used to be first). This should have time complexity O (log n),
- * however it is still a lot slower than {@link java.util.PriorityQueue}. Creating a priority queue from a
- * collection is very slow (O (n log n)) because it just adds elements using offer (offer has complexity log n).
- * TODO: implement a better way to do this.
+ * however it is still a lot slower than {@link java.util.PriorityQueue}. Creating a priority queue from a Collection
+ * takes O(n).
  * @param <T> What value to be stored in the Array, needs to implement Comparable. Might have
  *           been a better choice to take a comparator or something and use that instead of Comparable
  *           because then you could sort both min and max heaps.
