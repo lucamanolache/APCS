@@ -39,8 +39,8 @@ public class Sorting {
         int s2 = s + sp1;
         int s3 = s + sp1 + sp2;
 
-        var hlist = List.copyOf(list.subList(s, e));
-        for (int i = s; i < e - 1; i++) {
+        var hlist = list.subList(s, e).toArray();
+        for (int i = s; i < e; i++) {
             int l;
             if (s1 < s + sp1) {
                 l = s1;
@@ -49,17 +49,17 @@ public class Sorting {
             } else {
                 l = s3;
             }
-            T min = hlist.get(l - s);
-            if (hlist.get(s2 - s).compareTo(min) <= 0 && s2 < s + sp1 + sp2) {
-                min = hlist.get(s2 - s);
-                if (hlist.get(s3 - s).compareTo(min) <= 0 && s3 < s + sp1 + sp2 + sp3) {
-                    min = hlist.get(s3 - s);
+            T min = (T) hlist[l - s];
+            if (((T) hlist[s2 - s]).compareTo(min) <= 0 && s2 < s + sp1 + sp2) {
+                min = (T) hlist[s2 - s];
+                if (s3 < s + sp1 + sp2 + sp3 && ((T) hlist[s3 - s]).compareTo(min) <= 0 ) {
+                    min = (T) hlist[s3 - s];
                     s3++;
                 } else {
                     s2++;
                 }
-            } else if (hlist.get(s3 - s).compareTo(min) <= 0 && s3 < s + sp1 + sp2 + sp3) {
-                min = hlist.get(s3 - s);
+            } else if (s3 < s + sp1 + sp2 + sp3 && ((T) hlist[s3 - s]).compareTo(min) <= 0) {
+                min = (T) hlist[s3 - s];
                 s3++;
             } else {
                 s1++;
