@@ -109,8 +109,7 @@ public class Sorting {
     private static <T extends Comparable<? super T>> void mergeInsertSort(List<T> list, int s, int e) {
         if (e - s <= 10) {
             // might want to try bubble sort instead.
-            int n = e - s;
-            for (int i = 1; i < n; ++i) {
+            for (int i = s + 1; i <= e; ++i) {
                 T t = list.get(i);
                 int j = i - 1;
 
@@ -217,14 +216,14 @@ public class Sorting {
             mergeInsertSort(list, lo, hi);
         } else {
             int p = partition(list, lo, hi);
-            introsort(list, 0, p - 1, maxdepth - 1);
-            introsort(list, p + 1, n, maxdepth - 1);
+            introsort(list, lo, p - 1, maxdepth - 1);
+            introsort(list, p + 1, hi, maxdepth - 1);
         }
     }
 
     public static void main(String[] args) {
-        var list = new ArrayList(List.of(7, 0, 1, 2, 3, 8, 4, 5, 9, 6));
-        mergeInsertSort(list, 0, list.size());
+        var list = new ArrayList(List.of(7, 0, 1, 2, 3, 8, 4, 5, 9, 6, 10, -1, 321, -12, 5000));
+        introsort(list);
         System.out.println(list.toString());
     }
 }
