@@ -12,7 +12,7 @@ import java.util.*;
  *           been a better choice to take a comparator or something and use that instead of Comparable
  *           because then you could sort both min and max heaps.
  */
-public class PriorityQueue<T extends Comparable<T>> extends AbstractQueue<T> {
+public class PriorityQueue<T extends Comparable<? super T>> extends AbstractQueue<T> {
 
     private static final int MAX_SIZE = Integer.MAX_VALUE;
 
@@ -45,6 +45,7 @@ public class PriorityQueue<T extends Comparable<T>> extends AbstractQueue<T> {
         for (int i = size / 2; i >= 1; i--) {
             heapify(i);
         }
+        heapify(0);
     }
 
     @Override

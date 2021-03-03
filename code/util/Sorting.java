@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Sorting {
 
+    // All of these have the same inputs as Collections.sort().
+
     public static <T extends Comparable<? super T>> void threeWaySort(List<T> list) {
         threeWaySort(list, 0, list.size());
     }
@@ -104,9 +106,64 @@ public class Sorting {
         }
     }
 
+    public static <T extends Comparable<? super T>> void heapSort(List<T> list) {
+        PriorityQueue<T> queue = new PriorityQueue<>(list); // my implementation of a queue/binary heap
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i, queue.poll());
+        }
+    }
+
+    public static <T extends Comparable<? super T>> void quickSort(List<T> list) {
+        quickSort(list, 0, list.size() - 1);
+    }
+
+    private static <T extends Comparable<? super T>> void quickSort(List<T> list, int lo, int hi) {
+        if (lo < hi) {
+            int p = partition(list, lo, hi);
+            quickSort(list, lo, p - 1);
+            quickSort(list, p + 1, hi);
+        }
+    }
+
+    // Lomuto partition scheme (https://en.wikipedia.org/wiki/Quicksort). According to wikipedia, Sedgewick recommends
+    // choosing the median of the first, middle and last element for the pivot so I changed it to use this instead of the
+    // last index.
+    private static <T extends  Comparable<? super T>> int partition(List<T> list, int lo, int hi) {
+//        T pivot = list.get(hi); // last element
+        int mid = (lo + hi) / 2; // slightly confused by what this does, but if wikipedia says to do this ¯\_(ツ)_/¯
+        if (list.get(mid).compareTo(list.get(lo)) < 0) {
+            T h = list.get(lo);
+            list.set(lo, list.get(mid));
+            list.set(mid, h);
+        } if (list.get(hi).compareTo(list.get(lo)) < 0) {
+            T h = list.get(lo);
+            list.set(lo, list.get(hi));
+            list.set(hi, h);
+        } if (list.get(mid).compareTo(list.get(hi)) < 0) {
+            T h = list.get(mid);
+            list.set(mid, list.get(hi));
+            list.set(hi, h);
+        }
+        // I get the rest of this part though :)
+        T pivot = list.get(hi);
+        int i = lo;
+        for (int j = lo; j < hi; j++) {
+            if (list.get(j).compareTo(pivot) < 0) {
+                T h = list.get(i);
+                list.set(i, list.get(j));
+                list.set(j, h);
+                i++;
+            }
+        }
+        T h = list.get(i);
+        list.set(i, list.get(hi));
+        list.set(hi, h);
+        return i;
+    }
+
     public static void main(String[] args) {
         var list = new ArrayList(List.of(7, 0, 1, 2, 3, 8, 4, 5, 9, 6));
-        mergeSort(list);
+        quickSort(list);
         System.out.println(list.toString());
     }
 }
