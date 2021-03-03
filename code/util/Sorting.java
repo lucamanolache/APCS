@@ -106,6 +106,43 @@ public class Sorting {
         }
     }
 
+    private static <T extends Comparable<? super T>> void mergeInsertSort(List<T> list, int s, int e) {
+        if (e - s <= 10) {
+            // might want to try bubble sort instead.
+            int n = e - s;
+            for (int i = 1; i < n; ++i) {
+                T t = list.get(i);
+                int j = i - 1;
+
+                while (j >= 0 && list.get(j).compareTo(t) > 0) {
+                    T h = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, h);
+                    j--;
+                }
+                list.set(j + 1, t);
+            }
+        } else {
+            int split = s + (e - s + 1) / 2;
+            mergeInsertSort(list, s, split - 1);
+            mergeInsertSort(list, split, e);
+
+            // merge
+            var copy = list.subList(s, e + 1).toArray();
+            for (int i = s, j = s, k = split; j < split || k < copy.length; i++) {
+                if (j >= split) {
+                    list.set(i, (T) copy[k++ - s]);
+                } else if (k - s >= copy.length) {
+                    list.set(i, (T) copy[j++ - s]);
+                } else if (((T) copy[j - s]).compareTo((T) copy[k - s]) <= 0) {
+                    list.set(i, (T) copy[j++ - s]);
+                } else {
+                    list.set(i, (T) copy[k++ - s]);
+                }
+            }
+        }
+    }
+
     public static <T extends Comparable<? super T>> void heapSort(List<T> list) {
         PriorityQueue<T> queue = new PriorityQueue<>(list); // my implementation of a queue/binary heap
         for (int i = 0; i < list.size(); i++) {
@@ -168,7 +205,7 @@ public class Sorting {
     }
 
     // https://en.wikipedia.org/wiki/Introsort, seemed like an intresting implementation. Works by using quicksort at the
-    // start, then switching to merge sort, and finally insertion sort.
+    // start, then switching to merge sort, and finally insertion sort. Also, I'm pretty sure that std::sort (C++) uses this.
     public static <T extends Comparable<? super T>> void introsort(List<T> list) {
         introsort(list, 0, list.size() - 1, (int) Math.log(list.size()) * 2);
     }
@@ -177,7 +214,7 @@ public class Sorting {
         int n = hi - lo;
         if (n <= 0) {
         } else if (maxdepth == 0) {
-            mergeSort(list, lo, hi);
+            mergeInsertSort(list, lo, hi);
         } else {
             int p = partition(list, lo, hi);
             introsort(list, 0, p - 1, maxdepth - 1);
@@ -187,7 +224,7 @@ public class Sorting {
 
     public static void main(String[] args) {
         var list = new ArrayList(List.of(7, 0, 1, 2, 3, 8, 4, 5, 9, 6));
-        introsort(list);
+        mergeInsertSort(list, 0, list.size());
         System.out.println(list.toString());
     }
 }
