@@ -127,7 +127,13 @@ public class Sorting {
 
     // Lomuto partition scheme (https://en.wikipedia.org/wiki/Quicksort). According to wikipedia, Sedgewick recommends
     // choosing the median of the first, middle and last element for the pivot so I changed it to use this instead of the
-    // last index.
+    // last index. Might want to try some of the other suggestions such as using insertion sort for small partitions
+    // because quick sort is O ( N^2 ) for sorted arrays. Also according to wikipedia, one can partition it into
+    // less than, equal to, and greater than the partition. This is used in qsort (stdlib). Probably should use insertion
+    // sort at less than 10 or something small. This might speed it up, also should check what Java's tim sort does in
+    // small situations such as these and if they do something similar do that. For this and merge sort making it
+    // parallel might make it a lot faster. IIRC, java uses quick sort with 2 partitions on primitives, so might want
+    // to try and work on that however.
     private static <T extends  Comparable<? super T>> int partition(List<T> list, int lo, int hi) {
 //        T pivot = list.get(hi); // last element
         int mid = (lo + hi) / 2; // slightly confused by what this does, but if wikipedia says to do this ¯\_(ツ)_/¯
@@ -161,9 +167,27 @@ public class Sorting {
         return i;
     }
 
+    // https://en.wikipedia.org/wiki/Introsort, seemed like an intresting implementation. Works by using quicksort at the
+    // start, then switching to merge sort, and finally insertion sort.
+    public static <T extends Comparable<? super T>> void introsort(List<T> list) {
+        introsort(list, 0, list.size() - 1, (int) Math.log(list.size()) * 2);
+    }
+
+    private static <T extends Comparable<? super T>> void introsort(List<T> list, int lo, int hi, int maxdepth) {
+        int n = hi - lo;
+        if (n <= 0) {
+        } else if (maxdepth == 0) {
+            mergeSort(list, lo, hi);
+        } else {
+            int p = partition(list, lo, hi);
+            introsort(list, 0, p - 1, maxdepth - 1);
+            introsort(list, p + 1, n, maxdepth - 1);
+        }
+    }
+
     public static void main(String[] args) {
         var list = new ArrayList(List.of(7, 0, 1, 2, 3, 8, 4, 5, 9, 6));
-        quickSort(list);
+        introsort(list);
         System.out.println(list.toString());
     }
 }
