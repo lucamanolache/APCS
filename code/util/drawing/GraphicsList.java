@@ -16,7 +16,7 @@ public class GraphicsList extends ArrayList<Integer> {
     public Integer set(int index, Integer element) {
         Integer out = super.set(index, element);
         if (display) {
-            window.drawArray(this);
+            window.drawArray(this, index);
         }
         return out;
     }

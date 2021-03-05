@@ -38,7 +38,7 @@ public class Window {
 
     private void loop() {
         GL.createCapabilities();
-        glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+        glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
         GraphicsList list = new GraphicsList(this);
         for (int i = 0; i < 500; i++) {
@@ -91,7 +91,7 @@ public class Window {
         glfwShowWindow(window);
     }
 
-    public void drawArray(List<Integer> list) {
+    public void drawArray(List<Integer> list, int setIndex) {
         int max = Integer.MIN_VALUE;
         for (Integer integer : list) {
             max = Math.max(max, integer);
@@ -100,7 +100,13 @@ public class Window {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         for (int i = 0; i < list.size(); i++) {
+            if (i == setIndex) {
+                glColor3f(1.0F, 0, 0);
+            }
             drawValue(i, list.get(i), max, list.size());
+            if (i == setIndex) {
+                glColor3f(0, 0, 0);
+            }
         }
 
         glfwSwapBuffers(window);
@@ -108,7 +114,6 @@ public class Window {
     }
 
     private void drawValue(int i, int size, int max, int length) {
-
         float x = (float) i / length * 2 - 1;
         glBegin(GL_TRIANGLE_FAN);
 
@@ -118,6 +123,5 @@ public class Window {
         glVertex2d(x,(float) size / max * 2 - 1);
 
         glEnd();
-
     }
 }
