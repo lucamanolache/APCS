@@ -2,11 +2,14 @@ package util.drawing;
 
 import java.nio.IntBuffer;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
+import util.Sorting;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -37,7 +40,13 @@ public class Window {
         GL.createCapabilities();
         glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
 
-        GraphicsSorting.mergeSort(this, new ArrayList<>(List.of(10, 0, 1, 3, 19, 2, 3)));
+        GraphicsList list = new GraphicsList(this);
+        for (int i = 0; i < 500; i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+        list.display = true;
+        Sorting.mergeSort(list);
     }
 
     private void init() {
@@ -50,7 +59,7 @@ public class Window {
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
 
-        window = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
+        window = glfwCreateWindow(1600, 800, "Hello World!", NULL, NULL);
         if ( window == NULL ) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
@@ -88,36 +97,27 @@ public class Window {
             max = Math.max(max, integer);
         }
 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
         for (int i = 0; i < list.size(); i++) {
             drawValue(i, list.get(i), max, list.size());
         }
-    }
-
-    private void drawValue(int i, int size, int max, int length) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        float x = (float) i / length * 2 - 1;
-        glBegin(GL_LINES);
-        glVertex2d(x, 0);
-        glVertex2d(x + 2.0 / length, 0);
-        glEnd();
-
-        glBegin(GL_LINES);
-        glVertex2d(x, 0);
-        glVertex2d(x, (float) size / max * 2 - 1);
-        glEnd();
-
-        glBegin(GL_LINES);
-        glVertex2d(x, (float) size / max * 2 - 1);
-        glVertex2d(x + 2.0 / length, (float) size / max * 2 - 1);
-        glEnd();
-
-        glBegin(GL_LINES);
-        glVertex2d(x + 2.0 / length, 0);
-        glVertex2d(x + 2.0 / length, (float) size / max * 2 - 1);
-        glEnd();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+    }
+
+    private void drawValue(int i, int size, int max, int length) {
+
+        float x = (float) i / length * 2 - 1;
+        glBegin(GL_TRIANGLE_FAN);
+
+        glVertex2d(x, -1);
+        glVertex2d(x + 2.0 / length, -1);
+        glVertex2d(x + 2.0 / length, (float) size / max * 2 - 1);
+        glVertex2d(x,(float) size / max * 2 - 1);
+
+        glEnd();
+
     }
 }
