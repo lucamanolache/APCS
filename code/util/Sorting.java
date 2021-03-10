@@ -143,9 +143,44 @@ public class Sorting {
     }
 
     public static <T extends Comparable<? super T>> void heapSort(List<T> list) {
-        PriorityQueue<T> queue = new PriorityQueue<>(list); // my implementation of a queue/binary heap
-        for (int i = 0; i < list.size(); i++) {
-            list.set(i, queue.poll());
+        for (int i = list.size() / 2; i >= 1; i--) {
+            heapify(i, list, list.size());
+        }
+        heapify(0, list, list.size());
+        for (int i = list.size() - 1; i >= 0; i--) {
+            Object temp = list.get(0);
+            list.set(0, list.get(i));
+            list.set(i, (T) temp);
+            heapify(0, list, i);
+        }
+
+        // reverse
+        for (int i = 0; i < list.size() / 2; i++) {
+            Object temp = list.get(i);
+            list.set(i, list.get(list.size() - i - 1));
+            list.set(list.size() - i - 1, (T) temp);
+        }
+    }
+
+    /**
+     * Recursive implementation of heapify
+     */
+    private static <T extends Comparable<? super T>> void heapify(int i, List<T> list, int size) {
+        int l = 2 * i + 1, r = 2 * i + 2;
+        int smallest = i;
+        if (l < size && ((T) list.get(l)).compareTo((T) list.get(smallest)) < 0) {
+            smallest = l;
+        }
+        if (r < size && ((T) list.get(r)).compareTo((T) list.get(smallest)) < 0) {
+            smallest = r;
+        }
+
+        if (smallest != i) {
+            // swap list[i] and list[smallest]
+            Object t = list.get(i);
+            list.set(i, list.get(smallest));
+            list.set(smallest, (T) t);
+            heapify(smallest, list, size);
         }
     }
 
@@ -203,17 +238,17 @@ public class Sorting {
         return i;
     }
 
-    // https://en.wikipedia.org/wiki/Introsort, seemed like an intresting implementation. Works by using quicksort at the
-    // start, then switching to merge sort, and finally insertion sort. Also, I'm pretty sure that std::sort (C++) uses this.
+    // https://en.wikipedia.org/wiki/Introsort, seemed like an interesting implementation. Works by using quicksort at the
+    // start, then switching to heap sort. Also, I'm pretty sure that std::sort (C++) uses this.
     public static <T extends Comparable<? super T>> void introsort(List<T> list) {
-        introsort(list, 0, list.size() - 1, (int) Math.log(list.size()) * 2);
+        introsort(list, 0, list.size() - 1, (int) Math.log(list.size()) * 2 - 1);
     }
 
     private static <T extends Comparable<? super T>> void introsort(List<T> list, int lo, int hi, int maxdepth) {
         int n = hi - lo;
         if (n <= 0) {
         } else if (maxdepth == 0) {
-            mergeInsertSort(list, lo, hi);
+            heapSort(list.subList(lo, hi + 1));
         } else {
             int p = partition(list, lo, hi);
             introsort(list, lo, p - 1, maxdepth - 1);
@@ -222,8 +257,8 @@ public class Sorting {
     }
 
     public static void main(String[] args) {
-        var list = new ArrayList(List.of(7, 0, 1, 2, 3, 8, 4, 5, 9, 6, 10, -1, 321, -12, 5000));
-        introsort(list);
+        var list = new ArrayList(List.of(7, 0, 1, 2, 3, 8, 4, 5, 9, 6, 10, -1, 321, -12, 5000, -1));
+        heapSort(list);
         System.out.println(list.toString());
     }
 }

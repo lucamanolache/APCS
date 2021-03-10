@@ -1,10 +1,8 @@
 package util.drawing;
 
 import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -41,12 +39,22 @@ public class Window {
         glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
         GraphicsList list = new GraphicsList(this);
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 250; i++) {
             list.add(i);
         }
         Collections.shuffle(list);
         list.display = true;
         Sorting.mergeSort(list);
+        System.out.println(Arrays.toString(list.toArray()));
+
+        boolean works = true;
+        for (int i = 0; i < 250; i++) {
+            if (list.get(i) != i) {
+                works = false;
+            }
+        }
+        System.out.println(works);
+        list.displayOutput();
     }
 
     private void init() {
@@ -91,7 +99,8 @@ public class Window {
         glfwShowWindow(window);
     }
 
-    public void drawArray(List<Integer> list, int setIndex) {
+    public void drawArray(GraphicsList list, int setIndex) {
+        list.display = false;
         int max = Integer.MIN_VALUE;
         for (Integer integer : list) {
             max = Math.max(max, integer);
@@ -111,9 +120,15 @@ public class Window {
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+
+        list.display = true;
     }
 
     private void drawValue(int i, int size, int max, int length) {
+        drawSquare(i, size, max, length);
+    }
+
+    private void drawSquare(int i, int size, int max, int length) {
         float x = (float) i / length * 2 - 1;
         glBegin(GL_TRIANGLE_FAN);
 
