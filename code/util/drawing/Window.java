@@ -44,7 +44,7 @@ public class Window {
         }
         Collections.shuffle(list);
         list.display = true;
-        Sorting.mergeSort(list);
+        Sorting.quickSort(list);
         System.out.println(Arrays.toString(list.toArray()));
 
         boolean works = true;

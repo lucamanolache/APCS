@@ -54,7 +54,7 @@ public class Sorting {
             T min = (T) hlist[l - s];
             if (((T) hlist[s2 - s]).compareTo(min) <= 0 && s2 < s + sp1 + sp2) {
                 min = (T) hlist[s2 - s];
-                if (s3 < s + sp1 + sp2 + sp3 && ((T) hlist[s3 - s]).compareTo(min) <= 0 ) {
+                if (s3 < s + sp1 + sp2 + sp3 && ((T) hlist[s3 - s]).compareTo(min) <= 0) {
                     min = (T) hlist[s3 - s];
                     s3++;
                 } else {
@@ -188,12 +188,17 @@ public class Sorting {
         quickSort(list, 0, list.size() - 1);
     }
 
+    private static <T extends Comparable<? super T>> void insertionSort(List<T> list, int lo, int hi) {
+        // TODO: do this
+    }
+
     private static <T extends Comparable<? super T>> void quickSort(List<T> list, int lo, int hi) {
-        if (lo < hi) {
-            int p = partition(list, lo, hi);
-            quickSort(list, lo, p - 1);
-            quickSort(list, p + 1, hi);
-        }
+        if (hi <= lo) return;
+
+        int size = hi - lo + 1;
+        int p = partitionNinther(list, lo, hi);
+        quickSort(list, lo, p - 1);
+        quickSort(list, p + 1, hi);
     }
 
     // Lomuto partition scheme (https://en.wikipedia.org/wiki/Quicksort). According to wikipedia, Sedgewick recommends
@@ -204,19 +209,22 @@ public class Sorting {
     // sort at less than 10 or something small. This might speed it up, also should check what Java's tim sort does in
     // small situations such as these and if they do something similar do that. For this and merge sort making it
     // parallel might make it a lot faster. IIRC, java uses quick sort with 2 partitions on primitives, so might want
-    // to try and work on that however.
-    private static <T extends  Comparable<? super T>> int partition(List<T> list, int lo, int hi) {
+    // to try working on that. After testing around with this and the basic one, this is a lot faster.
+    private static <T extends Comparable<? super T>> int partitionWikipedia(List<T> list, int lo, int hi) {
 //        T pivot = list.get(hi); // last element
-        int mid = (lo + hi) / 2; // slightly confused by what this does, but if wikipedia says to do this ¯\_(ツ)_/¯
+        int mid = (lo + hi) / 2;
+        // slightly confused by what this part does, but if wikipedia says to do this ¯\_(ツ)_/¯
         if (list.get(mid).compareTo(list.get(lo)) < 0) {
             T h = list.get(lo);
             list.set(lo, list.get(mid));
             list.set(mid, h);
-        } if (list.get(hi).compareTo(list.get(lo)) < 0) {
+        }
+        if (list.get(hi).compareTo(list.get(lo)) < 0) {
             T h = list.get(lo);
             list.set(lo, list.get(hi));
             list.set(hi, h);
-        } if (list.get(mid).compareTo(list.get(hi)) < 0) {
+        }
+        if (list.get(mid).compareTo(list.get(hi)) < 0) {
             T h = list.get(mid);
             list.set(mid, list.get(hi));
             list.set(hi, h);
@@ -238,6 +246,65 @@ public class Sorting {
         return i;
     }
 
+    private static <T extends Comparable<? super T>> int partitionBasic(List<T> list, int lo, int hi) {
+        T pivot = list.get(hi);
+        int i = lo;
+        for (int j = lo; j < hi; j++) {
+            if (list.get(j).compareTo(pivot) < 0) {
+                T h = list.get(i);
+                list.set(i, list.get(j));
+                list.set(j, h);
+                i++;
+            }
+        }
+        T h = list.get(i);
+        list.set(i, list.get(hi));
+        list.set(hi, h);
+        return i;
+    }
+
+    /**
+     * This uses Tukey's ninther. When I was reading about different sorting algorithms, this came up in how to choose
+     * the pivot. What Tukey's ninther does is find an approximation of the median in a large dataset.
+     */
+    private static <T extends  Comparable<? super T>> int partitionNinther(List<T> list, int lo, int hi) {
+        int size = hi - lo + 1;
+        int mid = lo + size / 2;
+        int delta = size / 8;
+        int median1 = median3(list, lo, lo + delta, lo + 2 * delta);
+        int median2 = median3(list, mid - delta, mid, mid + delta);
+        int median3 = median3(list, hi - 2 * delta, hi - delta, hi);
+        int median = median3(list, median1, median2, median3);
+
+        T h = list.get(hi);
+        list.set(hi, list.get(median));
+        list.set(median, h);
+        T pivot = list.get(hi);
+        int i = lo;
+        for (int j = lo; j < hi; j++) {
+            if (list.get(j).compareTo(pivot) < 0) {
+                h = list.get(i);
+                list.set(i, list.get(j));
+                list.set(j, h);
+                i++;
+            }
+        }
+        h = list.get(i);
+        list.set(i, list.get(hi));
+        list.set(hi, h);
+        return i;
+    }
+
+    private static <T extends Comparable<? super T>> int median3(List<T> l, int a, int b, int c) {
+        if (l.get(a).compareTo(l.get(b)) < 0) {
+            // a < b; therefore median is b if b < c or c if c < b
+            return l.get(b).compareTo(l.get(c)) < 0 ? b : l.get(a).compareTo(l.get(c)) < 0 ? c : a;
+        } else {
+            // a > b; therefore median is a if a < c or c if c < a
+            return l.get(a).compareTo(l.get(c)) < 0 ? a : l.get(c).compareTo(l.get(b)) < 0 ? b : c;
+        }
+    }
+
     // https://en.wikipedia.org/wiki/Introsort, seemed like an interesting implementation. Works by using quicksort at the
     // start, then switching to heap sort. Also, I'm pretty sure that std::sort (C++) uses this.
     public static <T extends Comparable<? super T>> void introsort(List<T> list) {
@@ -250,7 +317,7 @@ public class Sorting {
         } else if (maxdepth == 0) {
             heapSort(list.subList(lo, hi + 1));
         } else {
-            int p = partition(list, lo, hi);
+            int p = partitionWikipedia(list, lo, hi);
             introsort(list, lo, p - 1, maxdepth - 1);
             introsort(list, p + 1, hi, maxdepth - 1);
         }
