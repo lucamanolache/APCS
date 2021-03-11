@@ -142,6 +142,21 @@ public class Sorting {
         }
     }
 
+    private static <T extends Comparable<? super T>> void insertionSort(List<T> list, int lo, int hi) {
+        for (int i = lo + 1; i <= hi; ++i) {
+            T t = list.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && list.get(j).compareTo(t) > 0) {
+                T h = list.get(j);
+                list.set(j, list.get(j + 1));
+                list.set(j + 1, h);
+                j--;
+            }
+            list.set(j + 1, t);
+        }
+    }
+
     public static <T extends Comparable<? super T>> void heapSort(List<T> list) {
         for (int i = list.size() / 2; i >= 1; i--) {
             heapify(i, list, list.size());
@@ -188,14 +203,9 @@ public class Sorting {
         quickSort(list, 0, list.size() - 1);
     }
 
-    private static <T extends Comparable<? super T>> void insertionSort(List<T> list, int lo, int hi) {
-        // TODO: do this
-    }
-
     private static <T extends Comparable<? super T>> void quickSort(List<T> list, int lo, int hi) {
         if (hi <= lo) return;
 
-        int size = hi - lo + 1;
         int p = partitionNinther(list, lo, hi);
         quickSort(list, lo, p - 1);
         quickSort(list, p + 1, hi);
@@ -308,16 +318,17 @@ public class Sorting {
     // https://en.wikipedia.org/wiki/Introsort, seemed like an interesting implementation. Works by using quicksort at the
     // start, then switching to heap sort. Also, I'm pretty sure that std::sort (C++) uses this.
     public static <T extends Comparable<? super T>> void introsort(List<T> list) {
-        introsort(list, 0, list.size() - 1, (int) Math.log(list.size()) * 2 - 1);
+        introsort(list, 0, list.size() - 1, (int) (2 * Math.log(list.size()) / Math.log(2)));
     }
 
     private static <T extends Comparable<? super T>> void introsort(List<T> list, int lo, int hi, int maxdepth) {
         int n = hi - lo;
-        if (n <= 0) {
-        } else if (maxdepth == 0) {
+        if (n <= 8) {
+            insertionSort(list, lo, hi);
+        } else if (maxdepth == 1) {
             heapSort(list.subList(lo, hi + 1));
         } else {
-            int p = partitionWikipedia(list, lo, hi);
+            int p = partitionNinther(list, lo, hi);
             introsort(list, lo, p - 1, maxdepth - 1);
             introsort(list, p + 1, hi, maxdepth - 1);
         }

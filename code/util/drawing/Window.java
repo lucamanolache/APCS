@@ -38,13 +38,15 @@ public class Window {
         GL.createCapabilities();
         glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
+        // TODO: make a function do this (maybe prepareArray?)
         GraphicsList list = new GraphicsList(this);
-        for (int i = 0; i < 250; i++) {
+        for (int i = 0; i < 500; i++) {
             list.add(i);
         }
         Collections.shuffle(list);
         list.display = true;
-        Sorting.quickSort(list);
+        list.log = true;
+        Sorting.introsort(list);
         System.out.println(Arrays.toString(list.toArray()));
 
         boolean works = true;
@@ -101,6 +103,7 @@ public class Window {
 
     public void drawArray(GraphicsList list, int setIndex) {
         list.display = false;
+        list.log = false;
         int max = Integer.MIN_VALUE;
         for (Integer integer : list) {
             max = Math.max(max, integer);
@@ -122,6 +125,7 @@ public class Window {
         glfwPollEvents();
 
         list.display = true;
+        list.log = true;
     }
 
     private void drawValue(int i, int size, int max, int length) {

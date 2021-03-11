@@ -11,6 +11,7 @@ public class GraphicsList extends AbstractList<Integer> {
     // because sublist would give an arraylist without the overridden set method.
     private ArrayList<Integer> list = new ArrayList<>();
     public boolean display;
+    public boolean log;
     int gets = 0;
     int sets = 0;
 
@@ -24,7 +25,7 @@ public class GraphicsList extends AbstractList<Integer> {
 //        if (display) {
 //            window.drawArray(this, index);
 //        }
-        if (display)
+        if (log)
             gets++;
         return list.get(index);
     }
@@ -34,6 +35,8 @@ public class GraphicsList extends AbstractList<Integer> {
         Integer out = list.set(index, element);
         if (display) {
             window.drawArray(this, index);
+        }
+        if (log) {
             sets++;
         }
         return out;
