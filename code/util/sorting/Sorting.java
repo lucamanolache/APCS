@@ -8,20 +8,21 @@ public class Sorting {
     // All of these have the same inputs as Collections.sort().
 
     public static <T extends Comparable<? super T>> void threeWaySort(List<T> list) {
-        threeWaySort(list, 0, list.size());
+        threeWaySort(list, 0, list.size() - 1);
     }
 
     public static <T extends Comparable<? super T>> void threeWaySort(List<T> list, int s, int e) {
-        if (e - s == 1) {
+        if (e - s == 0) {
             return;
-        }
-        if (e - s == 2) {
-            T h = list.get(s);
-            list.set(s, list.get(s).compareTo(list.get(e)) <= 0 ? list.get(s) : list.get(e));
-            if (list.get(s) != h) {
+        } else if (e - s == 1) {
+            if (list.get(s).compareTo(list.get(e)) <= 0) {
+                return;
+            } else {
+                T h = list.get(s);
+                list.set(s, list.get(e));
                 list.set(e, h);
+                return;
             }
-            return;
         }
 
         int si = e - s;
@@ -33,40 +34,53 @@ public class Sorting {
         sp3 = si;
 
         threeWaySort(list, s, s + sp1);
-        threeWaySort(list, s + sp1, s + sp1 + sp2);
-        threeWaySort(list, s + sp1 + sp2, s + sp1 + sp2 + sp3);
+        threeWaySort(list, s + sp1 + 1, s + sp1 + sp2);
+        threeWaySort(list, s + sp1 + sp2 + 1, s + sp1 + sp2 + sp3);
 
-        // merge
-        int s1 = s;
-        int s2 = s + sp1;
-        int s3 = s + sp1 + sp2;
-
-        var hlist = list.subList(s, e).toArray();
-        for (int i = s; i < e; i++) {
-            int l;
-            if (s1 < s + sp1) {
-                l = s1;
-            } else if (s2 < s + sp1 + sp2) {
-                l = s2;
-            } else {
-                l = s3;
-            }
-            T min = (T) hlist[l - s];
-            if (((T) hlist[s2 - s]).compareTo(min) <= 0 && s2 < s + sp1 + sp2) {
-                min = (T) hlist[s2 - s];
-                if (s3 < s + sp1 + sp2 + sp3 && ((T) hlist[s3 - s]).compareTo(min) <= 0) {
-                    min = (T) hlist[s3 - s];
-                    s3++;
+        var copy = list.subList(s, e + 1).toArray();
+        int l = s;
+        for (int i = 0, j = sp1 + 1, k = sp1 + sp2 + 1; i < sp1 || j < sp1 + sp2 || k < sp1 + sp2 + sp3; l++) {
+            if (k >= copy.length) {
+                if (((T) copy[i]).compareTo((T) copy[j]) <= 0) {
+                    list.set(l, (T) copy[i]);
+                    i++;
                 } else {
-                    s2++;
+                    list.set(l, (T) copy[j]);
+                    j++;
                 }
-            } else if (s3 < s + sp1 + sp2 + sp3 && ((T) hlist[s3 - s]).compareTo(min) <= 0) {
-                min = (T) hlist[s3 - s];
-                s3++;
+            } else if (j > sp1 + sp2) {
+                if (((T) copy[i]).compareTo((T) copy[k]) <= 0) {
+                    list.set(l, (T) copy[i]);
+                    i++;
+                } else {
+                    list.set(l, (T) copy[k]);
+                    k++;
+                }
+            } else if (i > sp1) {
+                if (((T) copy[j]).compareTo((T) copy[k]) <= 0) {
+                    list.set(l, (T) copy[j]);
+                    j++;
+                } else {
+                    list.set(l, (T) copy[k]);
+                    k++;
+                }
+            } else if (((T) copy[i]).compareTo((T) copy[j]) <= 0) {
+                if (((T) copy[i]).compareTo((T) copy[k]) <= 0) {
+                    list.set(l, (T) copy[i]);
+                    i++;
+                } else {
+                    list.set(l, (T) copy[k]);
+                    k++;
+                }
             } else {
-                s1++;
+                if (((T) copy[j]).compareTo((T) copy[k]) <= 0) {
+                    list.set(l, (T) copy[j]);
+                    j++;
+                } else {
+                    list.set(l, (T) copy[k]);
+                    k++;
+                }
             }
-            list.set(i, min);
         }
     }
 
@@ -108,7 +122,6 @@ public class Sorting {
 
     private static <T extends Comparable<? super T>> void mergeInsertSort(List<T> list, int s, int e) {
         if (e - s <= 10) {
-            // might want to try bubble sort instead.
             for (int i = s + 1; i <= e; ++i) {
                 T t = list.get(i);
                 int j = i - 1;
