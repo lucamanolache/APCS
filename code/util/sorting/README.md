@@ -9,7 +9,7 @@ Benchmarking the code took way too long, over 5 hours. Part of the reason was de
 the library used for benchmarking is *very thorough* and some of the sorting algorithms took a few seconds to sort.
 The [results](resources/results.csv) of this can be found here:
 
-[graph](resources/figure.png)
+![graph](resources/figure.png)
 
 In my original code without tuning any of the parameters for introsort, Java's ``Collections.sort()`` was slightly faster.
 Therefore, I might try tuning the parameters in order to see if I can beat Java's speed. The comparison isn't completely
