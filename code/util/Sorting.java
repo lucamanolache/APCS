@@ -336,7 +336,7 @@ public class Sorting {
 
     public static void main(String[] args) {
         var list = new ArrayList(List.of(7, 0, 1, 2, 3, 8, 4, 5, 9, 6, 10, -1, 321, -12, 5000, -1));
-        heapSort(list);
+        threeWaySort(list);
         System.out.println(list.toString());
     }
 }

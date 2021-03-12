@@ -57,62 +57,62 @@ public class PriorityQueueTest {
         assertTrue(queue.isEmpty());
     }
 
-    @Benchmark
-    public void benchmarkQueue() {
-        PriorityQueue<Double> queue = new PriorityQueue<>();
+//    @Benchmark
+//    public void benchmarkQueue() {
+//        PriorityQueue<Double> queue = new PriorityQueue<>();
+//
+//        for (double i = 0; i < benchmarkIterations; i++) {
+//            queue.add(i);
+//            queue.add(-i);
+//            queue.add(10.0);
+//        }
+//
+//        for (int i = 0; i < 3 * benchmarkIterations; i++) {
+//            queue.peek();
+//        }
+//
+//        for (int i = 0; i < 3 * benchmarkIterations; i++) {
+//            queue.poll();
+//        }
+//    }
 
-        for (double i = 0; i < benchmarkIterations; i++) {
-            queue.add(i);
-            queue.add(-i);
-            queue.add(10.0);
-        }
+//    @Benchmark
+//    public void benchmarkNative() {
+//        NativeQueue queue = new NativeQueue();
+//
+//        for (double i = 0; i < benchmarkIterations; i++) {
+//            queue.add(i);
+//            queue.add(-i);
+//            queue.add(10.0);
+//        }
+//
+//        for (int i = 0; i < 3 * benchmarkIterations; i++) {
+//            queue.peek();
+//        }
+//
+//        for (int i = 0; i < 3 * benchmarkIterations; i++) {
+//            queue.poll();
+//        }
+//    }
 
-        for (int i = 0; i < 3 * benchmarkIterations; i++) {
-            queue.peek();
-        }
-
-        for (int i = 0; i < 3 * benchmarkIterations; i++) {
-            queue.poll();
-        }
-    }
-
-    @Benchmark
-    public void benchmarkNative() {
-        NativeQueue queue = new NativeQueue();
-
-        for (double i = 0; i < benchmarkIterations; i++) {
-            queue.add(i);
-            queue.add(-i);
-            queue.add(10.0);
-        }
-
-        for (int i = 0; i < 3 * benchmarkIterations; i++) {
-            queue.peek();
-        }
-
-        for (int i = 0; i < 3 * benchmarkIterations; i++) {
-            queue.poll();
-        }
-    }
-
-    @Benchmark
-    public void benchmarkJava() {
-        java.util.PriorityQueue<Double> queue = new java.util.PriorityQueue<>();
-
-        for (double i = 0; i < benchmarkIterations; i++) {
-            queue.add(i);
-            queue.add(-i);
-            queue.add(10.0);
-        }
-
-        for (int i = 0; i < 3 * benchmarkIterations; i++) {
-            queue.peek();
-        }
-
-        for (int i = 0; i < 3 * benchmarkIterations; i++) {
-            queue.poll();
-        }
-    }
+//    @Benchmark
+//    public void benchmarkJava() {
+//        java.util.PriorityQueue<Double> queue = new java.util.PriorityQueue<>();
+//
+//        for (double i = 0; i < benchmarkIterations; i++) {
+//            queue.add(i);
+//            queue.add(-i);
+//            queue.add(10.0);
+//        }
+//
+//        for (int i = 0; i < 3 * benchmarkIterations; i++) {
+//            queue.peek();
+//        }
+//
+//        for (int i = 0; i < 3 * benchmarkIterations; i++) {
+//            queue.poll();
+//        }
+//    }
 
     /*
     (benchmarkIterations = 1000)

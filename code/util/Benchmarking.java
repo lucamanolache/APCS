@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @Warmup(iterations = 10, time = 500, timeUnit = TimeUnit.MILLISECONDS)
-@Measurement(iterations = 25, time = 500, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(iterations = 18, time = 500, timeUnit = TimeUnit.MILLISECONDS)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class Benchmarking {
 
@@ -25,12 +25,14 @@ public class Benchmarking {
 
         @Setup(Level.Trial)
         public void setUp() {
+            list = new ArrayList<>();
+            toSort = new ArrayList<>(list.size());
             for (int i = 0; i < size; i++) {
                 list.add(i);
+                toSort.add(i);
             }
             Collections.shuffle(list);
         }
-
 
         @Setup(Level.Invocation)
         public void makeArrayCopy() {
@@ -57,6 +59,11 @@ public class Benchmarking {
     @Benchmark @BenchmarkMode({Mode.AverageTime, Mode.SampleTime, Mode.SampleTime})
     public void benchmarkMergeSort(BenchmarkList list) {
         Sorting.mergeSort(list.toSort);
+    }
+
+    @Benchmark @BenchmarkMode({Mode.AverageTime, Mode.SampleTime, Mode.SampleTime})
+    public void benchmarkJavaSort(BenchmarkList list) {
+        Collections.sort(list.toSort);
     }
 
     public static void main(String[] args) throws IOException, RunnerException {
