@@ -1,4 +1,4 @@
-package util;
+package util.sorting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -223,7 +223,7 @@ public class Sorting {
     private static <T extends Comparable<? super T>> int partitionWikipedia(List<T> list, int lo, int hi) {
 //        T pivot = list.get(hi); // last element
         int mid = (lo + hi) / 2;
-        // slightly confused by what this part does, but if wikipedia says to do this ¯\_(ツ)_/¯
+        // slightly confused by what this part does, but if wikipedia says to do this ¯\_()_/¯
         if (list.get(mid).compareTo(list.get(lo)) < 0) {
             T h = list.get(lo);
             list.set(lo, list.get(mid));
@@ -323,11 +323,15 @@ public class Sorting {
 
     private static <T extends Comparable<? super T>> void introsort(List<T> list, int lo, int hi, int maxdepth) {
         int n = hi - lo;
-        if (n <= 8) {
+        // this should be a constant but whatever. n <= k describes what the cutoff size is before switching to insertion sort
+        if (n <= 12) {
             insertionSort(list, lo, hi);
-        } else if (maxdepth == 1) {
+        // In order to prevent a O ( n ^ 2 ) time in some rare cases, if we are doing too many partitions then switch to heap
+        // sort for its constant O ( n log n ) time complexity.
+        } else if (maxdepth == 0) {
             heapSort(list.subList(lo, hi + 1));
         } else {
+            // TODO: try different partitioning. this seemed like the most complicated and therefore best ¯\_()_/¯
             int p = partitionNinther(list, lo, hi);
             introsort(list, lo, p - 1, maxdepth - 1);
             introsort(list, p + 1, hi, maxdepth - 1);

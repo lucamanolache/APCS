@@ -1,0 +1,3550 @@
+/opt/openjdk-bin-11/bin/java -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8 -classpath /home/luca/code/APCS/target/classes:/home/luca/.m2/repository/io/netty/netty-all/4.1.42.Final/netty-all-4.1.42.Final.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl/3.2.0/lwjgl-3.2.0.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl-openal/3.2.0/lwjgl-openal-3.2.0.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl-stb/3.2.0/lwjgl-stb-3.2.0.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl-glfw/3.2.0/lwjgl-glfw-3.2.0.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl-opengl/3.2.0/lwjgl-opengl-3.2.0.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl/3.2.0/lwjgl-3.2.0-natives-linux.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl-glfw/3.2.0/lwjgl-glfw-3.2.0-natives-linux.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl-stb/3.2.0/lwjgl-stb-3.2.0-natives-linux.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl-openal/3.2.0/lwjgl-openal-3.2.0-natives-linux.jar:/home/luca/.m2/repository/org/lwjgl/lwjgl-opengl/3.2.0/lwjgl-opengl-3.2.0-natives-linux.jar:/home/luca/.m2/repository/org/l33tlabs/twl/pngdecoder/1.0/pngdecoder-1.0.jar:/home/luca/.m2/repository/commons-io/commons-io/2.6/commons-io-2.6.jar:/home/luca/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.3/junit-jupiter-api-5.6.3.jar:/home/luca/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/luca/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/luca/.m2/repository/org/junit/platform/junit-platform-commons/1.6.3/junit-platform-commons-1.6.3.jar:/home/luca/.m2/repository/net/sourceforge/argparse4j/argparse4j/0.8.1/argparse4j-0.8.1.jar:/home/luca/.m2/repository/org/openjdk/jmh/jmh-core/1.27/jmh-core-1.27.jar:/home/luca/.m2/repository/net/sf/jopt-simple/jopt-simple/4.6/jopt-simple-4.6.jar:/home/luca/.m2/repository/org/apache/commons/commons-math3/3.2/commons-math3-3.2.jar:/home/luca/.m2/repository/org/openjdk/jmh/jmh-generator-annprocess/1.27/jmh-generator-annprocess-1.27.jar util.sorting.Benchmarking
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.openjdk.jmh.util.Utils (file:/home/luca/.m2/repository/org/openjdk/jmh/jmh-core/1.27/jmh-core-1.27.jar) to field java.io.PrintStream.charOut
+WARNING: Please consider reporting this to the maintainers of org.openjdk.jmh.util.Utils
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkHeapSort
+# Parameters: (size = 10)
+
+# Run progress: 0.00% complete, ETA 00:18:57
+# Fork: 1 of 5
+# Warmup Iteration   1: 0.508 us/op
+# Warmup Iteration   2: 0.333 us/op
+# Warmup Iteration   3: 0.322 us/op
+Iteration   1: 0.320 us/op
+Iteration   2: 0.324 us/op
+Iteration   3: 0.323 us/op
+Iteration   4: 0.320 us/op
+Iteration   5: 0.321 us/op
+Iteration   6: 0.321 us/op
+Iteration   7: 0.324 us/op
+Iteration   8: 0.330 us/op
+Iteration   9: 0.327 us/op
+Iteration  10: 0.333 us/op
+
+# Run progress: 0.57% complete, ETA 00:21:24
+# Fork: 2 of 5
+# Warmup Iteration   1: 0.438 us/op
+# Warmup Iteration   2: 0.455 us/op
+# Warmup Iteration   3: 0.398 us/op
+Iteration   1: 0.400 us/op
+Iteration   2: 0.401 us/op
+Iteration   3: 0.401 us/op
+Iteration   4: 0.401 us/op
+Iteration   5: 0.399 us/op
+Iteration   6: 0.402 us/op
+Iteration   7: 0.399 us/op
+Iteration   8: 0.398 us/op
+Iteration   9: 0.398 us/op
+Iteration  10: 0.397 us/op
+
+# Run progress: 1.14% complete, ETA 00:20:52
+# Fork: 3 of 5
+# Warmup Iteration   1: 0.409 us/op
+# Warmup Iteration   2: 0.378 us/op
+# Warmup Iteration   3: 0.376 us/op
+Iteration   1: 0.375 us/op
+Iteration   2: 0.375 us/op
+Iteration   3: 0.376 us/op
+Iteration   4: 0.376 us/op
+Iteration   5: 0.375 us/op
+Iteration   6: 0.376 us/op
+Iteration   7: 0.379 us/op
+Iteration   8: 0.375 us/op
+Iteration   9: 0.376 us/op
+Iteration  10: 0.376 us/op
+
+# Run progress: 1.71% complete, ETA 00:20:36
+# Fork: 4 of 5
+# Warmup Iteration   1: 0.435 us/op
+# Warmup Iteration   2: 0.387 us/op
+# Warmup Iteration   3: 0.379 us/op
+Iteration   1: 0.380 us/op
+Iteration   2: 0.379 us/op
+Iteration   3: 0.379 us/op
+Iteration   4: 0.379 us/op
+Iteration   5: 0.380 us/op
+Iteration   6: 0.379 us/op
+Iteration   7: 0.379 us/op
+Iteration   8: 0.379 us/op
+Iteration   9: 0.380 us/op
+Iteration  10: 0.379 us/op
+
+# Run progress: 2.29% complete, ETA 00:20:25
+# Fork: 5 of 5
+# Warmup Iteration   1: 0.368 us/op
+# Warmup Iteration   2: 0.335 us/op
+# Warmup Iteration   3: 0.337 us/op
+Iteration   1: 0.337 us/op
+Iteration   2: 0.337 us/op
+Iteration   3: 0.337 us/op
+Iteration   4: 0.338 us/op
+Iteration   5: 0.337 us/op
+Iteration   6: 0.338 us/op
+Iteration   7: 0.338 us/op
+Iteration   8: 0.337 us/op
+Iteration   9: 0.337 us/op
+Iteration  10: 0.337 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkHeapSort":
+  0.363 ±(99.9%) 0.014 us/op [Average]
+  (min, avg, max) = (0.320, 0.363, 0.402), stdev = 0.028
+  CI (99.9%): [0.349, 0.377] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkHeapSort
+# Parameters: (size = 100)
+
+# Run progress: 2.86% complete, ETA 00:20:16
+# Fork: 1 of 5
+# Warmup Iteration   1: 7.891 us/op
+# Warmup Iteration   2: 7.268 us/op
+# Warmup Iteration   3: 7.266 us/op
+Iteration   1: 7.279 us/op
+Iteration   2: 7.296 us/op
+Iteration   3: 7.271 us/op
+Iteration   4: 7.272 us/op
+Iteration   5: 7.272 us/op
+Iteration   6: 7.280 us/op
+Iteration   7: 7.286 us/op
+Iteration   8: 7.272 us/op
+Iteration   9: 7.294 us/op
+Iteration  10: 7.287 us/op
+
+# Run progress: 3.43% complete, ETA 00:20:08
+# Fork: 2 of 5
+# Warmup Iteration   1: 7.543 us/op
+# Warmup Iteration   2: 7.136 us/op
+# Warmup Iteration   3: 7.139 us/op
+Iteration   1: 7.136 us/op
+Iteration   2: 7.142 us/op
+Iteration   3: 7.144 us/op
+Iteration   4: 7.148 us/op
+Iteration   5: 7.134 us/op
+Iteration   6: 7.131 us/op
+Iteration   7: 7.132 us/op
+Iteration   8: 7.149 us/op
+Iteration   9: 7.204 us/op
+Iteration  10: 7.141 us/op
+
+# Run progress: 4.00% complete, ETA 00:19:59
+# Fork: 3 of 5
+# Warmup Iteration   1: 7.481 us/op
+# Warmup Iteration   2: 7.042 us/op
+# Warmup Iteration   3: 7.050 us/op
+Iteration   1: 7.397 us/op
+Iteration   2: 7.053 us/op
+Iteration   3: 7.078 us/op
+Iteration   4: 7.059 us/op
+Iteration   5: 7.049 us/op
+Iteration   6: 7.089 us/op
+Iteration   7: 7.043 us/op
+Iteration   8: 7.030 us/op
+Iteration   9: 7.050 us/op
+Iteration  10: 7.052 us/op
+
+# Run progress: 4.57% complete, ETA 00:19:51
+# Fork: 4 of 5
+# Warmup Iteration   1: 7.612 us/op
+# Warmup Iteration   2: 7.202 us/op
+# Warmup Iteration   3: 7.185 us/op
+Iteration   1: 7.202 us/op
+Iteration   2: 7.179 us/op
+Iteration   3: 7.186 us/op
+Iteration   4: 7.291 us/op
+Iteration   5: 7.192 us/op
+Iteration   6: 7.187 us/op
+Iteration   7: 7.180 us/op
+Iteration   8: 7.184 us/op
+Iteration   9: 7.832 us/op
+Iteration  10: 7.153 us/op
+
+# Run progress: 5.14% complete, ETA 00:19:43
+# Fork: 5 of 5
+# Warmup Iteration   1: 7.384 us/op
+# Warmup Iteration   2: 6.904 us/op
+# Warmup Iteration   3: 6.920 us/op
+Iteration   1: 6.945 us/op
+Iteration   2: 6.938 us/op
+Iteration   3: 6.921 us/op
+Iteration   4: 6.919 us/op
+Iteration   5: 6.914 us/op
+Iteration   6: 6.910 us/op
+Iteration   7: 6.907 us/op
+Iteration   8: 6.901 us/op
+Iteration   9: 6.913 us/op
+Iteration  10: 6.912 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkHeapSort":
+  7.139 ±(99.9%) 0.082 us/op [Average]
+  (min, avg, max) = (6.901, 7.139, 7.832), stdev = 0.166
+  CI (99.9%): [7.057, 7.221] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkHeapSort
+# Parameters: (size = 1000)
+
+# Run progress: 5.71% complete, ETA 00:19:35
+# Fork: 1 of 5
+# Warmup Iteration   1: 155.972 us/op
+# Warmup Iteration   2: 145.300 us/op
+# Warmup Iteration   3: 146.672 us/op
+Iteration   1: 146.548 us/op
+Iteration   2: 144.728 us/op
+Iteration   3: 144.882 us/op
+Iteration   4: 145.037 us/op
+Iteration   5: 144.625 us/op
+Iteration   6: 145.024 us/op
+Iteration   7: 144.665 us/op
+Iteration   8: 144.616 us/op
+Iteration   9: 144.742 us/op
+Iteration  10: 144.842 us/op
+
+# Run progress: 6.29% complete, ETA 00:19:28
+# Fork: 2 of 5
+# Warmup Iteration   1: 152.796 us/op
+# Warmup Iteration   2: 144.514 us/op
+# Warmup Iteration   3: 143.685 us/op
+Iteration   1: 143.649 us/op
+Iteration   2: 143.909 us/op
+Iteration   3: 143.890 us/op
+Iteration   4: 143.885 us/op
+Iteration   5: 143.781 us/op
+Iteration   6: 144.153 us/op
+Iteration   7: 143.943 us/op
+Iteration   8: 143.503 us/op
+Iteration   9: 143.688 us/op
+Iteration  10: 143.598 us/op
+
+# Run progress: 6.86% complete, ETA 00:19:20
+# Fork: 3 of 5
+# Warmup Iteration   1: 154.169 us/op
+# Warmup Iteration   2: 145.918 us/op
+# Warmup Iteration   3: 145.662 us/op
+Iteration   1: 145.576 us/op
+Iteration   2: 145.797 us/op
+Iteration   3: 145.564 us/op
+Iteration   4: 145.557 us/op
+Iteration   5: 145.529 us/op
+Iteration   6: 145.607 us/op
+Iteration   7: 145.665 us/op
+Iteration   8: 145.690 us/op
+Iteration   9: 145.430 us/op
+Iteration  10: 153.765 us/op
+
+# Run progress: 7.43% complete, ETA 00:19:13
+# Fork: 4 of 5
+# Warmup Iteration   1: 151.866 us/op
+# Warmup Iteration   2: 145.247 us/op
+# Warmup Iteration   3: 144.037 us/op
+Iteration   1: 144.023 us/op
+Iteration   2: 144.088 us/op
+Iteration   3: 144.282 us/op
+Iteration   4: 144.283 us/op
+Iteration   5: 144.101 us/op
+Iteration   6: 144.005 us/op
+Iteration   7: 144.322 us/op
+Iteration   8: 144.167 us/op
+Iteration   9: 144.170 us/op
+Iteration  10: 144.185 us/op
+
+# Run progress: 8.00% complete, ETA 00:19:05
+# Fork: 5 of 5
+# Warmup Iteration   1: 152.351 us/op
+# Warmup Iteration   2: 144.880 us/op
+# Warmup Iteration   3: 144.871 us/op
+Iteration   1: 144.709 us/op
+Iteration   2: 145.168 us/op
+Iteration   3: 144.811 us/op
+Iteration   4: 144.952 us/op
+Iteration   5: 145.477 us/op
+Iteration   6: 145.554 us/op
+Iteration   7: 145.794 us/op
+Iteration   8: 145.541 us/op
+Iteration   9: 145.801 us/op
+Iteration  10: 145.698 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkHeapSort":
+  144.940 ±(99.9%) 0.733 us/op [Average]
+  (min, avg, max) = (143.503, 144.940, 153.765), stdev = 1.482
+  CI (99.9%): [144.207, 145.674] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkHeapSort
+# Parameters: (size = 10000)
+
+# Run progress: 8.57% complete, ETA 00:18:58
+# Fork: 1 of 5
+# Warmup Iteration   1: 2259.300 us/op
+# Warmup Iteration   2: 2095.162 us/op
+# Warmup Iteration   3: 2090.197 us/op
+Iteration   1: 2091.613 us/op
+Iteration   2: 2089.945 us/op
+Iteration   3: 2092.393 us/op
+Iteration   4: 2089.720 us/op
+Iteration   5: 2092.184 us/op
+Iteration   6: 2089.028 us/op
+Iteration   7: 2091.590 us/op
+Iteration   8: 2097.969 us/op
+Iteration   9: 2090.649 us/op
+Iteration  10: 2091.489 us/op
+
+# Run progress: 9.14% complete, ETA 00:18:51
+# Fork: 2 of 5
+# Warmup Iteration   1: 2184.712 us/op
+# Warmup Iteration   2: 2084.226 us/op
+# Warmup Iteration   3: 2083.689 us/op
+Iteration   1: 2088.537 us/op
+Iteration   2: 2081.651 us/op
+Iteration   3: 2083.186 us/op
+Iteration   4: 2087.198 us/op
+Iteration   5: 2086.937 us/op
+Iteration   6: 2086.332 us/op
+Iteration   7: 2090.336 us/op
+Iteration   8: 2086.728 us/op
+Iteration   9: 2084.949 us/op
+Iteration  10: 2087.857 us/op
+
+# Run progress: 9.71% complete, ETA 00:18:44
+# Fork: 3 of 5
+# Warmup Iteration   1: 2188.579 us/op
+# Warmup Iteration   2: 2085.505 us/op
+# Warmup Iteration   3: 2079.660 us/op
+Iteration   1: 2083.264 us/op
+Iteration   2: 2082.005 us/op
+Iteration   3: 2081.913 us/op
+Iteration   4: 2081.836 us/op
+Iteration   5: 2080.571 us/op
+Iteration   6: 2082.498 us/op
+Iteration   7: 2086.946 us/op
+Iteration   8: 2083.500 us/op
+Iteration   9: 2080.237 us/op
+Iteration  10: 2077.210 us/op
+
+# Run progress: 10.29% complete, ETA 00:18:36
+# Fork: 4 of 5
+# Warmup Iteration   1: 2224.824 us/op
+# Warmup Iteration   2: 2065.189 us/op
+# Warmup Iteration   3: 2062.824 us/op
+Iteration   1: 2062.814 us/op
+Iteration   2: 2066.884 us/op
+Iteration   3: 2064.386 us/op
+Iteration   4: 2061.201 us/op
+Iteration   5: 2071.474 us/op
+Iteration   6: 2065.169 us/op
+Iteration   7: 2078.089 us/op
+Iteration   8: 2069.852 us/op
+Iteration   9: 2072.454 us/op
+Iteration  10: 2066.458 us/op
+
+# Run progress: 10.86% complete, ETA 00:18:29
+# Fork: 5 of 5
+# Warmup Iteration   1: 2191.657 us/op
+# Warmup Iteration   2: 2090.873 us/op
+# Warmup Iteration   3: 2094.509 us/op
+Iteration   1: 2086.787 us/op
+Iteration   2: 2090.195 us/op
+Iteration   3: 2088.756 us/op
+Iteration   4: 2092.387 us/op
+Iteration   5: 2087.805 us/op
+Iteration   6: 2088.034 us/op
+Iteration   7: 2086.393 us/op
+Iteration   8: 2094.497 us/op
+Iteration   9: 2090.571 us/op
+Iteration  10: 2089.648 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkHeapSort":
+  2083.482 ±(99.9%) 4.492 us/op [Average]
+  (min, avg, max) = (2061.201, 2083.482, 2097.969), stdev = 9.074
+  CI (99.9%): [2078.991, 2087.974] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkHeapSort
+# Parameters: (size = 100000)
+
+# Run progress: 11.43% complete, ETA 00:18:22
+# Fork: 1 of 5
+# Warmup Iteration   1: 34757.871 us/op
+# Warmup Iteration   2: 31840.336 us/op
+# Warmup Iteration   3: 31482.862 us/op
+Iteration   1: 31476.019 us/op
+Iteration   2: 31573.352 us/op
+Iteration   3: 31517.715 us/op
+Iteration   4: 31534.648 us/op
+Iteration   5: 31420.061 us/op
+Iteration   6: 31551.002 us/op
+Iteration   7: 31629.360 us/op
+Iteration   8: 31432.112 us/op
+Iteration   9: 31416.082 us/op
+Iteration  10: 31498.044 us/op
+
+# Run progress: 12.00% complete, ETA 00:18:16
+# Fork: 2 of 5
+# Warmup Iteration   1: 32791.389 us/op
+# Warmup Iteration   2: 31604.846 us/op
+# Warmup Iteration   3: 31715.465 us/op
+Iteration   1: 31595.188 us/op
+Iteration   2: 32249.202 us/op
+Iteration   3: 31586.622 us/op
+Iteration   4: 31584.342 us/op
+Iteration   5: 31426.770 us/op
+Iteration   6: 31487.000 us/op
+Iteration   7: 31519.720 us/op
+Iteration   8: 31511.553 us/op
+Iteration   9: 31541.685 us/op
+Iteration  10: 31465.264 us/op
+
+# Run progress: 12.57% complete, ETA 00:18:10
+# Fork: 3 of 5
+# Warmup Iteration   1: 32871.879 us/op
+# Warmup Iteration   2: 31454.209 us/op
+# Warmup Iteration   3: 31464.000 us/op
+Iteration   1: 31383.141 us/op
+Iteration   2: 31425.880 us/op
+Iteration   3: 31369.537 us/op
+Iteration   4: 31388.361 us/op
+Iteration   5: 31513.420 us/op
+Iteration   6: 31416.125 us/op
+Iteration   7: 31551.136 us/op
+Iteration   8: 31392.461 us/op
+Iteration   9: 31405.230 us/op
+Iteration  10: 31463.464 us/op
+
+# Run progress: 13.14% complete, ETA 00:18:04
+# Fork: 4 of 5
+# Warmup Iteration   1: 33057.874 us/op
+# Warmup Iteration   2: 31454.562 us/op
+# Warmup Iteration   3: 31382.115 us/op
+Iteration   1: 31378.513 us/op
+Iteration   2: 31457.565 us/op
+Iteration   3: 31386.854 us/op
+Iteration   4: 31386.020 us/op
+Iteration   5: 31363.753 us/op
+Iteration   6: 31337.510 us/op
+Iteration   7: 31360.808 us/op
+Iteration   8: 31358.506 us/op
+Iteration   9: 31320.429 us/op
+Iteration  10: 31438.524 us/op
+
+# Run progress: 13.71% complete, ETA 00:17:58
+# Fork: 5 of 5
+# Warmup Iteration   1: 33199.764 us/op
+# Warmup Iteration   2: 32571.674 us/op
+# Warmup Iteration   3: 31439.961 us/op
+Iteration   1: 31422.121 us/op
+Iteration   2: 31330.626 us/op
+Iteration   3: 31316.982 us/op
+Iteration   4: 31298.763 us/op
+Iteration   5: 31373.016 us/op
+Iteration   6: 31396.847 us/op
+Iteration   7: 31354.454 us/op
+Iteration   8: 31308.049 us/op
+Iteration   9: 31346.101 us/op
+Iteration  10: 31300.520 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkHeapSort":
+  31451.209 ±(99.9%) 71.420 us/op [Average]
+  (min, avg, max) = (31298.763, 31451.209, 32249.202), stdev = 144.272
+  CI (99.9%): [31379.789, 31522.629] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkHeapSort
+# Parameters: (size = 1000000)
+
+# Run progress: 14.29% complete, ETA 00:17:51
+# Fork: 1 of 5
+# Warmup Iteration   1: 759585.561 us/op
+# Warmup Iteration   2: 735874.278 us/op
+# Warmup Iteration   3: 735111.302 us/op
+Iteration   1: 731083.364 us/op
+Iteration   2: 775932.588 us/op
+Iteration   3: 734491.742 us/op
+Iteration   4: 732355.681 us/op
+Iteration   5: 729545.999 us/op
+Iteration   6: 731465.915 us/op
+Iteration   7: 773341.922 us/op
+Iteration   8: 745177.101 us/op
+Iteration   9: 746575.885 us/op
+Iteration  10: 748221.922 us/op
+
+# Run progress: 14.86% complete, ETA 00:18:04
+# Fork: 2 of 5
+# Warmup Iteration   1: 761518.419 us/op
+# Warmup Iteration   2: 743215.213 us/op
+# Warmup Iteration   3: 738491.379 us/op
+Iteration   1: 739389.191 us/op
+Iteration   2: 736911.226 us/op
+Iteration   3: 738637.723 us/op
+Iteration   4: 740071.436 us/op
+Iteration   5: 733541.405 us/op
+Iteration   6: 735824.723 us/op
+Iteration   7: 738988.886 us/op
+Iteration   8: 738074.981 us/op
+Iteration   9: 737691.809 us/op
+Iteration  10: 734950.826 us/op
+
+# Run progress: 15.43% complete, ETA 00:18:14
+# Fork: 3 of 5
+# Warmup Iteration   1: 764971.899 us/op
+# Warmup Iteration   2: 747540.172 us/op
+# Warmup Iteration   3: 730492.250 us/op
+Iteration   1: 730064.872 us/op
+Iteration   2: 729767.970 us/op
+Iteration   3: 728554.612 us/op
+Iteration   4: 730075.686 us/op
+Iteration   5: 744836.078 us/op
+Iteration   6: 737222.746 us/op
+Iteration   7: 744298.023 us/op
+Iteration   8: 735948.231 us/op
+Iteration   9: 735717.790 us/op
+Iteration  10: 744833.037 us/op
+
+# Run progress: 16.00% complete, ETA 00:18:22
+# Fork: 4 of 5
+# Warmup Iteration   1: 765791.855 us/op
+# Warmup Iteration   2: 744741.585 us/op
+# Warmup Iteration   3: 751274.766 us/op
+Iteration   1: 740396.188 us/op
+Iteration   2: 739603.894 us/op
+Iteration   3: 739273.202 us/op
+Iteration   4: 739792.776 us/op
+Iteration   5: 739943.511 us/op
+Iteration   6: 739088.781 us/op
+Iteration   7: 740660.484 us/op
+Iteration   8: 751929.737 us/op
+Iteration   9: 742499.368 us/op
+Iteration  10: 740337.006 us/op
+
+# Run progress: 16.57% complete, ETA 00:18:30
+# Fork: 5 of 5
+# Warmup Iteration   1: 767463.024 us/op
+# Warmup Iteration   2: 764633.071 us/op
+# Warmup Iteration   3: 729745.751 us/op
+Iteration   1: 741699.389 us/op
+Iteration   2: 740064.225 us/op
+Iteration   3: 741070.017 us/op
+Iteration   4: 742349.729 us/op
+Iteration   5: 742546.500 us/op
+Iteration   6: 727569.838 us/op
+Iteration   7: 728876.274 us/op
+Iteration   8: 726935.309 us/op
+Iteration   9: 726752.985 us/op
+Iteration  10: 726662.155 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkHeapSort":
+  738832.895 ±(99.9%) 4711.758 us/op [Average]
+  (min, avg, max) = (726662.155, 738832.895, 775932.588), stdev = 9517.985
+  CI (99.9%): [734121.136, 743544.653] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkHeapSort
+# Parameters: (size = 10000000)
+
+# Run progress: 17.14% complete, ETA 00:18:36
+# Fork: 1 of 5
+# Warmup Iteration   1: 14472624.663 us/op
+# Warmup Iteration   2: 14366665.537 us/op
+# Warmup Iteration   3: 14400145.211 us/op
+Iteration   1: 14419677.052 us/op
+Iteration   2: 14376036.980 us/op
+Iteration   3: 14474598.874 us/op
+Iteration   4: 14444549.425 us/op
+Iteration   5: 14477542.945 us/op
+Iteration   6: 14533441.673 us/op
+Iteration   7: 14612322.664 us/op
+Iteration   8: 14557147.603 us/op
+Iteration   9: 14532249.208 us/op
+Iteration  10: 14508539.717 us/op
+
+# Run progress: 17.71% complete, ETA 00:32:46
+# Fork: 2 of 5
+# Warmup Iteration   1: 14324218.456 us/op
+# Warmup Iteration   2: 14401047.894 us/op
+# Warmup Iteration   3: 14663171.909 us/op
+Iteration   1: 14442102.276 us/op
+Iteration   2: 14867269.646 us/op
+Iteration   3: 14447241.847 us/op
+Iteration   4: 14376645.505 us/op
+Iteration   5: 14617138.481 us/op
+Iteration   6: 14613399.882 us/op
+Iteration   7: 14444491.208 us/op
+Iteration   8: 14470324.312 us/op
+Iteration   9: 14593136.899 us/op
+Iteration  10: 14853547.973 us/op
+
+# Run progress: 18.29% complete, ETA 00:45:56
+# Fork: 3 of 5
+# Warmup Iteration   1: 13891630.663 us/op
+# Warmup Iteration   2: 14012804.915 us/op
+# Warmup Iteration   3: 13999866.314 us/op
+Iteration   1: 13882017.123 us/op
+Iteration   2: 13804212.474 us/op
+Iteration   3: 13878683.896 us/op
+Iteration   4: 13889520.786 us/op
+Iteration   5: 13981978.072 us/op
+Iteration   6: 13885205.099 us/op
+Iteration   7: 13829350.822 us/op
+Iteration   8: 13985558.771 us/op
+Iteration   9: 14097670.223 us/op
+Iteration  10: 13824758.653 us/op
+
+# Run progress: 18.86% complete, ETA 00:57:31
+# Fork: 4 of 5
+# Warmup Iteration   1: 14144501.234 us/op
+# Warmup Iteration   2: 14144089.277 us/op
+# Warmup Iteration   3: 14116310.199 us/op
+Iteration   1: 14319545.750 us/op
+Iteration   2: 14359087.660 us/op
+Iteration   3: 14120395.698 us/op
+Iteration   4: 14424691.761 us/op
+Iteration   5: 14059344.957 us/op
+Iteration   6: 14101208.422 us/op
+Iteration   7: 13954060.141 us/op
+Iteration   8: 14069181.077 us/op
+Iteration   9: 14136462.086 us/op
+Iteration  10: 14024385.165 us/op
+
+# Run progress: 19.43% complete, ETA 01:08:27
+# Fork: 5 of 5
+# Warmup Iteration   1: 14592015.268 us/op
+# Warmup Iteration   2: 14590923.368 us/op
+# Warmup Iteration   3: 14568944.165 us/op
+Iteration   1: 14462838.604 us/op
+Iteration   2: 14474969.510 us/op
+Iteration   3: 14780254.406 us/op
+Iteration   4: 14744474.320 us/op
+Iteration   5: 14441636.935 us/op
+Iteration   6: 14958917.214 us/op
+Iteration   7: 14733757.146 us/op
+Iteration   8: 14954424.112 us/op
+Iteration   9: 14729854.609 us/op
+Iteration  10: 14740924.998 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkHeapSort":
+  14366215.493 ±(99.9%) 161215.513 us/op [Average]
+  (min, avg, max) = (13804212.474, 14366215.493, 14958917.214), stdev = 325663.313
+  CI (99.9%): [14204999.980, 14527431.007] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkIntroSort
+# Parameters: (size = 10)
+
+# Run progress: 20.00% complete, ETA 01:19:02
+# Fork: 1 of 5
+# Warmup Iteration   1: 0.298 us/op
+# Warmup Iteration   2: 0.260 us/op
+# Warmup Iteration   3: 0.284 us/op
+Iteration   1: 0.288 us/op
+Iteration   2: 0.318 us/op
+Iteration   3: 0.584 us/op
+Iteration   4: 0.432 us/op
+Iteration   5: 0.419 us/op
+Iteration   6: 0.337 us/op
+Iteration   7: 0.301 us/op
+Iteration   8: 0.295 us/op
+Iteration   9: 0.280 us/op
+Iteration  10: 0.272 us/op
+
+# Run progress: 20.57% complete, ETA 01:16:44
+# Fork: 2 of 5
+# Warmup Iteration   1: 0.279 us/op
+# Warmup Iteration   2: 0.261 us/op
+# Warmup Iteration   3: 0.278 us/op
+Iteration   1: 0.261 us/op
+Iteration   2: 0.260 us/op
+Iteration   3: 0.264 us/op
+Iteration   4: 0.264 us/op
+Iteration   5: 0.260 us/op
+Iteration   6: 0.263 us/op
+Iteration   7: 0.260 us/op
+Iteration   8: 0.268 us/op
+Iteration   9: 0.260 us/op
+Iteration  10: 0.260 us/op
+
+# Run progress: 21.14% complete, ETA 01:14:34
+# Fork: 3 of 5
+# Warmup Iteration   1: 0.277 us/op
+# Warmup Iteration   2: 0.262 us/op
+# Warmup Iteration   3: 0.262 us/op
+Iteration   1: 0.261 us/op
+Iteration   2: 0.261 us/op
+Iteration   3: 0.261 us/op
+Iteration   4: 0.261 us/op
+Iteration   5: 0.261 us/op
+Iteration   6: 0.260 us/op
+Iteration   7: 0.261 us/op
+Iteration   8: 0.260 us/op
+Iteration   9: 0.261 us/op
+Iteration  10: 0.261 us/op
+
+# Run progress: 21.71% complete, ETA 01:12:30
+# Fork: 4 of 5
+# Warmup Iteration   1: 0.221 us/op
+# Warmup Iteration   2: 0.193 us/op
+# Warmup Iteration   3: 0.195 us/op
+Iteration   1: 0.195 us/op
+Iteration   2: 0.195 us/op
+Iteration   3: 0.195 us/op
+Iteration   4: 0.195 us/op
+Iteration   5: 0.194 us/op
+Iteration   6: 0.194 us/op
+Iteration   7: 0.195 us/op
+Iteration   8: 0.207 us/op
+Iteration   9: 0.216 us/op
+Iteration  10: 0.211 us/op
+
+# Run progress: 22.29% complete, ETA 01:10:32
+# Fork: 5 of 5
+# Warmup Iteration   1: 0.263 us/op
+# Warmup Iteration   2: 0.242 us/op
+# Warmup Iteration   3: 0.254 us/op
+Iteration   1: 0.255 us/op
+Iteration   2: 0.257 us/op
+Iteration   3: 0.275 us/op
+Iteration   4: 0.253 us/op
+Iteration   5: 0.254 us/op
+Iteration   6: 0.254 us/op
+Iteration   7: 0.254 us/op
+Iteration   8: 0.253 us/op
+Iteration   9: 0.254 us/op
+Iteration  10: 0.254 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkIntroSort":
+  0.266 ±(99.9%) 0.032 us/op [Average]
+  (min, avg, max) = (0.194, 0.266, 0.584), stdev = 0.065
+  CI (99.9%): [0.234, 0.299] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkIntroSort
+# Parameters: (size = 100)
+
+# Run progress: 22.86% complete, ETA 01:08:40
+# Fork: 1 of 5
+# Warmup Iteration   1: 4.808 us/op
+# Warmup Iteration   2: 4.020 us/op
+# Warmup Iteration   3: 4.036 us/op
+Iteration   1: 4.018 us/op
+Iteration   2: 4.015 us/op
+Iteration   3: 4.010 us/op
+Iteration   4: 4.016 us/op
+Iteration   5: 4.076 us/op
+Iteration   6: 4.014 us/op
+Iteration   7: 4.028 us/op
+Iteration   8: 4.022 us/op
+Iteration   9: 4.044 us/op
+Iteration  10: 4.055 us/op
+
+# Run progress: 23.43% complete, ETA 01:06:53
+# Fork: 2 of 5
+# Warmup Iteration   1: 5.307 us/op
+# Warmup Iteration   2: 4.229 us/op
+# Warmup Iteration   3: 4.114 us/op
+Iteration   1: 4.128 us/op
+Iteration   2: 4.112 us/op
+Iteration   3: 4.139 us/op
+Iteration   4: 4.141 us/op
+Iteration   5: 4.282 us/op
+Iteration   6: 4.246 us/op
+Iteration   7: 4.629 us/op
+Iteration   8: 4.353 us/op
+Iteration   9: 4.328 us/op
+Iteration  10: 4.115 us/op
+
+# Run progress: 24.00% complete, ETA 01:05:11
+# Fork: 3 of 5
+# Warmup Iteration   1: 4.430 us/op
+# Warmup Iteration   2: 3.819 us/op
+# Warmup Iteration   3: 4.176 us/op
+Iteration   1: 3.819 us/op
+Iteration   2: 3.956 us/op
+Iteration   3: 4.086 us/op
+Iteration   4: 3.874 us/op
+Iteration   5: 3.841 us/op
+Iteration   6: 3.960 us/op
+Iteration   7: 3.860 us/op
+Iteration   8: 4.129 us/op
+Iteration   9: 3.909 us/op
+Iteration  10: 3.806 us/op
+
+# Run progress: 24.57% complete, ETA 01:03:33
+# Fork: 4 of 5
+# Warmup Iteration   1: 4.534 us/op
+# Warmup Iteration   2: 4.073 us/op
+# Warmup Iteration   3: 4.014 us/op
+Iteration   1: 4.005 us/op
+Iteration   2: 4.009 us/op
+Iteration   3: 4.041 us/op
+Iteration   4: 4.015 us/op
+Iteration   5: 4.084 us/op
+Iteration   6: 4.026 us/op
+Iteration   7: 4.010 us/op
+Iteration   8: 4.004 us/op
+Iteration   9: 4.016 us/op
+Iteration  10: 4.015 us/op
+
+# Run progress: 25.14% complete, ETA 01:01:59
+# Fork: 5 of 5
+# Warmup Iteration   1: 5.081 us/op
+# Warmup Iteration   2: 4.150 us/op
+# Warmup Iteration   3: 4.504 us/op
+Iteration   1: 4.363 us/op
+Iteration   2: 4.497 us/op
+Iteration   3: 5.092 us/op
+Iteration   4: 5.523 us/op
+Iteration   5: 5.822 us/op
+Iteration   6: 4.393 us/op
+Iteration   7: 4.426 us/op
+Iteration   8: 4.287 us/op
+Iteration   9: 4.276 us/op
+Iteration  10: 4.280 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkIntroSort":
+  4.184 ±(99.9%) 0.189 us/op [Average]
+  (min, avg, max) = (3.806, 4.184, 5.822), stdev = 0.381
+  CI (99.9%): [3.995, 4.373] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkIntroSort
+# Parameters: (size = 1000)
+
+# Run progress: 25.71% complete, ETA 01:00:29
+# Fork: 1 of 5
+# Warmup Iteration   1: 99.813 us/op
+# Warmup Iteration   2: 88.576 us/op
+# Warmup Iteration   3: 88.489 us/op
+Iteration   1: 88.677 us/op
+Iteration   2: 88.764 us/op
+Iteration   3: 89.356 us/op
+Iteration   4: 88.777 us/op
+Iteration   5: 88.782 us/op
+Iteration   6: 90.797 us/op
+Iteration   7: 88.827 us/op
+Iteration   8: 88.861 us/op
+Iteration   9: 88.818 us/op
+Iteration  10: 88.890 us/op
+
+# Run progress: 26.29% complete, ETA 00:59:03
+# Fork: 2 of 5
+# Warmup Iteration   1: 101.791 us/op
+# Warmup Iteration   2: 95.028 us/op
+# Warmup Iteration   3: 93.067 us/op
+Iteration   1: 97.676 us/op
+Iteration   2: 106.099 us/op
+Iteration   3: 109.468 us/op
+Iteration   4: 109.002 us/op
+Iteration   5: 93.236 us/op
+Iteration   6: 92.732 us/op
+Iteration   7: 90.777 us/op
+Iteration   8: 90.251 us/op
+Iteration   9: 89.670 us/op
+Iteration  10: 94.071 us/op
+
+# Run progress: 26.86% complete, ETA 00:57:40
+# Fork: 3 of 5
+# Warmup Iteration   1: 98.874 us/op
+# Warmup Iteration   2: 90.959 us/op
+# Warmup Iteration   3: 87.635 us/op
+Iteration   1: 87.485 us/op
+Iteration   2: 90.149 us/op
+Iteration   3: 87.607 us/op
+Iteration   4: 87.535 us/op
+Iteration   5: 87.541 us/op
+Iteration   6: 87.451 us/op
+Iteration   7: 87.589 us/op
+Iteration   8: 87.811 us/op
+Iteration   9: 87.671 us/op
+Iteration  10: 87.467 us/op
+
+# Run progress: 27.43% complete, ETA 00:56:20
+# Fork: 4 of 5
+# Warmup Iteration   1: 99.150 us/op
+# Warmup Iteration   2: 88.331 us/op
+# Warmup Iteration   3: 88.269 us/op
+Iteration   1: 88.031 us/op
+Iteration   2: 88.197 us/op
+Iteration   3: 88.291 us/op
+Iteration   4: 88.609 us/op
+Iteration   5: 88.439 us/op
+Iteration   6: 88.594 us/op
+Iteration   7: 91.389 us/op
+Iteration   8: 89.012 us/op
+Iteration   9: 88.897 us/op
+Iteration  10: 92.697 us/op
+
+# Run progress: 28.00% complete, ETA 00:55:03
+# Fork: 5 of 5
+# Warmup Iteration   1: 141.434 us/op
+# Warmup Iteration   2: 104.887 us/op
+# Warmup Iteration   3: 111.393 us/op
+Iteration   1: 148.843 us/op
+Iteration   2: 102.940 us/op
+Iteration   3: 92.748 us/op
+Iteration   4: 92.312 us/op
+Iteration   5: 90.396 us/op
+Iteration   6: 90.750 us/op
+Iteration   7: 89.705 us/op
+Iteration   8: 89.982 us/op
+Iteration   9: 88.753 us/op
+Iteration  10: 88.506 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkIntroSort":
+  92.179 ±(99.9%) 4.795 us/op [Average]
+  (min, avg, max) = (87.451, 92.179, 148.843), stdev = 9.686
+  CI (99.9%): [87.384, 96.974] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkIntroSort
+# Parameters: (size = 10000)
+
+# Run progress: 28.57% complete, ETA 00:53:50
+# Fork: 1 of 5
+# Warmup Iteration   1: 1692.095 us/op
+# Warmup Iteration   2: 1584.955 us/op
+# Warmup Iteration   3: 1566.897 us/op
+Iteration   1: 1574.355 us/op
+Iteration   2: 1589.993 us/op
+Iteration   3: 1560.399 us/op
+Iteration   4: 1556.261 us/op
+Iteration   5: 1568.782 us/op
+Iteration   6: 1571.677 us/op
+Iteration   7: 1560.303 us/op
+Iteration   8: 1556.015 us/op
+Iteration   9: 1567.349 us/op
+Iteration  10: 1569.341 us/op
+
+# Run progress: 29.14% complete, ETA 00:52:38
+# Fork: 2 of 5
+# Warmup Iteration   1: 1602.757 us/op
+# Warmup Iteration   2: 1625.365 us/op
+# Warmup Iteration   3: 1619.555 us/op
+Iteration   1: 1620.940 us/op
+Iteration   2: 1613.141 us/op
+Iteration   3: 1614.799 us/op
+Iteration   4: 1618.074 us/op
+Iteration   5: 1631.659 us/op
+Iteration   6: 1624.321 us/op
+Iteration   7: 1622.132 us/op
+Iteration   8: 1620.446 us/op
+Iteration   9: 1619.501 us/op
+Iteration  10: 1616.498 us/op
+
+# Run progress: 29.71% complete, ETA 00:51:29
+# Fork: 3 of 5
+# Warmup Iteration   1: 1542.776 us/op
+# Warmup Iteration   2: 1322.467 us/op
+# Warmup Iteration   3: 1322.167 us/op
+Iteration   1: 1326.029 us/op
+Iteration   2: 1329.866 us/op
+Iteration   3: 1331.521 us/op
+Iteration   4: 1324.641 us/op
+Iteration   5: 1322.745 us/op
+Iteration   6: 1329.534 us/op
+Iteration   7: 1334.760 us/op
+Iteration   8: 1341.103 us/op
+Iteration   9: 1316.904 us/op
+Iteration  10: 1321.125 us/op
+
+# Run progress: 30.29% complete, ETA 00:50:23
+# Fork: 4 of 5
+# Warmup Iteration   1: 1573.302 us/op
+# Warmup Iteration   2: 1505.845 us/op
+# Warmup Iteration   3: 1512.329 us/op
+Iteration   1: 1655.814 us/op
+Iteration   2: 1489.460 us/op
+Iteration   3: 1488.645 us/op
+Iteration   4: 1487.661 us/op
+Iteration   5: 1489.722 us/op
+Iteration   6: 1488.688 us/op
+Iteration   7: 1489.970 us/op
+Iteration   8: 1487.552 us/op
+Iteration   9: 1487.592 us/op
+Iteration  10: 1488.119 us/op
+
+# Run progress: 30.86% complete, ETA 00:49:18
+# Fork: 5 of 5
+# Warmup Iteration   1: 1553.299 us/op
+# Warmup Iteration   2: 1341.859 us/op
+# Warmup Iteration   3: 1340.058 us/op
+Iteration   1: 1339.052 us/op
+Iteration   2: 1341.325 us/op
+Iteration   3: 1342.380 us/op
+Iteration   4: 1339.864 us/op
+Iteration   5: 1339.448 us/op
+Iteration   6: 1339.170 us/op
+Iteration   7: 1338.548 us/op
+Iteration   8: 1342.889 us/op
+Iteration   9: 1339.385 us/op
+Iteration  10: 1339.966 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkIntroSort":
+  1472.189 ±(99.9%) 60.427 us/op [Average]
+  (min, avg, max) = (1316.904, 1472.189, 1655.814), stdev = 122.065
+  CI (99.9%): [1411.763, 1532.616] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkIntroSort
+# Parameters: (size = 100000)
+
+# Run progress: 31.43% complete, ETA 00:48:16
+# Fork: 1 of 5
+# Warmup Iteration   1: 21244.530 us/op
+# Warmup Iteration   2: 17988.616 us/op
+# Warmup Iteration   3: 17815.108 us/op
+Iteration   1: 17811.591 us/op
+Iteration   2: 17855.976 us/op
+Iteration   3: 17825.857 us/op
+Iteration   4: 17850.918 us/op
+Iteration   5: 17853.886 us/op
+Iteration   6: 17831.796 us/op
+Iteration   7: 17853.784 us/op
+Iteration   8: 18031.540 us/op
+Iteration   9: 17885.109 us/op
+Iteration  10: 17849.087 us/op
+
+# Run progress: 32.00% complete, ETA 00:47:16
+# Fork: 2 of 5
+# Warmup Iteration   1: 22481.975 us/op
+# Warmup Iteration   2: 17693.623 us/op
+# Warmup Iteration   3: 17681.272 us/op
+Iteration   1: 17602.600 us/op
+Iteration   2: 17603.168 us/op
+Iteration   3: 17639.382 us/op
+Iteration   4: 17642.423 us/op
+Iteration   5: 17572.647 us/op
+Iteration   6: 17613.053 us/op
+Iteration   7: 17623.544 us/op
+Iteration   8: 17592.074 us/op
+Iteration   9: 17692.689 us/op
+Iteration  10: 17613.266 us/op
+
+# Run progress: 32.57% complete, ETA 00:46:18
+# Fork: 3 of 5
+# Warmup Iteration   1: 22501.664 us/op
+# Warmup Iteration   2: 18940.250 us/op
+# Warmup Iteration   3: 18381.875 us/op
+Iteration   1: 18374.702 us/op
+Iteration   2: 18412.753 us/op
+Iteration   3: 18398.872 us/op
+Iteration   4: 18364.908 us/op
+Iteration   5: 18411.167 us/op
+Iteration   6: 18338.082 us/op
+Iteration   7: 18396.700 us/op
+Iteration   8: 18375.018 us/op
+Iteration   9: 19637.670 us/op
+Iteration  10: 18306.431 us/op
+
+# Run progress: 33.14% complete, ETA 00:45:22
+# Fork: 4 of 5
+# Warmup Iteration   1: 19878.391 us/op
+# Warmup Iteration   2: 17943.703 us/op
+# Warmup Iteration   3: 17975.919 us/op
+Iteration   1: 17905.009 us/op
+Iteration   2: 17912.431 us/op
+Iteration   3: 17911.557 us/op
+Iteration   4: 19183.297 us/op
+Iteration   5: 17963.188 us/op
+Iteration   6: 17949.455 us/op
+Iteration   7: 17992.032 us/op
+Iteration   8: 17947.965 us/op
+Iteration   9: 17925.090 us/op
+Iteration  10: 18017.887 us/op
+
+# Run progress: 33.71% complete, ETA 00:44:27
+# Fork: 5 of 5
+# Warmup Iteration   1: 20771.613 us/op
+# Warmup Iteration   2: 17815.655 us/op
+# Warmup Iteration   3: 17825.100 us/op
+Iteration   1: 17757.397 us/op
+Iteration   2: 17790.300 us/op
+Iteration   3: 17757.755 us/op
+Iteration   4: 17766.348 us/op
+Iteration   5: 17790.026 us/op
+Iteration   6: 17796.057 us/op
+Iteration   7: 17785.702 us/op
+Iteration   8: 17754.458 us/op
+Iteration   9: 17733.037 us/op
+Iteration  10: 17774.461 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkIntroSort":
+  17965.483 ±(99.9%) 194.224 us/op [Average]
+  (min, avg, max) = (17572.647, 17965.483, 19637.670), stdev = 392.343
+  CI (99.9%): [17771.258, 18159.707] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkIntroSort
+# Parameters: (size = 1000000)
+
+# Run progress: 34.29% complete, ETA 00:43:34
+# Fork: 1 of 5
+# Warmup Iteration   1: 365760.250 us/op
+# Warmup Iteration   2: 353530.189 us/op
+# Warmup Iteration   3: 350147.021 us/op
+Iteration   1: 350176.694 us/op
+Iteration   2: 349440.831 us/op
+Iteration   3: 350004.680 us/op
+Iteration   4: 349603.423 us/op
+Iteration   5: 348999.075 us/op
+Iteration   6: 349228.606 us/op
+Iteration   7: 350425.484 us/op
+Iteration   8: 349032.896 us/op
+Iteration   9: 349305.005 us/op
+Iteration  10: 353388.864 us/op
+
+# Run progress: 34.86% complete, ETA 00:42:47
+# Fork: 2 of 5
+# Warmup Iteration   1: 342600.283 us/op
+# Warmup Iteration   2: 328049.824 us/op
+# Warmup Iteration   3: 327088.076 us/op
+Iteration   1: 326003.755 us/op
+Iteration   2: 326656.948 us/op
+Iteration   3: 326487.147 us/op
+Iteration   4: 326791.264 us/op
+Iteration   5: 327121.009 us/op
+Iteration   6: 326240.685 us/op
+Iteration   7: 327621.104 us/op
+Iteration   8: 326105.231 us/op
+Iteration   9: 326375.144 us/op
+Iteration  10: 326813.167 us/op
+
+# Run progress: 35.43% complete, ETA 00:42:01
+# Fork: 3 of 5
+# Warmup Iteration   1: 366178.261 us/op
+# Warmup Iteration   2: 323372.419 us/op
+# Warmup Iteration   3: 324126.137 us/op
+Iteration   1: 324471.401 us/op
+Iteration   2: 323599.694 us/op
+Iteration   3: 323754.077 us/op
+Iteration   4: 323898.175 us/op
+Iteration   5: 323241.495 us/op
+Iteration   6: 323493.302 us/op
+Iteration   7: 323589.262 us/op
+Iteration   8: 327284.296 us/op
+Iteration   9: 323752.332 us/op
+Iteration  10: 323593.667 us/op
+
+# Run progress: 36.00% complete, ETA 00:41:16
+# Fork: 4 of 5
+# Warmup Iteration   1: 356168.437 us/op
+# Warmup Iteration   2: 339109.800 us/op
+# Warmup Iteration   3: 341872.535 us/op
+Iteration   1: 337309.147 us/op
+Iteration   2: 336097.391 us/op
+Iteration   3: 335801.428 us/op
+Iteration   4: 337187.928 us/op
+Iteration   5: 336229.036 us/op
+Iteration   6: 336279.232 us/op
+Iteration   7: 336224.561 us/op
+Iteration   8: 335857.250 us/op
+Iteration   9: 336901.014 us/op
+Iteration  10: 335903.878 us/op
+
+# Run progress: 36.57% complete, ETA 00:40:32
+# Fork: 5 of 5
+# Warmup Iteration   1: 363930.382 us/op
+# Warmup Iteration   2: 343826.825 us/op
+# Warmup Iteration   3: 342229.130 us/op
+Iteration   1: 342595.297 us/op
+Iteration   2: 343693.095 us/op
+Iteration   3: 344141.678 us/op
+Iteration   4: 342246.073 us/op
+Iteration   5: 342444.955 us/op
+Iteration   6: 343123.726 us/op
+Iteration   7: 342968.494 us/op
+Iteration   8: 342732.068 us/op
+Iteration   9: 342123.013 us/op
+Iteration  10: 342306.647 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkIntroSort":
+  335973.292 ±(99.9%) 4877.939 us/op [Average]
+  (min, avg, max) = (323241.495, 335973.292, 353388.864), stdev = 9853.679
+  CI (99.9%): [331095.353, 340851.232] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkIntroSort
+# Parameters: (size = 10000000)
+
+# Run progress: 37.14% complete, ETA 00:39:50
+# Fork: 1 of 5
+# Warmup Iteration   1: 5069601.402 us/op
+# Warmup Iteration   2: 5069592.953 us/op
+# Warmup Iteration   3: 5067214.588 us/op
+Iteration   1: 5076481.143 us/op
+Iteration   2: 5024307.592 us/op
+Iteration   3: 5027676.344 us/op
+Iteration   4: 5038955.733 us/op
+Iteration   5: 5111990.792 us/op
+Iteration   6: 5088535.913 us/op
+Iteration   7: 5024496.137 us/op
+Iteration   8: 5024169.442 us/op
+Iteration   9: 5030917.062 us/op
+Iteration  10: 5024084.665 us/op
+
+# Run progress: 37.71% complete, ETA 00:40:48
+# Fork: 2 of 5
+# Warmup Iteration   1: 4855366.026 us/op
+# Warmup Iteration   2: 4881663.651 us/op
+# Warmup Iteration   3: 4851319.031 us/op
+Iteration   1: 4852261.844 us/op
+Iteration   2: 4849383.447 us/op
+Iteration   3: 4859288.008 us/op
+Iteration   4: 4881532.196 us/op
+Iteration   5: 4872110.014 us/op
+Iteration   6: 4869700.957 us/op
+Iteration   7: 4902975.200 us/op
+Iteration   8: 4851823.049 us/op
+Iteration   9: 4853972.338 us/op
+Iteration  10: 4853239.955 us/op
+
+# Run progress: 38.29% complete, ETA 00:41:38
+# Fork: 3 of 5
+# Warmup Iteration   1: 5290834.331 us/op
+# Warmup Iteration   2: 5239649.601 us/op
+# Warmup Iteration   3: 5233613.689 us/op
+Iteration   1: 5240579.973 us/op
+Iteration   2: 5234165.079 us/op
+Iteration   3: 5229834.224 us/op
+Iteration   4: 5226072.173 us/op
+Iteration   5: 5285585.669 us/op
+Iteration   6: 5254960.256 us/op
+Iteration   7: 5259390.926 us/op
+Iteration   8: 5253959.740 us/op
+Iteration   9: 5240242.903 us/op
+Iteration  10: 5229686.348 us/op
+
+# Run progress: 38.86% complete, ETA 00:42:32
+# Fork: 4 of 5
+# Warmup Iteration   1: 4980256.266 us/op
+# Warmup Iteration   2: 4990504.622 us/op
+# Warmup Iteration   3: 4995582.849 us/op
+Iteration   1: 4992894.449 us/op
+Iteration   2: 4989467.777 us/op
+Iteration   3: 4995464.081 us/op
+Iteration   4: 4997314.930 us/op
+Iteration   5: 4969222.962 us/op
+Iteration   6: 4978521.845 us/op
+Iteration   7: 4979536.844 us/op
+Iteration   8: 4974247.699 us/op
+Iteration   9: 4982751.815 us/op
+Iteration  10: 4977907.867 us/op
+
+# Run progress: 39.43% complete, ETA 00:43:18
+# Fork: 5 of 5
+# Warmup Iteration   1: 4842616.521 us/op
+# Warmup Iteration   2: 4887578.335 us/op
+# Warmup Iteration   3: 4879604.708 us/op
+Iteration   1: 4887234.791 us/op
+Iteration   2: 4881596.262 us/op
+Iteration   3: 4875392.194 us/op
+Iteration   4: 4876070.588 us/op
+Iteration   5: 4881335.704 us/op
+Iteration   6: 4875222.324 us/op
+Iteration   7: 4873173.740 us/op
+Iteration   8: 4872924.697 us/op
+Iteration   9: 4873502.249 us/op
+Iteration  10: 4879286.533 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkIntroSort":
+  5003708.969 ±(99.9%) 69867.730 us/op [Average]
+  (min, avg, max) = (4849383.447, 5003708.969, 5285585.669), stdev = 141136.272
+  CI (99.9%): [4933841.239, 5073576.700] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkJavaSort
+# Parameters: (size = 10)
+
+# Run progress: 40.00% complete, ETA 00:43:58
+# Fork: 1 of 5
+# Warmup Iteration   1: 0.117 us/op
+# Warmup Iteration   2: 0.151 us/op
+# Warmup Iteration   3: 0.140 us/op
+Iteration   1: 0.140 us/op
+Iteration   2: 0.140 us/op
+Iteration   3: 0.139 us/op
+Iteration   4: 0.140 us/op
+Iteration   5: 0.139 us/op
+Iteration   6: 0.140 us/op
+Iteration   7: 0.140 us/op
+Iteration   8: 0.140 us/op
+Iteration   9: 0.140 us/op
+Iteration  10: 0.140 us/op
+
+# Run progress: 40.57% complete, ETA 00:43:06
+# Fork: 2 of 5
+# Warmup Iteration   1: 0.135 us/op
+# Warmup Iteration   2: 0.163 us/op
+# Warmup Iteration   3: 0.154 us/op
+Iteration   1: 0.154 us/op
+Iteration   2: 0.157 us/op
+Iteration   3: 0.157 us/op
+Iteration   4: 0.155 us/op
+Iteration   5: 0.156 us/op
+Iteration   6: 0.154 us/op
+Iteration   7: 0.157 us/op
+Iteration   8: 0.156 us/op
+Iteration   9: 0.160 us/op
+Iteration  10: 0.159 us/op
+
+# Run progress: 41.14% complete, ETA 00:42:16
+# Fork: 3 of 5
+# Warmup Iteration   1: 0.168 us/op
+# Warmup Iteration   2: 0.182 us/op
+# Warmup Iteration   3: 0.164 us/op
+Iteration   1: 0.164 us/op
+Iteration   2: 0.163 us/op
+Iteration   3: 0.164 us/op
+Iteration   4: 0.164 us/op
+Iteration   5: 0.163 us/op
+Iteration   6: 0.163 us/op
+Iteration   7: 0.164 us/op
+Iteration   8: 0.163 us/op
+Iteration   9: 0.163 us/op
+Iteration  10: 0.163 us/op
+
+# Run progress: 41.71% complete, ETA 00:41:27
+# Fork: 4 of 5
+# Warmup Iteration   1: 0.137 us/op
+# Warmup Iteration   2: 0.164 us/op
+# Warmup Iteration   3: 0.149 us/op
+Iteration   1: 0.149 us/op
+Iteration   2: 0.148 us/op
+Iteration   3: 0.148 us/op
+Iteration   4: 0.149 us/op
+Iteration   5: 0.149 us/op
+Iteration   6: 0.152 us/op
+Iteration   7: 0.149 us/op
+Iteration   8: 0.148 us/op
+Iteration   9: 0.149 us/op
+Iteration  10: 0.150 us/op
+
+# Run progress: 42.29% complete, ETA 00:40:39
+# Fork: 5 of 5
+# Warmup Iteration   1: 0.129 us/op
+# Warmup Iteration   2: 0.150 us/op
+# Warmup Iteration   3: 0.144 us/op
+Iteration   1: 0.144 us/op
+Iteration   2: 0.145 us/op
+Iteration   3: 0.144 us/op
+Iteration   4: 0.144 us/op
+Iteration   5: 0.145 us/op
+Iteration   6: 0.144 us/op
+Iteration   7: 0.144 us/op
+Iteration   8: 0.144 us/op
+Iteration   9: 0.145 us/op
+Iteration  10: 0.144 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkJavaSort":
+  0.151 ±(99.9%) 0.004 us/op [Average]
+  (min, avg, max) = (0.139, 0.151, 0.164), stdev = 0.009
+  CI (99.9%): [0.146, 0.155] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkJavaSort
+# Parameters: (size = 100)
+
+# Run progress: 42.86% complete, ETA 00:39:52
+# Fork: 1 of 5
+# Warmup Iteration   1: 3.266 us/op
+# Warmup Iteration   2: 3.315 us/op
+# Warmup Iteration   3: 3.242 us/op
+Iteration   1: 3.243 us/op
+Iteration   2: 3.247 us/op
+Iteration   3: 3.128 us/op
+Iteration   4: 3.107 us/op
+Iteration   5: 3.095 us/op
+Iteration   6: 3.089 us/op
+Iteration   7: 3.136 us/op
+Iteration   8: 3.107 us/op
+Iteration   9: 3.114 us/op
+Iteration  10: 3.112 us/op
+
+# Run progress: 43.43% complete, ETA 00:39:06
+# Fork: 2 of 5
+# Warmup Iteration   1: 3.275 us/op
+# Warmup Iteration   2: 3.408 us/op
+# Warmup Iteration   3: 3.331 us/op
+Iteration   1: 3.452 us/op
+Iteration   2: 3.317 us/op
+Iteration   3: 3.237 us/op
+Iteration   4: 3.209 us/op
+Iteration   5: 3.199 us/op
+Iteration   6: 3.206 us/op
+Iteration   7: 3.219 us/op
+Iteration   8: 3.192 us/op
+Iteration   9: 3.184 us/op
+Iteration  10: 3.217 us/op
+
+# Run progress: 44.00% complete, ETA 00:38:21
+# Fork: 3 of 5
+# Warmup Iteration   1: 3.341 us/op
+# Warmup Iteration   2: 3.309 us/op
+# Warmup Iteration   3: 3.222 us/op
+Iteration   1: 3.223 us/op
+Iteration   2: 3.222 us/op
+Iteration   3: 3.128 us/op
+Iteration   4: 3.090 us/op
+Iteration   5: 3.081 us/op
+Iteration   6: 3.080 us/op
+Iteration   7: 3.115 us/op
+Iteration   8: 3.071 us/op
+Iteration   9: 3.071 us/op
+Iteration  10: 3.067 us/op
+
+# Run progress: 44.57% complete, ETA 00:37:37
+# Fork: 4 of 5
+# Warmup Iteration   1: 3.261 us/op
+# Warmup Iteration   2: 3.488 us/op
+# Warmup Iteration   3: 3.315 us/op
+Iteration   1: 3.314 us/op
+Iteration   2: 3.298 us/op
+Iteration   3: 3.279 us/op
+Iteration   4: 3.183 us/op
+Iteration   5: 3.176 us/op
+Iteration   6: 3.185 us/op
+Iteration   7: 3.200 us/op
+Iteration   8: 3.178 us/op
+Iteration   9: 3.182 us/op
+Iteration  10: 3.176 us/op
+
+# Run progress: 45.14% complete, ETA 00:36:54
+# Fork: 5 of 5
+# Warmup Iteration   1: 3.197 us/op
+# Warmup Iteration   2: 3.406 us/op
+# Warmup Iteration   3: 3.273 us/op
+Iteration   1: 3.271 us/op
+Iteration   2: 3.260 us/op
+Iteration   3: 3.153 us/op
+Iteration   4: 3.126 us/op
+Iteration   5: 3.121 us/op
+Iteration   6: 3.142 us/op
+Iteration   7: 3.128 us/op
+Iteration   8: 3.134 us/op
+Iteration   9: 3.108 us/op
+Iteration  10: 3.117 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkJavaSort":
+  3.174 ±(99.9%) 0.039 us/op [Average]
+  (min, avg, max) = (3.067, 3.174, 3.452), stdev = 0.078
+  CI (99.9%): [3.135, 3.213] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkJavaSort
+# Parameters: (size = 1000)
+
+# Run progress: 45.71% complete, ETA 00:36:12
+# Fork: 1 of 5
+# Warmup Iteration   1: 98.811 us/op
+# Warmup Iteration   2: 94.432 us/op
+# Warmup Iteration   3: 92.085 us/op
+Iteration   1: 91.966 us/op
+Iteration   2: 91.971 us/op
+Iteration   3: 92.234 us/op
+Iteration   4: 92.414 us/op
+Iteration   5: 92.198 us/op
+Iteration   6: 92.012 us/op
+Iteration   7: 91.860 us/op
+Iteration   8: 91.933 us/op
+Iteration   9: 91.870 us/op
+Iteration  10: 92.407 us/op
+
+# Run progress: 46.29% complete, ETA 00:35:31
+# Fork: 2 of 5
+# Warmup Iteration   1: 95.619 us/op
+# Warmup Iteration   2: 96.751 us/op
+# Warmup Iteration   3: 91.157 us/op
+Iteration   1: 91.358 us/op
+Iteration   2: 91.606 us/op
+Iteration   3: 91.396 us/op
+Iteration   4: 91.211 us/op
+Iteration   5: 92.198 us/op
+Iteration   6: 91.339 us/op
+Iteration   7: 91.338 us/op
+Iteration   8: 91.494 us/op
+Iteration   9: 91.461 us/op
+Iteration  10: 91.527 us/op
+
+# Run progress: 46.86% complete, ETA 00:34:51
+# Fork: 3 of 5
+# Warmup Iteration   1: 97.525 us/op
+# Warmup Iteration   2: 94.480 us/op
+# Warmup Iteration   3: 93.088 us/op
+Iteration   1: 93.681 us/op
+Iteration   2: 96.874 us/op
+Iteration   3: 96.528 us/op
+Iteration   4: 93.313 us/op
+Iteration   5: 93.287 us/op
+Iteration   6: 93.484 us/op
+Iteration   7: 93.344 us/op
+Iteration   8: 93.395 us/op
+Iteration   9: 93.248 us/op
+Iteration  10: 93.794 us/op
+
+# Run progress: 47.43% complete, ETA 00:34:11
+# Fork: 4 of 5
+# Warmup Iteration   1: 98.891 us/op
+# Warmup Iteration   2: 93.869 us/op
+# Warmup Iteration   3: 92.768 us/op
+Iteration   1: 93.170 us/op
+Iteration   2: 93.623 us/op
+Iteration   3: 92.962 us/op
+Iteration   4: 92.910 us/op
+Iteration   5: 92.934 us/op
+Iteration   6: 93.000 us/op
+Iteration   7: 92.961 us/op
+Iteration   8: 92.891 us/op
+Iteration   9: 92.890 us/op
+Iteration  10: 92.808 us/op
+
+# Run progress: 48.00% complete, ETA 00:33:33
+# Fork: 5 of 5
+# Warmup Iteration   1: 95.347 us/op
+# Warmup Iteration   2: 93.216 us/op
+# Warmup Iteration   3: 92.487 us/op
+Iteration   1: 92.659 us/op
+Iteration   2: 92.520 us/op
+Iteration   3: 92.672 us/op
+Iteration   4: 92.673 us/op
+Iteration   5: 92.568 us/op
+Iteration   6: 92.585 us/op
+Iteration   7: 92.861 us/op
+Iteration   8: 92.537 us/op
+Iteration   9: 92.573 us/op
+Iteration  10: 92.427 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkJavaSort":
+  92.659 ±(99.9%) 0.538 us/op [Average]
+  (min, avg, max) = (91.211, 92.659, 96.874), stdev = 1.086
+  CI (99.9%): [92.122, 93.197] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkJavaSort
+# Parameters: (size = 10000)
+
+# Run progress: 48.57% complete, ETA 00:32:55
+# Fork: 1 of 5
+# Warmup Iteration   1: 1414.993 us/op
+# Warmup Iteration   2: 1327.000 us/op
+# Warmup Iteration   3: 1309.530 us/op
+Iteration   1: 1309.834 us/op
+Iteration   2: 1309.312 us/op
+Iteration   3: 1314.105 us/op
+Iteration   4: 1307.600 us/op
+Iteration   5: 1308.919 us/op
+Iteration   6: 1307.942 us/op
+Iteration   7: 1306.695 us/op
+Iteration   8: 1306.576 us/op
+Iteration   9: 1310.311 us/op
+Iteration  10: 1306.476 us/op
+
+# Run progress: 49.14% complete, ETA 00:32:17
+# Fork: 2 of 5
+# Warmup Iteration   1: 1419.627 us/op
+# Warmup Iteration   2: 1428.607 us/op
+# Warmup Iteration   3: 1341.745 us/op
+Iteration   1: 1333.062 us/op
+Iteration   2: 1333.906 us/op
+Iteration   3: 1336.338 us/op
+Iteration   4: 1337.460 us/op
+Iteration   5: 1333.903 us/op
+Iteration   6: 1335.859 us/op
+Iteration   7: 1332.112 us/op
+Iteration   8: 1337.834 us/op
+Iteration   9: 1334.530 us/op
+Iteration  10: 1332.000 us/op
+
+# Run progress: 49.71% complete, ETA 00:31:41
+# Fork: 3 of 5
+# Warmup Iteration   1: 1450.497 us/op
+# Warmup Iteration   2: 1352.237 us/op
+# Warmup Iteration   3: 1340.486 us/op
+Iteration   1: 1336.407 us/op
+Iteration   2: 1337.100 us/op
+Iteration   3: 1337.718 us/op
+Iteration   4: 1338.316 us/op
+Iteration   5: 1339.624 us/op
+Iteration   6: 1336.983 us/op
+Iteration   7: 1338.679 us/op
+Iteration   8: 1338.146 us/op
+Iteration   9: 1336.460 us/op
+Iteration  10: 1340.486 us/op
+
+# Run progress: 50.29% complete, ETA 00:31:05
+# Fork: 4 of 5
+# Warmup Iteration   1: 1420.577 us/op
+# Warmup Iteration   2: 1326.465 us/op
+# Warmup Iteration   3: 1318.417 us/op
+Iteration   1: 1312.042 us/op
+Iteration   2: 1314.518 us/op
+Iteration   3: 1311.798 us/op
+Iteration   4: 1314.145 us/op
+Iteration   5: 1312.359 us/op
+Iteration   6: 1315.420 us/op
+Iteration   7: 1312.744 us/op
+Iteration   8: 1312.075 us/op
+Iteration   9: 1313.069 us/op
+Iteration  10: 1314.699 us/op
+
+# Run progress: 50.86% complete, ETA 00:30:29
+# Fork: 5 of 5
+# Warmup Iteration   1: 1438.313 us/op
+# Warmup Iteration   2: 1380.149 us/op
+# Warmup Iteration   3: 1364.577 us/op
+Iteration   1: 1362.739 us/op
+Iteration   2: 1368.841 us/op
+Iteration   3: 1363.207 us/op
+Iteration   4: 1362.548 us/op
+Iteration   5: 1364.148 us/op
+Iteration   6: 1362.642 us/op
+Iteration   7: 1364.364 us/op
+Iteration   8: 1360.890 us/op
+Iteration   9: 1362.347 us/op
+Iteration  10: 1360.707 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkJavaSort":
+  1331.600 ±(99.9%) 9.811 us/op [Average]
+  (min, avg, max) = (1306.476, 1331.600, 1368.841), stdev = 19.819
+  CI (99.9%): [1321.789, 1341.411] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkJavaSort
+# Parameters: (size = 100000)
+
+# Run progress: 51.43% complete, ETA 00:29:55
+# Fork: 1 of 5
+# Warmup Iteration   1: 19115.018 us/op
+# Warmup Iteration   2: 17710.374 us/op
+# Warmup Iteration   3: 17523.847 us/op
+Iteration   1: 17503.778 us/op
+Iteration   2: 17560.620 us/op
+Iteration   3: 17507.675 us/op
+Iteration   4: 17527.069 us/op
+Iteration   5: 17602.607 us/op
+Iteration   6: 17495.897 us/op
+Iteration   7: 17629.421 us/op
+Iteration   8: 17537.710 us/op
+Iteration   9: 17543.433 us/op
+Iteration  10: 17564.327 us/op
+
+# Run progress: 52.00% complete, ETA 00:29:21
+# Fork: 2 of 5
+# Warmup Iteration   1: 19581.944 us/op
+# Warmup Iteration   2: 17715.682 us/op
+# Warmup Iteration   3: 17520.736 us/op
+Iteration   1: 17500.931 us/op
+Iteration   2: 17856.151 us/op
+Iteration   3: 17516.555 us/op
+Iteration   4: 17515.155 us/op
+Iteration   5: 17495.185 us/op
+Iteration   6: 17486.726 us/op
+Iteration   7: 18254.418 us/op
+Iteration   8: 17495.503 us/op
+Iteration   9: 17620.858 us/op
+Iteration  10: 17680.781 us/op
+
+# Run progress: 52.57% complete, ETA 00:28:48
+# Fork: 3 of 5
+# Warmup Iteration   1: 19393.361 us/op
+# Warmup Iteration   2: 17805.729 us/op
+# Warmup Iteration   3: 17846.386 us/op
+Iteration   1: 17630.707 us/op
+Iteration   2: 17680.029 us/op
+Iteration   3: 17640.807 us/op
+Iteration   4: 17654.038 us/op
+Iteration   5: 17624.570 us/op
+Iteration   6: 17648.418 us/op
+Iteration   7: 17700.574 us/op
+Iteration   8: 17867.869 us/op
+Iteration   9: 18159.007 us/op
+Iteration  10: 17739.610 us/op
+
+# Run progress: 53.14% complete, ETA 00:28:15
+# Fork: 4 of 5
+# Warmup Iteration   1: 19952.634 us/op
+# Warmup Iteration   2: 17974.999 us/op
+# Warmup Iteration   3: 17770.860 us/op
+Iteration   1: 17816.560 us/op
+Iteration   2: 17795.180 us/op
+Iteration   3: 17796.800 us/op
+Iteration   4: 17796.335 us/op
+Iteration   5: 17826.378 us/op
+Iteration   6: 17683.342 us/op
+Iteration   7: 17646.202 us/op
+Iteration   8: 17602.647 us/op
+Iteration   9: 17624.014 us/op
+Iteration  10: 17609.121 us/op
+
+# Run progress: 53.71% complete, ETA 00:27:43
+# Fork: 5 of 5
+# Warmup Iteration   1: 19792.764 us/op
+# Warmup Iteration   2: 18027.117 us/op
+# Warmup Iteration   3: 17629.448 us/op
+Iteration   1: 17561.851 us/op
+Iteration   2: 17616.008 us/op
+Iteration   3: 17631.633 us/op
+Iteration   4: 17790.410 us/op
+Iteration   5: 17576.118 us/op
+Iteration   6: 17611.631 us/op
+Iteration   7: 17632.491 us/op
+Iteration   8: 17596.117 us/op
+Iteration   9: 17704.855 us/op
+Iteration  10: 17572.559 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkJavaSort":
+  17654.614 ±(99.9%) 76.155 us/op [Average]
+  (min, avg, max) = (17486.726, 17654.614, 18254.418), stdev = 153.837
+  CI (99.9%): [17578.459, 17730.768] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkJavaSort
+# Parameters: (size = 1000000)
+
+# Run progress: 54.29% complete, ETA 00:27:11
+# Fork: 1 of 5
+# Warmup Iteration   1: 364346.770 us/op
+# Warmup Iteration   2: 346784.037 us/op
+# Warmup Iteration   3: 339723.375 us/op
+Iteration   1: 339439.638 us/op
+Iteration   2: 339464.466 us/op
+Iteration   3: 340219.211 us/op
+Iteration   4: 340227.050 us/op
+Iteration   5: 335337.021 us/op
+Iteration   6: 321492.512 us/op
+Iteration   7: 320694.068 us/op
+Iteration   8: 319965.498 us/op
+Iteration   9: 319971.627 us/op
+Iteration  10: 320320.163 us/op
+
+# Run progress: 54.86% complete, ETA 00:26:42
+# Fork: 2 of 5
+# Warmup Iteration   1: 362797.017 us/op
+# Warmup Iteration   2: 349493.973 us/op
+# Warmup Iteration   3: 344545.716 us/op
+Iteration   1: 343371.188 us/op
+Iteration   2: 344292.915 us/op
+Iteration   3: 344576.095 us/op
+Iteration   4: 344379.080 us/op
+Iteration   5: 336804.357 us/op
+Iteration   6: 319598.134 us/op
+Iteration   7: 333447.403 us/op
+Iteration   8: 319028.015 us/op
+Iteration   9: 319837.080 us/op
+Iteration  10: 318883.274 us/op
+
+# Run progress: 55.43% complete, ETA 00:26:13
+# Fork: 3 of 5
+# Warmup Iteration   1: 362439.678 us/op
+# Warmup Iteration   2: 349967.636 us/op
+# Warmup Iteration   3: 344757.202 us/op
+Iteration   1: 344254.370 us/op
+Iteration   2: 345090.167 us/op
+Iteration   3: 344574.249 us/op
+Iteration   4: 344612.060 us/op
+Iteration   5: 337100.366 us/op
+Iteration   6: 322619.841 us/op
+Iteration   7: 322149.452 us/op
+Iteration   8: 321603.370 us/op
+Iteration   9: 323164.714 us/op
+Iteration  10: 321800.699 us/op
+
+# Run progress: 56.00% complete, ETA 00:25:44
+# Fork: 4 of 5
+# Warmup Iteration   1: 361398.563 us/op
+# Warmup Iteration   2: 348156.959 us/op
+# Warmup Iteration   3: 342666.584 us/op
+Iteration   1: 341367.128 us/op
+Iteration   2: 341850.398 us/op
+Iteration   3: 341430.144 us/op
+Iteration   4: 341616.728 us/op
+Iteration   5: 338819.304 us/op
+Iteration   6: 321945.880 us/op
+Iteration   7: 324623.697 us/op
+Iteration   8: 337842.959 us/op
+Iteration   9: 321152.409 us/op
+Iteration  10: 320654.550 us/op
+
+# Run progress: 56.57% complete, ETA 00:25:16
+# Fork: 5 of 5
+# Warmup Iteration   1: 365639.100 us/op
+# Warmup Iteration   2: 346676.918 us/op
+# Warmup Iteration   3: 343122.951 us/op
+Iteration   1: 342380.037 us/op
+Iteration   2: 342954.854 us/op
+Iteration   3: 343147.874 us/op
+Iteration   4: 343971.537 us/op
+Iteration   5: 335987.418 us/op
+Iteration   6: 318467.536 us/op
+Iteration   7: 318853.972 us/op
+Iteration   8: 318803.406 us/op
+Iteration   9: 319375.636 us/op
+Iteration  10: 320448.835 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkJavaSort":
+  331680.247 ±(99.9%) 5243.906 us/op [Average]
+  (min, avg, max) = (318467.536, 331680.247, 345090.167), stdev = 10592.949
+  CI (99.9%): [326436.342, 336924.153] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkJavaSort
+# Parameters: (size = 10000000)
+
+# Run progress: 57.14% complete, ETA 00:24:49
+# Fork: 1 of 5
+# Warmup Iteration   1: 4872451.964 us/op
+# Warmup Iteration   2: 5046984.764 us/op
+# Warmup Iteration   3: 4960396.126 us/op
+Iteration   1: 4945444.302 us/op
+Iteration   2: 4975134.459 us/op
+Iteration   3: 5037797.149 us/op
+Iteration   4: 5207251.923 us/op
+Iteration   5: 4976247.587 us/op
+Iteration   6: 4949158.872 us/op
+Iteration   7: 4886468.537 us/op
+Iteration   8: 4879371.089 us/op
+Iteration   9: 4865815.412 us/op
+Iteration  10: 4864003.305 us/op
+
+# Run progress: 57.71% complete, ETA 00:25:05
+# Fork: 2 of 5
+# Warmup Iteration   1: 5036425.782 us/op
+# Warmup Iteration   2: 5014066.653 us/op
+# Warmup Iteration   3: 4997912.640 us/op
+Iteration   1: 4897704.257 us/op
+Iteration   2: 4911713.254 us/op
+Iteration   3: 4910853.590 us/op
+Iteration   4: 4929630.840 us/op
+Iteration   5: 4935717.627 us/op
+Iteration   6: 4891496.828 us/op
+Iteration   7: 4902406.933 us/op
+Iteration   8: 4893610.487 us/op
+Iteration   9: 4912399.233 us/op
+Iteration  10: 4890916.951 us/op
+
+# Run progress: 58.29% complete, ETA 00:25:19
+# Fork: 3 of 5
+# Warmup Iteration   1: 4931685.250 us/op
+# Warmup Iteration   2: 4944368.265 us/op
+# Warmup Iteration   3: 4911607.408 us/op
+Iteration   1: 4917737.685 us/op
+Iteration   2: 4918639.695 us/op
+Iteration   3: 4931706.487 us/op
+Iteration   4: 4905683.560 us/op
+Iteration   5: 4907722.559 us/op
+Iteration   6: 4914717.568 us/op
+Iteration   7: 4918669.054 us/op
+Iteration   8: 4907998.621 us/op
+Iteration   9: 4906925.738 us/op
+Iteration  10: 4899631.592 us/op
+
+# Run progress: 58.86% complete, ETA 00:25:31
+# Fork: 4 of 5
+# Warmup Iteration   1: 4913057.671 us/op
+# Warmup Iteration   2: 4937045.207 us/op
+# Warmup Iteration   3: 4927467.886 us/op
+Iteration   1: 4931968.316 us/op
+Iteration   2: 4938260.382 us/op
+Iteration   3: 4931222.247 us/op
+Iteration   4: 4898594.835 us/op
+Iteration   5: 4895851.382 us/op
+Iteration   6: 4901434.566 us/op
+Iteration   7: 4899955.823 us/op
+Iteration   8: 4895212.050 us/op
+Iteration   9: 4884573.289 us/op
+Iteration  10: 4932317.304 us/op
+
+# Run progress: 59.43% complete, ETA 00:25:42
+# Fork: 5 of 5
+# Warmup Iteration   1: 4813919.355 us/op
+# Warmup Iteration   2: 4866135.751 us/op
+# Warmup Iteration   3: 4887236.710 us/op
+Iteration   1: 4876085.363 us/op
+Iteration   2: 4869906.814 us/op
+Iteration   3: 4872045.262 us/op
+Iteration   4: 4883106.255 us/op
+Iteration   5: 4884084.225 us/op
+Iteration   6: 4912389.608 us/op
+Iteration   7: 4870308.953 us/op
+Iteration   8: 4871437.726 us/op
+Iteration   9: 4858708.285 us/op
+Iteration  10: 4872800.963 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkJavaSort":
+  4913456.777 ±(99.9%) 26502.172 us/op [Average]
+  (min, avg, max) = (4858708.285, 4913456.777, 5207251.923), stdev = 53535.699
+  CI (99.9%): [4886954.605, 4939958.949] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkMergeSort
+# Parameters: (size = 10)
+
+# Run progress: 60.00% complete, ETA 00:25:50
+# Fork: 1 of 5
+# Warmup Iteration   1: 0.327 us/op
+# Warmup Iteration   2: 0.246 us/op
+# Warmup Iteration   3: 0.231 us/op
+Iteration   1: 0.234 us/op
+Iteration   2: 0.234 us/op
+Iteration   3: 0.233 us/op
+Iteration   4: 0.232 us/op
+Iteration   5: 0.234 us/op
+Iteration   6: 0.235 us/op
+Iteration   7: 0.233 us/op
+Iteration   8: 0.231 us/op
+Iteration   9: 0.235 us/op
+Iteration  10: 0.233 us/op
+
+# Run progress: 60.57% complete, ETA 00:25:18
+# Fork: 2 of 5
+# Warmup Iteration   1: 0.322 us/op
+# Warmup Iteration   2: 0.234 us/op
+# Warmup Iteration   3: 0.224 us/op
+Iteration   1: 0.226 us/op
+Iteration   2: 0.224 us/op
+Iteration   3: 0.225 us/op
+Iteration   4: 0.224 us/op
+Iteration   5: 0.224 us/op
+Iteration   6: 0.225 us/op
+Iteration   7: 0.228 us/op
+Iteration   8: 0.228 us/op
+Iteration   9: 0.225 us/op
+Iteration  10: 0.229 us/op
+
+# Run progress: 61.14% complete, ETA 00:24:47
+# Fork: 3 of 5
+# Warmup Iteration   1: 0.287 us/op
+# Warmup Iteration   2: 0.211 us/op
+# Warmup Iteration   3: 0.198 us/op
+Iteration   1: 0.200 us/op
+Iteration   2: 0.205 us/op
+Iteration   3: 0.201 us/op
+Iteration   4: 0.201 us/op
+Iteration   5: 0.210 us/op
+Iteration   6: 0.222 us/op
+Iteration   7: 0.204 us/op
+Iteration   8: 0.204 us/op
+Iteration   9: 0.202 us/op
+Iteration  10: 0.204 us/op
+
+# Run progress: 61.71% complete, ETA 00:24:16
+# Fork: 4 of 5
+# Warmup Iteration   1: 0.333 us/op
+# Warmup Iteration   2: 0.225 us/op
+# Warmup Iteration   3: 0.267 us/op
+Iteration   1: 0.216 us/op
+Iteration   2: 0.213 us/op
+Iteration   3: 0.213 us/op
+Iteration   4: 0.213 us/op
+Iteration   5: 0.213 us/op
+Iteration   6: 0.214 us/op
+Iteration   7: 0.214 us/op
+Iteration   8: 0.213 us/op
+Iteration   9: 0.213 us/op
+Iteration  10: 0.214 us/op
+
+# Run progress: 62.29% complete, ETA 00:23:45
+# Fork: 5 of 5
+# Warmup Iteration   1: 0.288 us/op
+# Warmup Iteration   2: 0.219 us/op
+# Warmup Iteration   3: 0.212 us/op
+Iteration   1: 0.210 us/op
+Iteration   2: 0.210 us/op
+Iteration   3: 0.214 us/op
+Iteration   4: 0.209 us/op
+Iteration   5: 0.209 us/op
+Iteration   6: 0.209 us/op
+Iteration   7: 0.209 us/op
+Iteration   8: 0.209 us/op
+Iteration   9: 0.209 us/op
+Iteration  10: 0.214 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkMergeSort":
+  0.218 ±(99.9%) 0.005 us/op [Average]
+  (min, avg, max) = (0.200, 0.218, 0.235), stdev = 0.011
+  CI (99.9%): [0.212, 0.223] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkMergeSort
+# Parameters: (size = 100)
+
+# Run progress: 62.86% complete, ETA 00:23:15
+# Fork: 1 of 5
+# Warmup Iteration   1: 5.855 us/op
+# Warmup Iteration   2: 4.211 us/op
+# Warmup Iteration   3: 4.205 us/op
+Iteration   1: 4.186 us/op
+Iteration   2: 4.191 us/op
+Iteration   3: 4.157 us/op
+Iteration   4: 4.194 us/op
+Iteration   5: 4.146 us/op
+Iteration   6: 4.235 us/op
+Iteration   7: 4.148 us/op
+Iteration   8: 4.151 us/op
+Iteration   9: 4.202 us/op
+Iteration  10: 4.217 us/op
+
+# Run progress: 63.43% complete, ETA 00:22:45
+# Fork: 2 of 5
+# Warmup Iteration   1: 5.728 us/op
+# Warmup Iteration   2: 3.862 us/op
+# Warmup Iteration   3: 3.812 us/op
+Iteration   1: 3.913 us/op
+Iteration   2: 3.933 us/op
+Iteration   3: 4.054 us/op
+Iteration   4: 4.061 us/op
+Iteration   5: 4.476 us/op
+Iteration   6: 4.435 us/op
+Iteration   7: 4.047 us/op
+Iteration   8: 4.038 us/op
+Iteration   9: 3.913 us/op
+Iteration  10: 3.880 us/op
+
+# Run progress: 64.00% complete, ETA 00:22:16
+# Fork: 3 of 5
+# Warmup Iteration   1: 6.683 us/op
+# Warmup Iteration   2: 4.497 us/op
+# Warmup Iteration   3: 4.621 us/op
+Iteration   1: 4.557 us/op
+Iteration   2: 4.216 us/op
+Iteration   3: 4.243 us/op
+Iteration   4: 4.224 us/op
+Iteration   5: 4.308 us/op
+Iteration   6: 5.305 us/op
+Iteration   7: 4.378 us/op
+Iteration   8: 4.295 us/op
+Iteration   9: 4.547 us/op
+Iteration  10: 4.439 us/op
+
+# Run progress: 64.57% complete, ETA 00:21:47
+# Fork: 4 of 5
+# Warmup Iteration   1: 6.900 us/op
+# Warmup Iteration   2: 4.726 us/op
+# Warmup Iteration   3: 4.778 us/op
+Iteration   1: 4.256 us/op
+Iteration   2: 4.517 us/op
+Iteration   3: 4.369 us/op
+Iteration   4: 4.197 us/op
+Iteration   5: 4.346 us/op
+Iteration   6: 4.110 us/op
+Iteration   7: 4.064 us/op
+Iteration   8: 4.180 us/op
+Iteration   9: 4.057 us/op
+Iteration  10: 4.222 us/op
+
+# Run progress: 65.14% complete, ETA 00:21:19
+# Fork: 5 of 5
+# Warmup Iteration   1: 5.894 us/op
+# Warmup Iteration   2: 4.020 us/op
+# Warmup Iteration   3: 3.914 us/op
+Iteration   1: 3.926 us/op
+Iteration   2: 3.993 us/op
+Iteration   3: 3.965 us/op
+Iteration   4: 4.140 us/op
+Iteration   5: 4.002 us/op
+Iteration   6: 4.824 us/op
+Iteration   7: 4.237 us/op
+Iteration   8: 3.919 us/op
+Iteration   9: 3.977 us/op
+Iteration  10: 4.384 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkMergeSort":
+  4.215 ±(99.9%) 0.125 us/op [Average]
+  (min, avg, max) = (3.880, 4.215, 5.305), stdev = 0.252
+  CI (99.9%): [4.091, 4.340] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkMergeSort
+# Parameters: (size = 1000)
+
+# Run progress: 65.71% complete, ETA 00:20:50
+# Fork: 1 of 5
+# Warmup Iteration   1: 127.209 us/op
+# Warmup Iteration   2: 103.865 us/op
+# Warmup Iteration   3: 96.383 us/op
+Iteration   1: 95.897 us/op
+Iteration   2: 96.205 us/op
+Iteration   3: 95.996 us/op
+Iteration   4: 95.712 us/op
+Iteration   5: 94.907 us/op
+Iteration   6: 98.494 us/op
+Iteration   7: 97.066 us/op
+Iteration   8: 97.289 us/op
+Iteration   9: 95.876 us/op
+Iteration  10: 95.751 us/op
+
+# Run progress: 66.29% complete, ETA 00:20:23
+# Fork: 2 of 5
+# Warmup Iteration   1: 122.378 us/op
+# Warmup Iteration   2: 106.311 us/op
+# Warmup Iteration   3: 103.048 us/op
+Iteration   1: 96.728 us/op
+Iteration   2: 96.736 us/op
+Iteration   3: 99.580 us/op
+Iteration   4: 103.980 us/op
+Iteration   5: 103.508 us/op
+Iteration   6: 108.239 us/op
+Iteration   7: 99.606 us/op
+Iteration   8: 104.144 us/op
+Iteration   9: 109.565 us/op
+Iteration  10: 106.978 us/op
+
+# Run progress: 66.86% complete, ETA 00:19:55
+# Fork: 3 of 5
+# Warmup Iteration   1: 127.180 us/op
+# Warmup Iteration   2: 112.836 us/op
+# Warmup Iteration   3: 100.339 us/op
+Iteration   1: 97.016 us/op
+Iteration   2: 94.908 us/op
+Iteration   3: 96.541 us/op
+Iteration   4: 95.034 us/op
+Iteration   5: 96.595 us/op
+Iteration   6: 99.670 us/op
+Iteration   7: 96.917 us/op
+Iteration   8: 98.049 us/op
+Iteration   9: 98.190 us/op
+Iteration  10: 98.081 us/op
+
+# Run progress: 67.43% complete, ETA 00:19:28
+# Fork: 4 of 5
+# Warmup Iteration   1: 122.400 us/op
+# Warmup Iteration   2: 105.380 us/op
+# Warmup Iteration   3: 97.365 us/op
+Iteration   1: 96.341 us/op
+Iteration   2: 100.510 us/op
+Iteration   3: 94.757 us/op
+Iteration   4: 96.094 us/op
+Iteration   5: 97.985 us/op
+Iteration   6: 96.698 us/op
+Iteration   7: 95.183 us/op
+Iteration   8: 97.820 us/op
+Iteration   9: 96.103 us/op
+Iteration  10: 97.903 us/op
+
+# Run progress: 68.00% complete, ETA 00:19:01
+# Fork: 5 of 5
+# Warmup Iteration   1: 124.882 us/op
+# Warmup Iteration   2: 106.924 us/op
+# Warmup Iteration   3: 96.591 us/op
+Iteration   1: 98.723 us/op
+Iteration   2: 100.451 us/op
+Iteration   3: 95.350 us/op
+Iteration   4: 94.800 us/op
+Iteration   5: 95.393 us/op
+Iteration   6: 95.180 us/op
+Iteration   7: 98.803 us/op
+Iteration   8: 98.236 us/op
+Iteration   9: 96.943 us/op
+Iteration  10: 95.931 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkMergeSort":
+  98.049 ±(99.9%) 1.699 us/op [Average]
+  (min, avg, max) = (94.757, 98.049, 109.565), stdev = 3.433
+  CI (99.9%): [96.350, 99.749] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkMergeSort
+# Parameters: (size = 10000)
+
+# Run progress: 68.57% complete, ETA 00:18:35
+# Fork: 1 of 5
+# Warmup Iteration   1: 2130.298 us/op
+# Warmup Iteration   2: 1529.217 us/op
+# Warmup Iteration   3: 1480.083 us/op
+Iteration   1: 1455.752 us/op
+Iteration   2: 1434.866 us/op
+Iteration   3: 1588.861 us/op
+Iteration   4: 1497.896 us/op
+Iteration   5: 1556.749 us/op
+Iteration   6: 1466.831 us/op
+Iteration   7: 1442.399 us/op
+Iteration   8: 1522.086 us/op
+Iteration   9: 1635.066 us/op
+Iteration  10: 1465.281 us/op
+
+# Run progress: 69.14% complete, ETA 00:18:09
+# Fork: 2 of 5
+# Warmup Iteration   1: 2199.695 us/op
+# Warmup Iteration   2: 1661.621 us/op
+# Warmup Iteration   3: 1505.705 us/op
+Iteration   1: 1532.548 us/op
+Iteration   2: 1471.542 us/op
+Iteration   3: 1485.543 us/op
+Iteration   4: 1496.883 us/op
+Iteration   5: 1529.028 us/op
+Iteration   6: 1522.522 us/op
+Iteration   7: 1438.024 us/op
+Iteration   8: 1423.388 us/op
+Iteration   9: 1468.933 us/op
+Iteration  10: 1475.621 us/op
+
+# Run progress: 69.71% complete, ETA 00:17:43
+# Fork: 3 of 5
+# Warmup Iteration   1: 2131.104 us/op
+# Warmup Iteration   2: 1559.707 us/op
+# Warmup Iteration   3: 1486.518 us/op
+Iteration   1: 1437.688 us/op
+Iteration   2: 1414.031 us/op
+Iteration   3: 1406.253 us/op
+Iteration   4: 1468.303 us/op
+Iteration   5: 1484.467 us/op
+Iteration   6: 1479.927 us/op
+Iteration   7: 1474.958 us/op
+Iteration   8: 1470.347 us/op
+Iteration   9: 1486.011 us/op
+Iteration  10: 1455.111 us/op
+
+# Run progress: 70.29% complete, ETA 00:17:17
+# Fork: 4 of 5
+# Warmup Iteration   1: 2189.857 us/op
+# Warmup Iteration   2: 1554.748 us/op
+# Warmup Iteration   3: 1444.613 us/op
+Iteration   1: 1432.652 us/op
+Iteration   2: 1434.935 us/op
+Iteration   3: 1479.507 us/op
+Iteration   4: 1465.264 us/op
+Iteration   5: 1428.261 us/op
+Iteration   6: 1468.100 us/op
+Iteration   7: 1447.262 us/op
+Iteration   8: 1423.920 us/op
+Iteration   9: 1448.137 us/op
+Iteration  10: 1447.890 us/op
+
+# Run progress: 70.86% complete, ETA 00:16:52
+# Fork: 5 of 5
+# Warmup Iteration   1: 2031.119 us/op
+# Warmup Iteration   2: 1551.327 us/op
+# Warmup Iteration   3: 1413.516 us/op
+Iteration   1: 1455.733 us/op
+Iteration   2: 1478.365 us/op
+Iteration   3: 1465.600 us/op
+Iteration   4: 1462.172 us/op
+Iteration   5: 1460.108 us/op
+Iteration   6: 1470.228 us/op
+Iteration   7: 1500.494 us/op
+Iteration   8: 1508.096 us/op
+Iteration   9: 1477.301 us/op
+Iteration  10: 1480.100 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkMergeSort":
+  1474.421 ±(99.9%) 20.994 us/op [Average]
+  (min, avg, max) = (1406.253, 1474.421, 1635.066), stdev = 42.409
+  CI (99.9%): [1453.427, 1495.415] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkMergeSort
+# Parameters: (size = 100000)
+
+# Run progress: 71.43% complete, ETA 00:16:27
+# Fork: 1 of 5
+# Warmup Iteration   1: 28259.433 us/op
+# Warmup Iteration   2: 20709.459 us/op
+# Warmup Iteration   3: 18923.028 us/op
+Iteration   1: 19045.906 us/op
+Iteration   2: 18772.235 us/op
+Iteration   3: 19005.505 us/op
+Iteration   4: 19022.154 us/op
+Iteration   5: 19177.660 us/op
+Iteration   6: 19149.369 us/op
+Iteration   7: 19323.544 us/op
+Iteration   8: 19066.513 us/op
+Iteration   9: 19116.504 us/op
+Iteration  10: 19082.356 us/op
+
+# Run progress: 72.00% complete, ETA 00:16:02
+# Fork: 2 of 5
+# Warmup Iteration   1: 29164.173 us/op
+# Warmup Iteration   2: 21116.129 us/op
+# Warmup Iteration   3: 18957.192 us/op
+Iteration   1: 19090.601 us/op
+Iteration   2: 19046.857 us/op
+Iteration   3: 19093.496 us/op
+Iteration   4: 19123.745 us/op
+Iteration   5: 18920.196 us/op
+Iteration   6: 19199.869 us/op
+Iteration   7: 19113.466 us/op
+Iteration   8: 18981.155 us/op
+Iteration   9: 19275.017 us/op
+Iteration  10: 19202.237 us/op
+
+# Run progress: 72.57% complete, ETA 00:15:38
+# Fork: 3 of 5
+# Warmup Iteration   1: 25797.002 us/op
+# Warmup Iteration   2: 21604.498 us/op
+# Warmup Iteration   3: 18991.393 us/op
+Iteration   1: 19078.652 us/op
+Iteration   2: 18948.680 us/op
+Iteration   3: 19066.216 us/op
+Iteration   4: 18997.268 us/op
+Iteration   5: 18973.434 us/op
+Iteration   6: 19068.304 us/op
+Iteration   7: 19089.260 us/op
+Iteration   8: 18943.581 us/op
+Iteration   9: 19020.714 us/op
+Iteration  10: 19025.661 us/op
+
+# Run progress: 73.14% complete, ETA 00:15:14
+# Fork: 4 of 5
+# Warmup Iteration   1: 30655.595 us/op
+# Warmup Iteration   2: 20727.258 us/op
+# Warmup Iteration   3: 19251.700 us/op
+Iteration   1: 19225.529 us/op
+Iteration   2: 19074.753 us/op
+Iteration   3: 19084.523 us/op
+Iteration   4: 20006.232 us/op
+Iteration   5: 19094.364 us/op
+Iteration   6: 19070.862 us/op
+Iteration   7: 18984.316 us/op
+Iteration   8: 18818.876 us/op
+Iteration   9: 19314.263 us/op
+Iteration  10: 19061.645 us/op
+
+# Run progress: 73.71% complete, ETA 00:14:50
+# Fork: 5 of 5
+# Warmup Iteration   1: 27653.396 us/op
+# Warmup Iteration   2: 21069.002 us/op
+# Warmup Iteration   3: 19136.882 us/op
+Iteration   1: 19245.669 us/op
+Iteration   2: 19072.978 us/op
+Iteration   3: 19148.810 us/op
+Iteration   4: 19140.579 us/op
+Iteration   5: 19005.224 us/op
+Iteration   6: 19080.710 us/op
+Iteration   7: 19082.187 us/op
+Iteration   8: 18970.355 us/op
+Iteration   9: 19106.587 us/op
+Iteration  10: 19035.356 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkMergeSort":
+  19092.879 ±(99.9%) 83.912 us/op [Average]
+  (min, avg, max) = (18772.235, 19092.879, 20006.232), stdev = 169.506
+  CI (99.9%): [19008.968, 19176.791] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkMergeSort
+# Parameters: (size = 1000000)
+
+# Run progress: 74.29% complete, ETA 00:14:26
+# Fork: 1 of 5
+# Warmup Iteration   1: 401366.534 us/op
+# Warmup Iteration   2: 356820.388 us/op
+# Warmup Iteration   3: 358386.084 us/op
+Iteration   1: 357484.547 us/op
+Iteration   2: 363865.391 us/op
+Iteration   3: 339412.530 us/op
+Iteration   4: 339579.660 us/op
+Iteration   5: 339822.418 us/op
+Iteration   6: 352670.934 us/op
+Iteration   7: 338504.055 us/op
+Iteration   8: 338815.225 us/op
+Iteration   9: 338427.802 us/op
+Iteration  10: 372942.839 us/op
+
+# Run progress: 74.86% complete, ETA 00:14:04
+# Fork: 2 of 5
+# Warmup Iteration   1: 415173.154 us/op
+# Warmup Iteration   2: 362850.649 us/op
+# Warmup Iteration   3: 365126.042 us/op
+Iteration   1: 364202.402 us/op
+Iteration   2: 364426.857 us/op
+Iteration   3: 338302.035 us/op
+Iteration   4: 337792.074 us/op
+Iteration   5: 337518.909 us/op
+Iteration   6: 351946.651 us/op
+Iteration   7: 337682.840 us/op
+Iteration   8: 336912.297 us/op
+Iteration   9: 337553.346 us/op
+Iteration  10: 357270.867 us/op
+
+# Run progress: 75.43% complete, ETA 00:13:42
+# Fork: 3 of 5
+# Warmup Iteration   1: 404313.532 us/op
+# Warmup Iteration   2: 355782.497 us/op
+# Warmup Iteration   3: 356516.625 us/op
+Iteration   1: 356876.830 us/op
+Iteration   2: 358708.387 us/op
+Iteration   3: 340043.899 us/op
+Iteration   4: 339475.403 us/op
+Iteration   5: 338920.282 us/op
+Iteration   6: 351896.416 us/op
+Iteration   7: 338210.986 us/op
+Iteration   8: 337956.516 us/op
+Iteration   9: 341265.129 us/op
+Iteration  10: 358085.096 us/op
+
+# Run progress: 76.00% complete, ETA 00:13:20
+# Fork: 4 of 5
+# Warmup Iteration   1: 404454.164 us/op
+# Warmup Iteration   2: 358034.688 us/op
+# Warmup Iteration   3: 359034.082 us/op
+Iteration   1: 359002.609 us/op
+Iteration   2: 362278.583 us/op
+Iteration   3: 341718.023 us/op
+Iteration   4: 340215.997 us/op
+Iteration   5: 341078.552 us/op
+Iteration   6: 354469.536 us/op
+Iteration   7: 340725.443 us/op
+Iteration   8: 340219.955 us/op
+Iteration   9: 339852.431 us/op
+Iteration  10: 361022.961 us/op
+
+# Run progress: 76.57% complete, ETA 00:12:58
+# Fork: 5 of 5
+# Warmup Iteration   1: 398503.233 us/op
+# Warmup Iteration   2: 357960.916 us/op
+# Warmup Iteration   3: 359483.549 us/op
+Iteration   1: 360296.501 us/op
+Iteration   2: 360876.779 us/op
+Iteration   3: 339702.198 us/op
+Iteration   4: 339277.759 us/op
+Iteration   5: 339330.327 us/op
+Iteration   6: 353448.469 us/op
+Iteration   7: 337567.823 us/op
+Iteration   8: 337796.718 us/op
+Iteration   9: 362857.789 us/op
+Iteration  10: 356773.957 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkMergeSort":
+  347501.700 ±(99.9%) 5217.877 us/op [Average]
+  (min, avg, max) = (336912.297, 347501.700, 372942.839), stdev = 10540.369
+  CI (99.9%): [342283.824, 352719.577] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkMergeSort
+# Parameters: (size = 10000000)
+
+# Run progress: 77.14% complete, ETA 00:12:37
+# Fork: 1 of 5
+# Warmup Iteration   1: 5038034.808 us/op
+# Warmup Iteration   2: 5400914.990 us/op
+# Warmup Iteration   3: 5437622.400 us/op
+Iteration   1: 5485191.082 us/op
+Iteration   2: 5514854.181 us/op
+Iteration   3: 5000583.682 us/op
+Iteration   4: 5040818.158 us/op
+Iteration   5: 5016117.670 us/op
+Iteration   6: 5227834.147 us/op
+Iteration   7: 4972209.955 us/op
+Iteration   8: 5140648.715 us/op
+Iteration   9: 5036390.346 us/op
+Iteration  10: 5177868.970 us/op
+
+# Run progress: 77.71% complete, ETA 00:12:33
+# Fork: 2 of 5
+# Warmup Iteration   1: 4996262.732 us/op
+# Warmup Iteration   2: 5092261.836 us/op
+# Warmup Iteration   3: 5190429.133 us/op
+Iteration   1: 5163884.507 us/op
+Iteration   2: 5020780.098 us/op
+Iteration   3: 4993565.957 us/op
+Iteration   4: 4982738.783 us/op
+Iteration   5: 5028405.485 us/op
+Iteration   6: 4994257.724 us/op
+Iteration   7: 4953210.338 us/op
+Iteration   8: 4984356.101 us/op
+Iteration   9: 5016824.347 us/op
+Iteration  10: 4989476.445 us/op
+
+# Run progress: 78.29% complete, ETA 00:12:28
+# Fork: 3 of 5
+# Warmup Iteration   1: 4980150.916 us/op
+# Warmup Iteration   2: 5163758.577 us/op
+# Warmup Iteration   3: 5170098.981 us/op
+Iteration   1: 5134761.462 us/op
+Iteration   2: 5022058.959 us/op
+Iteration   3: 5115968.764 us/op
+Iteration   4: 4989325.047 us/op
+Iteration   5: 5103152.656 us/op
+Iteration   6: 5084444.411 us/op
+Iteration   7: 5027073.183 us/op
+Iteration   8: 5059174.058 us/op
+Iteration   9: 5148663.942 us/op
+Iteration  10: 4986532.512 us/op
+
+# Run progress: 78.86% complete, ETA 00:12:21
+# Fork: 4 of 5
+# Warmup Iteration   1: 5171026.621 us/op
+# Warmup Iteration   2: 5297465.958 us/op
+# Warmup Iteration   3: 5329106.323 us/op
+Iteration   1: 5447126.016 us/op
+Iteration   2: 5454979.504 us/op
+Iteration   3: 5210073.519 us/op
+Iteration   4: 4992433.063 us/op
+Iteration   5: 5052834.856 us/op
+Iteration   6: 4998139.301 us/op
+Iteration   7: 5072063.385 us/op
+Iteration   8: 5046193.449 us/op
+Iteration   9: 5033046.295 us/op
+Iteration  10: 5110958.948 us/op
+
+# Run progress: 79.43% complete, ETA 00:12:15
+# Fork: 5 of 5
+# Warmup Iteration   1: 5030747.945 us/op
+# Warmup Iteration   2: 5104174.780 us/op
+# Warmup Iteration   3: 5211678.784 us/op
+Iteration   1: 5146579.709 us/op
+Iteration   2: 4971612.115 us/op
+Iteration   3: 5069368.838 us/op
+Iteration   4: 4980916.517 us/op
+Iteration   5: 5023499.187 us/op
+Iteration   6: 4963031.640 us/op
+Iteration   7: 4947696.211 us/op
+Iteration   8: 4974329.371 us/op
+Iteration   9: 4999680.658 us/op
+Iteration  10: 5125939.617 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkMergeSort":
+  5080633.478 ±(99.9%) 67603.939 us/op [Average]
+  (min, avg, max) = (4947696.211, 5080633.478, 5514854.181), stdev = 136563.301
+  CI (99.9%): [5013029.539, 5148237.417] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkQSort
+# Parameters: (size = 10)
+
+# Run progress: 80.00% complete, ETA 00:12:07
+# Fork: 1 of 5
+# Warmup Iteration   1: 0.322 us/op
+# Warmup Iteration   2: 0.280 us/op
+# Warmup Iteration   3: 0.281 us/op
+Iteration   1: 0.281 us/op
+Iteration   2: 0.281 us/op
+Iteration   3: 0.280 us/op
+Iteration   4: 0.281 us/op
+Iteration   5: 0.280 us/op
+Iteration   6: 0.281 us/op
+Iteration   7: 0.282 us/op
+Iteration   8: 0.282 us/op
+Iteration   9: 0.280 us/op
+Iteration  10: 0.281 us/op
+
+# Run progress: 80.57% complete, ETA 00:11:43
+# Fork: 2 of 5
+# Warmup Iteration   1: 0.329 us/op
+# Warmup Iteration   2: 0.297 us/op
+# Warmup Iteration   3: 0.294 us/op
+Iteration   1: 0.292 us/op
+Iteration   2: 0.293 us/op
+Iteration   3: 0.293 us/op
+Iteration   4: 0.293 us/op
+Iteration   5: 0.293 us/op
+Iteration   6: 0.293 us/op
+Iteration   7: 0.293 us/op
+Iteration   8: 0.293 us/op
+Iteration   9: 0.292 us/op
+Iteration  10: 0.292 us/op
+
+# Run progress: 81.14% complete, ETA 00:11:19
+# Fork: 3 of 5
+# Warmup Iteration   1: 0.360 us/op
+# Warmup Iteration   2: 0.318 us/op
+# Warmup Iteration   3: 0.303 us/op
+Iteration   1: 0.303 us/op
+Iteration   2: 0.303 us/op
+Iteration   3: 0.303 us/op
+Iteration   4: 0.305 us/op
+Iteration   5: 0.306 us/op
+Iteration   6: 0.309 us/op
+Iteration   7: 0.307 us/op
+Iteration   8: 0.307 us/op
+Iteration   9: 0.303 us/op
+Iteration  10: 0.304 us/op
+
+# Run progress: 81.71% complete, ETA 00:10:55
+# Fork: 4 of 5
+# Warmup Iteration   1: 0.329 us/op
+# Warmup Iteration   2: 0.278 us/op
+# Warmup Iteration   3: 0.280 us/op
+Iteration   1: 0.280 us/op
+Iteration   2: 0.281 us/op
+Iteration   3: 0.280 us/op
+Iteration   4: 0.281 us/op
+Iteration   5: 0.281 us/op
+Iteration   6: 0.280 us/op
+Iteration   7: 0.281 us/op
+Iteration   8: 0.280 us/op
+Iteration   9: 0.280 us/op
+Iteration  10: 0.280 us/op
+
+# Run progress: 82.29% complete, ETA 00:10:32
+# Fork: 5 of 5
+# Warmup Iteration   1: 0.329 us/op
+# Warmup Iteration   2: 0.379 us/op
+# Warmup Iteration   3: 0.378 us/op
+Iteration   1: 0.377 us/op
+Iteration   2: 0.378 us/op
+Iteration   3: 0.377 us/op
+Iteration   4: 0.378 us/op
+Iteration   5: 0.380 us/op
+Iteration   6: 0.380 us/op
+Iteration   7: 0.381 us/op
+Iteration   8: 0.381 us/op
+Iteration   9: 0.380 us/op
+Iteration  10: 0.380 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkQSort":
+  0.308 ±(99.9%) 0.018 us/op [Average]
+  (min, avg, max) = (0.280, 0.308, 0.381), stdev = 0.037
+  CI (99.9%): [0.289, 0.326] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkQSort
+# Parameters: (size = 100)
+
+# Run progress: 82.86% complete, ETA 00:10:09
+# Fork: 1 of 5
+# Warmup Iteration   1: 4.743 us/op
+# Warmup Iteration   2: 4.275 us/op
+# Warmup Iteration   3: 4.273 us/op
+Iteration   1: 4.292 us/op
+Iteration   2: 4.275 us/op
+Iteration   3: 4.327 us/op
+Iteration   4: 4.312 us/op
+Iteration   5: 4.274 us/op
+Iteration   6: 4.266 us/op
+Iteration   7: 4.280 us/op
+Iteration   8: 4.262 us/op
+Iteration   9: 4.271 us/op
+Iteration  10: 4.257 us/op
+
+# Run progress: 83.43% complete, ETA 00:09:46
+# Fork: 2 of 5
+# Warmup Iteration   1: 4.916 us/op
+# Warmup Iteration   2: 4.469 us/op
+# Warmup Iteration   3: 4.454 us/op
+Iteration   1: 4.468 us/op
+Iteration   2: 4.468 us/op
+Iteration   3: 4.715 us/op
+Iteration   4: 4.517 us/op
+Iteration   5: 4.490 us/op
+Iteration   6: 4.527 us/op
+Iteration   7: 6.376 us/op
+Iteration   8: 5.583 us/op
+Iteration   9: 4.533 us/op
+Iteration  10: 4.555 us/op
+
+# Run progress: 84.00% complete, ETA 00:09:23
+# Fork: 3 of 5
+# Warmup Iteration   1: 6.189 us/op
+# Warmup Iteration   2: 5.144 us/op
+# Warmup Iteration   3: 5.013 us/op
+Iteration   1: 5.204 us/op
+Iteration   2: 5.143 us/op
+Iteration   3: 4.947 us/op
+Iteration   4: 5.057 us/op
+Iteration   5: 4.820 us/op
+Iteration   6: 4.699 us/op
+Iteration   7: 4.688 us/op
+Iteration   8: 4.696 us/op
+Iteration   9: 4.835 us/op
+Iteration  10: 4.769 us/op
+
+# Run progress: 84.57% complete, ETA 00:09:01
+# Fork: 4 of 5
+# Warmup Iteration   1: 5.606 us/op
+# Warmup Iteration   2: 4.593 us/op
+# Warmup Iteration   3: 4.611 us/op
+Iteration   1: 5.388 us/op
+Iteration   2: 4.725 us/op
+Iteration   3: 6.090 us/op
+Iteration   4: 4.867 us/op
+Iteration   5: 5.798 us/op
+Iteration   6: 5.207 us/op
+Iteration   7: 5.403 us/op
+Iteration   8: 5.097 us/op
+Iteration   9: 5.256 us/op
+Iteration  10: 5.113 us/op
+
+# Run progress: 85.14% complete, ETA 00:08:38
+# Fork: 5 of 5
+# Warmup Iteration   1: 4.787 us/op
+# Warmup Iteration   2: 4.461 us/op
+# Warmup Iteration   3: 4.360 us/op
+Iteration   1: 4.343 us/op
+Iteration   2: 4.442 us/op
+Iteration   3: 4.529 us/op
+Iteration   4: 4.524 us/op
+Iteration   5: 4.596 us/op
+Iteration   6: 4.844 us/op
+Iteration   7: 5.446 us/op
+Iteration   8: 4.662 us/op
+Iteration   9: 4.592 us/op
+Iteration  10: 4.515 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkQSort":
+  4.787 ±(99.9%) 0.243 us/op [Average]
+  (min, avg, max) = (4.257, 4.787, 6.376), stdev = 0.491
+  CI (99.9%): [4.544, 5.030] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkQSort
+# Parameters: (size = 1000)
+
+# Run progress: 85.71% complete, ETA 00:08:16
+# Fork: 1 of 5
+# Warmup Iteration   1: 111.522 us/op
+# Warmup Iteration   2: 102.375 us/op
+# Warmup Iteration   3: 102.346 us/op
+Iteration   1: 101.620 us/op
+Iteration   2: 101.498 us/op
+Iteration   3: 103.108 us/op
+Iteration   4: 101.324 us/op
+Iteration   5: 101.184 us/op
+Iteration   6: 108.607 us/op
+Iteration   7: 113.592 us/op
+Iteration   8: 104.265 us/op
+Iteration   9: 117.705 us/op
+Iteration  10: 111.944 us/op
+
+# Run progress: 86.29% complete, ETA 00:07:54
+# Fork: 2 of 5
+# Warmup Iteration   1: 112.555 us/op
+# Warmup Iteration   2: 102.215 us/op
+# Warmup Iteration   3: 103.769 us/op
+Iteration   1: 103.636 us/op
+Iteration   2: 104.682 us/op
+Iteration   3: 105.798 us/op
+Iteration   4: 118.896 us/op
+Iteration   5: 111.575 us/op
+Iteration   6: 114.832 us/op
+Iteration   7: 106.159 us/op
+Iteration   8: 107.084 us/op
+Iteration   9: 118.331 us/op
+Iteration  10: 106.801 us/op
+
+# Run progress: 86.86% complete, ETA 00:07:33
+# Fork: 3 of 5
+# Warmup Iteration   1: 112.228 us/op
+# Warmup Iteration   2: 103.032 us/op
+# Warmup Iteration   3: 102.800 us/op
+Iteration   1: 103.511 us/op
+Iteration   2: 104.810 us/op
+Iteration   3: 103.495 us/op
+Iteration   4: 102.642 us/op
+Iteration   5: 102.126 us/op
+Iteration   6: 102.095 us/op
+Iteration   7: 103.709 us/op
+Iteration   8: 103.872 us/op
+Iteration   9: 104.027 us/op
+Iteration  10: 102.598 us/op
+
+# Run progress: 87.43% complete, ETA 00:07:11
+# Fork: 4 of 5
+# Warmup Iteration   1: 114.900 us/op
+# Warmup Iteration   2: 103.067 us/op
+# Warmup Iteration   3: 110.931 us/op
+Iteration   1: 104.571 us/op
+Iteration   2: 104.837 us/op
+Iteration   3: 104.018 us/op
+Iteration   4: 105.327 us/op
+Iteration   5: 105.244 us/op
+Iteration   6: 103.933 us/op
+Iteration   7: 105.521 us/op
+Iteration   8: 104.382 us/op
+Iteration   9: 104.095 us/op
+Iteration  10: 104.714 us/op
+
+# Run progress: 88.00% complete, ETA 00:06:50
+# Fork: 5 of 5
+# Warmup Iteration   1: 111.805 us/op
+# Warmup Iteration   2: 102.681 us/op
+# Warmup Iteration   3: 101.967 us/op
+Iteration   1: 101.649 us/op
+Iteration   2: 101.520 us/op
+Iteration   3: 101.554 us/op
+Iteration   4: 101.761 us/op
+Iteration   5: 101.348 us/op
+Iteration   6: 101.579 us/op
+Iteration   7: 101.450 us/op
+Iteration   8: 101.587 us/op
+Iteration   9: 103.751 us/op
+Iteration  10: 101.955 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkQSort":
+  105.206 ±(99.9%) 2.257 us/op [Average]
+  (min, avg, max) = (101.184, 105.206, 118.896), stdev = 4.560
+  CI (99.9%): [102.949, 107.464] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkQSort
+# Parameters: (size = 10000)
+
+# Run progress: 88.57% complete, ETA 00:06:29
+# Fork: 1 of 5
+# Warmup Iteration   1: 1483.952 us/op
+# Warmup Iteration   2: 1394.913 us/op
+# Warmup Iteration   3: 1406.739 us/op
+Iteration   1: 1395.272 us/op
+Iteration   2: 1401.986 us/op
+Iteration   3: 1392.359 us/op
+Iteration   4: 1404.534 us/op
+Iteration   5: 1417.856 us/op
+Iteration   6: 1488.986 us/op
+Iteration   7: 1461.647 us/op
+Iteration   8: 1394.476 us/op
+Iteration   9: 1394.653 us/op
+Iteration  10: 1392.918 us/op
+
+# Run progress: 89.14% complete, ETA 00:06:08
+# Fork: 2 of 5
+# Warmup Iteration   1: 1531.533 us/op
+# Warmup Iteration   2: 1400.575 us/op
+# Warmup Iteration   3: 1399.698 us/op
+Iteration   1: 1400.707 us/op
+Iteration   2: 1431.948 us/op
+Iteration   3: 1401.261 us/op
+Iteration   4: 1420.995 us/op
+Iteration   5: 1403.349 us/op
+Iteration   6: 1398.609 us/op
+Iteration   7: 1398.862 us/op
+Iteration   8: 1396.896 us/op
+Iteration   9: 1399.614 us/op
+Iteration  10: 1398.997 us/op
+
+# Run progress: 89.71% complete, ETA 00:05:47
+# Fork: 3 of 5
+# Warmup Iteration   1: 1677.214 us/op
+# Warmup Iteration   2: 1384.430 us/op
+# Warmup Iteration   3: 1396.649 us/op
+Iteration   1: 1390.107 us/op
+Iteration   2: 1387.016 us/op
+Iteration   3: 1408.385 us/op
+Iteration   4: 1390.349 us/op
+Iteration   5: 1380.003 us/op
+Iteration   6: 1392.542 us/op
+Iteration   7: 1400.182 us/op
+Iteration   8: 1381.807 us/op
+Iteration   9: 1378.913 us/op
+Iteration  10: 1391.162 us/op
+
+# Run progress: 90.29% complete, ETA 00:05:26
+# Fork: 4 of 5
+# Warmup Iteration   1: 1500.980 us/op
+# Warmup Iteration   2: 1373.241 us/op
+# Warmup Iteration   3: 1368.155 us/op
+Iteration   1: 1374.430 us/op
+Iteration   2: 1369.132 us/op
+Iteration   3: 1367.145 us/op
+Iteration   4: 1366.454 us/op
+Iteration   5: 1368.953 us/op
+Iteration   6: 1367.430 us/op
+Iteration   7: 1368.438 us/op
+Iteration   8: 1365.688 us/op
+Iteration   9: 1366.721 us/op
+Iteration  10: 1364.890 us/op
+
+# Run progress: 90.86% complete, ETA 00:05:06
+# Fork: 5 of 5
+# Warmup Iteration   1: 1475.655 us/op
+# Warmup Iteration   2: 1369.046 us/op
+# Warmup Iteration   3: 1367.188 us/op
+Iteration   1: 1368.133 us/op
+Iteration   2: 1373.999 us/op
+Iteration   3: 1369.805 us/op
+Iteration   4: 1365.768 us/op
+Iteration   5: 1366.319 us/op
+Iteration   6: 1366.365 us/op
+Iteration   7: 1368.571 us/op
+Iteration   8: 1365.661 us/op
+Iteration   9: 1405.608 us/op
+Iteration  10: 1363.291 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkQSort":
+  1389.784 ±(99.9%) 12.289 us/op [Average]
+  (min, avg, max) = (1363.291, 1389.784, 1488.986), stdev = 24.825
+  CI (99.9%): [1377.494, 1402.073] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkQSort
+# Parameters: (size = 100000)
+
+# Run progress: 91.43% complete, ETA 00:04:46
+# Fork: 1 of 5
+# Warmup Iteration   1: 21137.304 us/op
+# Warmup Iteration   2: 18676.619 us/op
+# Warmup Iteration   3: 18669.909 us/op
+Iteration   1: 18817.678 us/op
+Iteration   2: 18704.424 us/op
+Iteration   3: 18721.020 us/op
+Iteration   4: 19016.191 us/op
+Iteration   5: 18671.315 us/op
+Iteration   6: 18681.712 us/op
+Iteration   7: 18710.705 us/op
+Iteration   8: 18739.337 us/op
+Iteration   9: 18651.562 us/op
+Iteration  10: 18585.266 us/op
+
+# Run progress: 92.00% complete, ETA 00:04:25
+# Fork: 2 of 5
+# Warmup Iteration   1: 21576.380 us/op
+# Warmup Iteration   2: 18238.887 us/op
+# Warmup Iteration   3: 18181.533 us/op
+Iteration   1: 18171.265 us/op
+Iteration   2: 18144.513 us/op
+Iteration   3: 18142.204 us/op
+Iteration   4: 18196.662 us/op
+Iteration   5: 18167.242 us/op
+Iteration   6: 18148.681 us/op
+Iteration   7: 18214.693 us/op
+Iteration   8: 18192.559 us/op
+Iteration   9: 18178.957 us/op
+Iteration  10: 19483.846 us/op
+
+# Run progress: 92.57% complete, ETA 00:04:05
+# Fork: 3 of 5
+# Warmup Iteration   1: 21024.185 us/op
+# Warmup Iteration   2: 18859.113 us/op
+# Warmup Iteration   3: 18804.703 us/op
+Iteration   1: 18721.396 us/op
+Iteration   2: 18774.272 us/op
+Iteration   3: 18728.007 us/op
+Iteration   4: 18773.881 us/op
+Iteration   5: 18731.254 us/op
+Iteration   6: 20898.222 us/op
+Iteration   7: 20493.362 us/op
+Iteration   8: 20143.684 us/op
+Iteration   9: 19809.495 us/op
+Iteration  10: 19595.203 us/op
+
+# Run progress: 93.14% complete, ETA 00:03:46
+# Fork: 4 of 5
+# Warmup Iteration   1: 23106.105 us/op
+# Warmup Iteration   2: 19472.200 us/op
+# Warmup Iteration   3: 19539.780 us/op
+Iteration   1: 20070.148 us/op
+Iteration   2: 19178.614 us/op
+Iteration   3: 19836.313 us/op
+Iteration   4: 19681.289 us/op
+Iteration   5: 20415.246 us/op
+Iteration   6: 19842.742 us/op
+Iteration   7: 19733.805 us/op
+Iteration   8: 19809.125 us/op
+Iteration   9: 19530.816 us/op
+Iteration  10: 19896.175 us/op
+
+# Run progress: 93.71% complete, ETA 00:03:26
+# Fork: 5 of 5
+# Warmup Iteration   1: 20455.478 us/op
+# Warmup Iteration   2: 19675.173 us/op
+# Warmup Iteration   3: 18899.982 us/op
+Iteration   1: 18987.868 us/op
+Iteration   2: 19031.387 us/op
+Iteration   3: 18894.024 us/op
+Iteration   4: 19691.301 us/op
+Iteration   5: 19221.372 us/op
+Iteration   6: 19053.072 us/op
+Iteration   7: 19666.725 us/op
+Iteration   8: 18985.194 us/op
+Iteration   9: 18361.337 us/op
+Iteration  10: 18655.884 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkQSort":
+  19071.021 ±(99.9%) 348.739 us/op [Average]
+  (min, avg, max) = (18142.204, 19071.021, 20898.222), stdev = 704.471
+  CI (99.9%): [18722.281, 19419.760] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkQSort
+# Parameters: (size = 1000000)
+
+# Run progress: 94.29% complete, ETA 00:03:07
+# Fork: 1 of 5
+# Warmup Iteration   1: 377838.416 us/op
+# Warmup Iteration   2: 360084.196 us/op
+# Warmup Iteration   3: 361803.351 us/op
+Iteration   1: 371000.540 us/op
+Iteration   2: 364927.842 us/op
+Iteration   3: 353767.597 us/op
+Iteration   4: 348801.676 us/op
+Iteration   5: 347284.173 us/op
+Iteration   6: 346144.739 us/op
+Iteration   7: 348101.084 us/op
+Iteration   8: 346912.580 us/op
+Iteration   9: 345034.772 us/op
+Iteration  10: 351545.123 us/op
+
+# Run progress: 94.86% complete, ETA 00:02:47
+# Fork: 2 of 5
+# Warmup Iteration   1: 360861.167 us/op
+# Warmup Iteration   2: 337647.308 us/op
+# Warmup Iteration   3: 337125.148 us/op
+Iteration   1: 337420.522 us/op
+Iteration   2: 337047.897 us/op
+Iteration   3: 337623.839 us/op
+Iteration   4: 336962.710 us/op
+Iteration   5: 336806.050 us/op
+Iteration   6: 335319.988 us/op
+Iteration   7: 336343.164 us/op
+Iteration   8: 337266.127 us/op
+Iteration   9: 336262.065 us/op
+Iteration  10: 336634.653 us/op
+
+# Run progress: 95.43% complete, ETA 00:02:28
+# Fork: 3 of 5
+# Warmup Iteration   1: 376828.274 us/op
+# Warmup Iteration   2: 358197.472 us/op
+# Warmup Iteration   3: 354487.371 us/op
+Iteration   1: 353774.581 us/op
+Iteration   2: 354280.724 us/op
+Iteration   3: 354046.036 us/op
+Iteration   4: 355486.144 us/op
+Iteration   5: 354126.322 us/op
+Iteration   6: 354265.683 us/op
+Iteration   7: 357720.528 us/op
+Iteration   8: 355211.433 us/op
+Iteration   9: 354587.447 us/op
+Iteration  10: 355455.655 us/op
+
+# Run progress: 96.00% complete, ETA 00:02:09
+# Fork: 4 of 5
+# Warmup Iteration   1: 361508.685 us/op
+# Warmup Iteration   2: 344594.813 us/op
+# Warmup Iteration   3: 345176.229 us/op
+Iteration   1: 343746.628 us/op
+Iteration   2: 344751.286 us/op
+Iteration   3: 344168.747 us/op
+Iteration   4: 344096.360 us/op
+Iteration   5: 345683.987 us/op
+Iteration   6: 344172.925 us/op
+Iteration   7: 346371.208 us/op
+Iteration   8: 345172.475 us/op
+Iteration   9: 344768.357 us/op
+Iteration  10: 345079.546 us/op
+
+# Run progress: 96.57% complete, ETA 00:01:51
+# Fork: 5 of 5
+# Warmup Iteration   1: 377811.094 us/op
+# Warmup Iteration   2: 363622.483 us/op
+# Warmup Iteration   3: 363242.835 us/op
+Iteration   1: 362886.912 us/op
+Iteration   2: 361333.170 us/op
+Iteration   3: 361878.582 us/op
+Iteration   4: 361367.328 us/op
+Iteration   5: 361970.042 us/op
+Iteration   6: 361373.755 us/op
+Iteration   7: 366060.738 us/op
+Iteration   8: 361620.568 us/op
+Iteration   9: 361156.101 us/op
+Iteration  10: 361685.494 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkQSort":
+  350190.118 ±(99.9%) 4751.551 us/op [Average]
+  (min, avg, max) = (335319.988, 350190.118, 371000.540), stdev = 9598.368
+  CI (99.9%): [345438.567, 354941.669] (assumes normal distribution)
+
+
+# JMH version: 1.27
+# VM version: JDK 11.0.10, OpenJDK 64-Bit Server VM, 11.0.10+9
+# VM invoker: /opt/openjdk-bin-11.0.10_p9/bin/java
+# VM options: -javaagent:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/lib/idea_rt.jar=41281:/home/luca/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/203.7148.57/bin -Dfile.encoding=UTF-8
+# JMH blackhole mode: full blackhole + dont-inline hint
+# Warmup: 3 iterations, 500 ms each
+# Measurement: 10 iterations, 500 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: util.sorting.Benchmarking.benchmarkQSort
+# Parameters: (size = 10000000)
+
+# Run progress: 97.14% complete, ETA 00:01:32
+# Fork: 1 of 5
+# Warmup Iteration   1: 4991484.810 us/op
+# Warmup Iteration   2: 5016597.975 us/op
+# Warmup Iteration   3: 5052050.819 us/op
+Iteration   1: 5364510.607 us/op
+Iteration   2: 5224910.424 us/op
+Iteration   3: 5690787.826 us/op
+Iteration   4: 5257645.346 us/op
+Iteration   5: 5353247.396 us/op
+Iteration   6: 5565032.430 us/op
+Iteration   7: 5796387.467 us/op
+Iteration   8: 5119669.744 us/op
+Iteration   9: 5106729.860 us/op
+Iteration  10: 5267414.421 us/op
+
+# Run progress: 97.71% complete, ETA 00:01:15
+# Fork: 2 of 5
+# Warmup Iteration   1: 5159801.415 us/op
+# Warmup Iteration   2: 5066797.181 us/op
+# Warmup Iteration   3: 5212285.507 us/op
+Iteration   1: 5089421.804 us/op
+Iteration   2: 5132059.233 us/op
+Iteration   3: 5072045.241 us/op
+Iteration   4: 5018296.065 us/op
+Iteration   5: 4962587.899 us/op
+Iteration   6: 5038769.330 us/op
+Iteration   7: 5505361.170 us/op
+Iteration   8: 5633837.911 us/op
+Iteration   9: 5171739.991 us/op
+Iteration  10: 5253078.710 us/op
+
+# Run progress: 98.29% complete, ETA 00:00:57
+# Fork: 3 of 5
+# Warmup Iteration   1: 6083489.492 us/op
+# Warmup Iteration   2: 5772182.879 us/op
+# Warmup Iteration   3: 5666263.836 us/op
+Iteration   1: 5666933.461 us/op
+Iteration   2: 5706153.614 us/op
+Iteration   3: 5766111.060 us/op
+Iteration   4: 5695193.177 us/op
+Iteration   5: 5725152.273 us/op
+Iteration   6: 5913936.732 us/op
+Iteration   7: 5705706.389 us/op
+Iteration   8: 5832850.594 us/op
+Iteration   9: 5792575.044 us/op
+Iteration  10: 5642952.598 us/op
+
+# Run progress: 98.86% complete, ETA 00:00:38
+# Fork: 4 of 5
+# Warmup Iteration   1: 5639672.136 us/op
+# Warmup Iteration   2: 5852111.331 us/op
+# Warmup Iteration   3: 6214687.604 us/op
+Iteration   1: 5758261.372 us/op
+Iteration   2: 5843997.315 us/op
+Iteration   3: 5600663.042 us/op
+Iteration   4: 5523585.710 us/op
+Iteration   5: 5620836.623 us/op
+Iteration   6: 5531366.410 us/op
+Iteration   7: 5284602.286 us/op
+Iteration   8: 5396101.357 us/op
+Iteration   9: 5606433.392 us/op
+Iteration  10: 5575365.339 us/op
+
+# Run progress: 99.43% complete, ETA 00:00:19
+# Fork: 5 of 5
+# Warmup Iteration   1: 5781136.657 us/op
+# Warmup Iteration   2: 5608072.646 us/op
+# Warmup Iteration   3: 5989750.464 us/op
+Iteration   1: 5708569.091 us/op
+Iteration   2: 5711021.723 us/op
+Iteration   3: 5754226.981 us/op
+Iteration   4: 5916038.504 us/op
+Iteration   5: 5764715.043 us/op
+Iteration   6: 5799252.801 us/op
+Iteration   7: 5779784.837 us/op
+Iteration   8: 5919763.340 us/op
+Iteration   9: 6220780.403 us/op
+Iteration  10: 5883698.118 us/op
+
+
+Result "util.sorting.Benchmarking.benchmarkQSort":
+  5545403.230 ±(99.9%) 146869.476 us/op [Average]
+  (min, avg, max) = (4962587.899, 5545403.230, 6220780.403), stdev = 296683.608
+  CI (99.9%): [5398533.754, 5692272.706] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:58:39
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                          (size)  Mode  Cnt         Score        Error  Units
+Benchmarking.benchmarkHeapSort         10  avgt   50         0.363 ±      0.014  us/op
+Benchmarking.benchmarkHeapSort        100  avgt   50         7.139 ±      0.082  us/op
+Benchmarking.benchmarkHeapSort       1000  avgt   50       144.940 ±      0.733  us/op
+Benchmarking.benchmarkHeapSort      10000  avgt   50      2083.482 ±      4.492  us/op
+Benchmarking.benchmarkHeapSort     100000  avgt   50     31451.209 ±     71.420  us/op
+Benchmarking.benchmarkHeapSort    1000000  avgt   50    738832.895 ±   4711.758  us/op
+Benchmarking.benchmarkHeapSort   10000000  avgt   50  14366215.493 ± 161215.513  us/op
+Benchmarking.benchmarkIntroSort        10  avgt   50         0.266 ±      0.032  us/op
+Benchmarking.benchmarkIntroSort       100  avgt   50         4.184 ±      0.189  us/op
+Benchmarking.benchmarkIntroSort      1000  avgt   50        92.179 ±      4.795  us/op
+Benchmarking.benchmarkIntroSort     10000  avgt   50      1472.189 ±     60.427  us/op
+Benchmarking.benchmarkIntroSort    100000  avgt   50     17965.483 ±    194.224  us/op
+Benchmarking.benchmarkIntroSort   1000000  avgt   50    335973.292 ±   4877.939  us/op
+Benchmarking.benchmarkIntroSort  10000000  avgt   50   5003708.969 ±  69867.730  us/op
+Benchmarking.benchmarkJavaSort         10  avgt   50         0.151 ±      0.004  us/op
+Benchmarking.benchmarkJavaSort        100  avgt   50         3.174 ±      0.039  us/op
+Benchmarking.benchmarkJavaSort       1000  avgt   50        92.659 ±      0.538  us/op
+Benchmarking.benchmarkJavaSort      10000  avgt   50      1331.600 ±      9.811  us/op
+Benchmarking.benchmarkJavaSort     100000  avgt   50     17654.614 ±     76.155  us/op
+Benchmarking.benchmarkJavaSort    1000000  avgt   50    331680.247 ±   5243.906  us/op
+Benchmarking.benchmarkJavaSort   10000000  avgt   50   4913456.777 ±  26502.172  us/op
+Benchmarking.benchmarkMergeSort        10  avgt   50         0.218 ±      0.005  us/op
+Benchmarking.benchmarkMergeSort       100  avgt   50         4.215 ±      0.125  us/op
+Benchmarking.benchmarkMergeSort      1000  avgt   50        98.049 ±      1.699  us/op
+Benchmarking.benchmarkMergeSort     10000  avgt   50      1474.421 ±     20.994  us/op
+Benchmarking.benchmarkMergeSort    100000  avgt   50     19092.879 ±     83.912  us/op
+Benchmarking.benchmarkMergeSort   1000000  avgt   50    347501.700 ±   5217.877  us/op
+Benchmarking.benchmarkMergeSort  10000000  avgt   50   5080633.478 ±  67603.939  us/op
+Benchmarking.benchmarkQSort            10  avgt   50         0.308 ±      0.018  us/op
+Benchmarking.benchmarkQSort           100  avgt   50         4.787 ±      0.243  us/op
+Benchmarking.benchmarkQSort          1000  avgt   50       105.206 ±      2.257  us/op
+Benchmarking.benchmarkQSort         10000  avgt   50      1389.784 ±     12.289  us/op
+Benchmarking.benchmarkQSort        100000  avgt   50     19071.021 ±    348.739  us/op
+Benchmarking.benchmarkQSort       1000000  avgt   50    350190.118 ±   4751.551  us/op
+Benchmarking.benchmarkQSort      10000000  avgt   50   5545403.230 ± 146869.476  us/op
