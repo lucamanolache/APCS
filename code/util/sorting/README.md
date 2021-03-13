@@ -22,6 +22,19 @@ turns the Collection into an array instead of keeping it as a collection.
 This is beneficial as it allows it to not have to deal with the ``list.set()`` and ``list.get()``.
 Those two functions both have code to make sure it is allowed and are overall slower than using ``array[i]``.
 
+Graphics
+========
+
+I implemented some graphics in order to draw the sorting using OpenGL and GLFW for the window.
+GLFW has a known bug on macOS needing the JVM argument ``-XstartOnFirstThread``.
+In order to get OpenGL and GLFW functions in Java (both are originally C libraries) I use [LWJGL](https://www.lwjgl.org/).
+The method for drawing is by creating [a class](GraphicsList.java) that calls the method to draw the list everytime
+that the ``list.set()`` method is called (I tried doing this everytime ``list.get()`` was called but that slowed the
+graphics too much, so I decided against it).
+A quick gif of this in action:
+
+![video of sorting](resources/sorting.mp4)
+
 Algorithms Implemented
 ======================
 

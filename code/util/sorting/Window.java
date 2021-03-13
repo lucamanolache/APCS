@@ -1,4 +1,4 @@
-package util.drawing;
+package util.sorting;
 
 import java.nio.IntBuffer;
 import java.util.*;
@@ -7,7 +7,6 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
-import util.sorting.Sorting;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -25,6 +24,11 @@ public class Window {
 
     public void run() {
         init();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         loop();
 
         glfwFreeCallbacks(window);
