@@ -33,7 +33,7 @@ that the ``list.set()`` method is called (I tried doing this everytime ``list.ge
 graphics too much, so I decided against it).
 A quick gif of this in action:
 
-![video of sorting](resources/sorting.mp4)
+![video of sorting](resources/sorting-gif.gif)
 
 Algorithms Implemented
 ======================
