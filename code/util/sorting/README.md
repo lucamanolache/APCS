@@ -31,7 +31,8 @@ In order to get OpenGL and GLFW functions in Java (both are originally C librari
 The method for drawing is by creating [a class](GraphicsList.java) that calls the method to draw the list everytime
 that the ``list.set()`` method is called (I tried doing this everytime ``list.get()`` was called but that slowed the
 graphics too much, so I decided against it).
-A quick gif of this in action:
+A quick gif of this in action (at 2x speed thanks to ``ffmpeg -i sorting.mp4 -filter_complex
+"[0:v]setpts=0.5*PTS[v];[0:a]atempo=2[a]" -map "[v]" -map "[a]" -c:v libx264 -c:a aac output.mp4``, thanks stackoverflow!):
 
 ![video of sorting](resources/sorting-gif.gif)
 
