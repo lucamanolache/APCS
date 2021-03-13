@@ -2,7 +2,8 @@ Benchmarking
 ============
 
 For the benchmarking, I was not able to do it for an array of 1 billion elements because the RAM usage that would take
-is too much (Integer class takes 16 bytes. 16 bytes * 1,000,000,000 = 16 gb only for the array.
+is too much (Integer class takes 16 bytes. 16 bytes * 1,000,000,000 = 16 gb only for the values.
+Another billion pointers are needed. This would take 8 bytes * 10 ^ 9 = 8 gb resulting in at least 24 gb needed.
 Another large amount might be needed for the stack, however that depends on if the algorithm is recursive or not).
 I decided to graph the results of the benchmarking with [matplotlib with python](resources/graph.py).
 Benchmarking the code took way too long, over 5 hours. Part of the reason was debugging and the other part was that
