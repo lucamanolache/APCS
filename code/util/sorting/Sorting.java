@@ -25,21 +25,15 @@ public class Sorting {
             }
         }
 
-        int si = e - s;
-        int sp1, sp2, sp3;
-        sp1 = si / 3;
-        si -= sp1;
-        sp2 = si / 2;
-        si -= sp2;
-        sp3 = si;
+        int mid1 = s + ((e - s) / 3);
+        int mid2 = s + 2 * ((e - s) / 3) + 1;
 
-        threeWaySort(list, s, s + sp1);
-        threeWaySort(list, s + sp1 + 1, s + sp1 + sp2);
-        threeWaySort(list, s + sp1 + sp2 + 1, s + sp1 + sp2 + sp3);
+        threeWaySort(list, s, mid1);
+        threeWaySort(list, mid1, mid2);
+        threeWaySort(list, mid2, e);
 
         var copy = list.subList(s, e + 1).toArray();
-        int l = s;
-        for (int i = 0, j = sp1 + 1, k = sp1 + sp2 + 1; i < sp1 || j < sp1 + sp2 || k < sp1 + sp2 + sp3; l++) {
+        for (int l = s, i = 0, j = mid1 - s + 1, k = mid2 - s + 1; l < e; l++) {
             if (k >= copy.length) {
                 if (((T) copy[i]).compareTo((T) copy[j]) <= 0) {
                     list.set(l, (T) copy[i]);
@@ -48,7 +42,7 @@ public class Sorting {
                     list.set(l, (T) copy[j]);
                     j++;
                 }
-            } else if (j > sp1 + sp2) {
+            } else if (j > mid2 - s) {
                 if (((T) copy[i]).compareTo((T) copy[k]) <= 0) {
                     list.set(l, (T) copy[i]);
                     i++;
@@ -56,7 +50,7 @@ public class Sorting {
                     list.set(l, (T) copy[k]);
                     k++;
                 }
-            } else if (i > sp1) {
+            } else if (i > mid1 - s) {
                 if (((T) copy[j]).compareTo((T) copy[k]) <= 0) {
                     list.set(l, (T) copy[j]);
                     j++;
