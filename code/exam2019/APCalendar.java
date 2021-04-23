@@ -13,8 +13,16 @@ public class APCalendar {
      * Precondition: 0 <= year1 <= year2
      */
     public static int numberOfLeapYears(int year1, int year2) {
-        /* to be implemented in part (a) */
-        return -1;
+        var ans = 0;
+        // just a simple loop, probably a faster way to solve this using mod, however that's kinda risky cus i can always
+        // get the calculations wrong (also, iirc 1900 was not a leap year but 2000 was cus every 100 years its not a
+        // leap year and every 1000 years that rule is broken. idk leap years are weird)
+        for (int i = year1; i <= year2; i++) {
+            if (isLeapYear(i)) {
+                ans++;
+            }
+        }
+        return ans;
     }
 
     /**
@@ -41,7 +49,11 @@ public class APCalendar {
      * Precondition: The date represented by month, day, year is a valid date.
      */
     public static int dayOfWeek(int month, int day, int year) {
-        /* to be implemented in part (b) */
-        return -1;
+        int dayOfYear = dayOfYear(month, day, year);
+        int firstDay = firstDayOfYear(year);
+
+        // day of year % 7 will return the day of the week assuming the first day is sunday,
+        // adding what the first day is will get the correct answer I think.
+        return (dayOfYear + firstDay) % 7;
     }
 }
