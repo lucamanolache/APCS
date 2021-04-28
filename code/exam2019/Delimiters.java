@@ -1,11 +1,13 @@
 package exam2019;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Delimiters {
     /**
@@ -38,8 +40,10 @@ public class Delimiters {
 //        }
 //        return ret;
 
-        // cleaner and maybe faster way to do this would be to use a stream;
-        return Arrays.stream(tokens).filter(s -> s.equals(openDel) || s.equals(closeDel)).collect(Collectors.toCollection(ArrayList::new));
+        // cleaner and maybe faster way to do this would be to use a stream; made it run in parallel cus why not.
+        // because this is running in parallel it should be a lot faster than the method used above to do this.
+        // It is also safe to do this since every step only concerns 1 element and order does not matter.
+        return Arrays.stream(tokens).parallel().filter(s -> s.equals(openDel) || s.equals(closeDel)).collect(Collectors.toCollection(ArrayList::new));
         // this was partly from my IDE, which knew that Collectors.toCollection(ArrayList::new) was a thing, my original code looked like this
         // return new ArrayList<>(Arrays.stream(tokens).filter(s -> s.equals(openDel) || s.equals(closeDel)).collect(Collectors.toList()));
     }
@@ -57,10 +61,16 @@ public class Delimiters {
 //            if (token.equals(closeDel)) {
 //                open--;
 //            }
+//            if (open < 0) {
+//                return false;
+//            }
 //        }
 //        return open == 0;
 
-        // again like in the fist problem, streams are far cooler
-        return delimiters.stream().filter(s -> s.equals(openDel)).count() == delimiters.stream().filter(s -> s.equals(closeDel)).count();
+        // kinda complicated so i hope it works. essentially turns it into a list of 1's and -1's and then adds up them,
+        // if at any point when it is adding them up, the sum is less than 0, that means that there are more closed
+        // therefore we must return false. I can not use a parallel stream here because for reduce, it requires the result
+        // of the previous element.
+        return delimiters.stream().map(s -> s.equals(openDel) ? 1 : -1).reduce(0, (c, e) -> c + e < 0 || e == Integer.MAX_VALUE ? Integer.MAX_VALUE : c + e) == 0;
     }
 }
